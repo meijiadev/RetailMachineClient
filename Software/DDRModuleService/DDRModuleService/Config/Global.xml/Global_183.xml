@@ -1,0 +1,10 @@
+<Root>
+  <Localization>
+    <Element Key="RobotID" Value="michael-183" />
+    <Element Key="DefaultLanguage" Value="Cn" />
+    <Element Key="UdpPort" Value="28888" />
+    <Element Key="PythonPath" Value="D:/DevelopProj/Dadao/DDRFramework/Shared/script/Python" />
+    <Element Key="BroadcastServerIP" Value="111.230.250.213" />
+    <Element Key="BroadcastServerPort" Value="8800" />
+  </Localization>
+</Root>
