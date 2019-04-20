@@ -72,23 +72,27 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -98,11 +102,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -112,13 +116,13 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -130,13 +134,13 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -147,12 +151,61 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CommLib\CommLibFactory.h" />
+    <ClInclude Include="CommLib\CommLibInterface.h" />
+    <ClInclude Include="CommLib\FrameSliceConsumer.h" />
+    <ClInclude Include="CommLib\FrameSliceGenerator.h" />
+    <ClInclude Include="CommonDef\CommonDef.h" />
+    <ClInclude Include="CommonDef\CommonDefFunc.h" />
+    <ClInclude Include="CommonDef\DeleteUnwrapper.h" />
+    <ClInclude Include="CommonDef\sys_configurations.h" />
+    <ClInclude Include="CommonDef\Types.h" />
+    <ClInclude Include="DDRDeviceFactory.h" />
+    <ClInclude Include="DDRDeviceInterface.h" />
+    <ClInclude Include="DeleteUnwrapper.h" />
+    <ClInclude Include="Embedded\DDREmbConfig.h" />
+    <ClInclude Include="Embedded\EmbServer.h" />
+    <ClInclude Include="Embedded\EmbUser.h" />
+    <ClInclude Include="Embedded\EmbUserBase.h" />
+    <ClInclude Include="Embedded\GNSSAnalyzer.h" />
+    <ClInclude Include="Embedded\SerialPortIOHandler.h" />
+    <ClInclude Include="LocalNetworkNode\Impl\ClientBase.h" />
+    <ClInclude Include="LocalNetworkNode\Impl\DefaultConfig.h" />
+    <ClInclude Include="LocalNetworkNode\Impl\LocalNodeGroup.h" />
+    <ClInclude Include="LocalNetworkNode\Impl\MIMC.h" />
+    <ClInclude Include="LocalNetworkNode\Impl\ServerBase.h" />
+    <ClInclude Include="LocalNetworkNode\Impl\SocketWrapper.h" />
+    <ClInclude Include="LocalNetworkNode\Impl\TCPClient.h" />
+    <ClInclude Include="LocalNetworkNode\Impl\TCPServer.h" />
+    <ClInclude Include="LocalNetworkNode\Impl\UDPClient.h" />
+    <ClInclude Include="LocalNetworkNode\Impl\UDPServer.h" />
+    <ClInclude Include="LocalNetworkNode\LNNFactory.h" />
+    <ClInclude Include="LocalNetworkNode\LNNNodeGroup.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CommLib\CommLibInterface.cpp" />
+    <ClCompile Include="CommLib\FrameSliceConsumer.cpp" />
+    <ClCompile Include="CommLib\FrameSliceGenerator.cpp" />
+    <ClCompile Include="CommonDef\CommonDefFunc.cpp" />
     <ClCompile Include="DDRDeviceInterface.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Embedded\EmbServer.cpp" />
+    <ClCompile Include="Embedded\EmbUser.cpp" />
+    <ClCompile Include="Embedded\EmbUserBase.cpp" />
+    <ClCompile Include="Embedded\GNSSAnalyzer.cpp" />
+    <ClCompile Include="Embedded\SerialPortIOHandler.cpp" />
+    <ClCompile Include="LocalNetworkNode\Impl\ClientBase.cpp" />
+    <ClCompile Include="LocalNetworkNode\Impl\IMPL.cpp" />
+    <ClCompile Include="LocalNetworkNode\Impl\LocalNodeGroup.cpp" />
+    <ClCompile Include="LocalNetworkNode\Impl\MIMC.cpp" />
+    <ClCompile Include="LocalNetworkNode\Impl\ServerBase.cpp" />
+    <ClCompile Include="LocalNetworkNode\Impl\SocketWrapper.cpp" />
+    <ClCompile Include="LocalNetworkNode\Impl\TCPClient.cpp" />
+    <ClCompile Include="LocalNetworkNode\Impl\TCPServer.cpp" />
+    <ClCompile Include="LocalNetworkNode\Impl\UDPClient.cpp" />
+    <ClCompile Include="LocalNetworkNode\Impl\UDPServer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

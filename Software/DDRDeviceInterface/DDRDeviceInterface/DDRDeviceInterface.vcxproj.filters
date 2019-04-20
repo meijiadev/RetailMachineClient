@@ -13,12 +13,117 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="CommonDef">
+      <UniqueIdentifier>{3a774873-4265-4c59-974a-9626771e7684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Embedded">
+      <UniqueIdentifier>{eb8d4d44-b40d-490a-bd83-179ac508eae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LocalNetworkNode">
+      <UniqueIdentifier>{3c78618a-c3b7-43e2-ad44-41d447e48c19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LocalNetworkNode\Impl">
+      <UniqueIdentifier>{54e38d13-f477-414a-9a0a-4354644dd536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CommLib">
+      <UniqueIdentifier>{1cdee91e-29f5-4a2c-b37a-adc002076d8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonDef\CommonDef.h">
+      <Filter>CommonDef</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonDef\CommonDefFunc.h">
+      <Filter>CommonDef</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonDef\DeleteUnwrapper.h">
+      <Filter>CommonDef</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonDef\sys_configurations.h">
+      <Filter>CommonDef</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonDef\Types.h">
+      <Filter>CommonDef</Filter>
+    </ClInclude>
+    <ClInclude Include="Embedded\DDREmbConfig.h">
+      <Filter>Embedded</Filter>
+    </ClInclude>
+    <ClInclude Include="Embedded\EmbServer.h">
+      <Filter>Embedded</Filter>
+    </ClInclude>
+    <ClInclude Include="Embedded\EmbUser.h">
+      <Filter>Embedded</Filter>
+    </ClInclude>
+    <ClInclude Include="Embedded\EmbUserBase.h">
+      <Filter>Embedded</Filter>
+    </ClInclude>
+    <ClInclude Include="Embedded\GNSSAnalyzer.h">
+      <Filter>Embedded</Filter>
+    </ClInclude>
+    <ClInclude Include="Embedded\SerialPortIOHandler.h">
+      <Filter>Embedded</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNetworkNode\LNNFactory.h">
+      <Filter>LocalNetworkNode</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNetworkNode\LNNNodeGroup.h">
+      <Filter>LocalNetworkNode</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNetworkNode\Impl\ClientBase.h">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNetworkNode\Impl\DefaultConfig.h">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNetworkNode\Impl\LocalNodeGroup.h">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNetworkNode\Impl\MIMC.h">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNetworkNode\Impl\ServerBase.h">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNetworkNode\Impl\SocketWrapper.h">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNetworkNode\Impl\TCPClient.h">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNetworkNode\Impl\TCPServer.h">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNetworkNode\Impl\UDPClient.h">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNetworkNode\Impl\UDPServer.h">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="CommLib\CommLibFactory.h">
+      <Filter>CommLib</Filter>
+    </ClInclude>
+    <ClInclude Include="CommLib\CommLibInterface.h">
+      <Filter>CommLib</Filter>
+    </ClInclude>
+    <ClInclude Include="CommLib\FrameSliceConsumer.h">
+      <Filter>CommLib</Filter>
+    </ClInclude>
+    <ClInclude Include="CommLib\FrameSliceGenerator.h">
+      <Filter>CommLib</Filter>
+    </ClInclude>
+    <ClInclude Include="DDRDeviceFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DDRDeviceInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteUnwrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -31,6 +136,63 @@
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonDef\CommonDefFunc.cpp">
+      <Filter>CommonDef</Filter>
+    </ClCompile>
+    <ClCompile Include="Embedded\EmbServer.cpp">
+      <Filter>Embedded</Filter>
+    </ClCompile>
+    <ClCompile Include="Embedded\EmbUser.cpp">
+      <Filter>Embedded</Filter>
+    </ClCompile>
+    <ClCompile Include="Embedded\EmbUserBase.cpp">
+      <Filter>Embedded</Filter>
+    </ClCompile>
+    <ClCompile Include="Embedded\GNSSAnalyzer.cpp">
+      <Filter>Embedded</Filter>
+    </ClCompile>
+    <ClCompile Include="Embedded\SerialPortIOHandler.cpp">
+      <Filter>Embedded</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalNetworkNode\Impl\ClientBase.cpp">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalNetworkNode\Impl\IMPL.cpp">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalNetworkNode\Impl\LocalNodeGroup.cpp">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalNetworkNode\Impl\MIMC.cpp">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalNetworkNode\Impl\ServerBase.cpp">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalNetworkNode\Impl\SocketWrapper.cpp">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalNetworkNode\Impl\TCPClient.cpp">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalNetworkNode\Impl\TCPServer.cpp">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalNetworkNode\Impl\UDPClient.cpp">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalNetworkNode\Impl\UDPServer.cpp">
+      <Filter>LocalNetworkNode\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="CommLib\CommLibInterface.cpp">
+      <Filter>CommLib</Filter>
+    </ClCompile>
+    <ClCompile Include="CommLib\FrameSliceConsumer.cpp">
+      <Filter>CommLib</Filter>
+    </ClCompile>
+    <ClCompile Include="CommLib\FrameSliceGenerator.cpp">
+      <Filter>CommLib</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
