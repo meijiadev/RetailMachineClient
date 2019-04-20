@@ -92,7 +92,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB;WIN32</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -106,7 +106,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB;WIN32</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -122,7 +122,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB;WIN32</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -140,7 +140,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB;WIN32</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -169,6 +169,17 @@
     <ClInclude Include="Embedded\EmbUserBase.h" />
     <ClInclude Include="Embedded\GNSSAnalyzer.h" />
     <ClInclude Include="Embedded\SerialPortIOHandler.h" />
+    <ClInclude Include="LidarSDK\AkuLidar.h" />
+    <ClInclude Include="LidarSDK\CheveningSrc\BlockRingBuf.h" />
+    <ClInclude Include="LidarSDK\CheveningSrc\common.h" />
+    <ClInclude Include="LidarSDK\CheveningSrc\Lidar.h" />
+    <ClInclude Include="LidarSDK\CheveningSrc\LidarComm.h" />
+    <ClInclude Include="LidarSDK\CheveningSrc\LidarImpl.h" />
+    <ClInclude Include="LidarSDK\CheveningSrc\LidarList.h" />
+    <ClInclude Include="LidarSDK\CheveningSrc\LidarProbe.h" />
+    <ClInclude Include="LidarSDK\CheveningSrc\LidarSDK_errno.h" />
+    <ClInclude Include="LidarSDK\CheveningSrc\lim.h" />
+    <ClInclude Include="LidarSDK\CheveningSrc\RingBuf.h" />
     <ClInclude Include="LocalNetworkNode\Impl\ClientBase.h" />
     <ClInclude Include="LocalNetworkNode\Impl\DefaultConfig.h" />
     <ClInclude Include="LocalNetworkNode\Impl\LocalNodeGroup.h" />
@@ -196,6 +207,15 @@
     <ClCompile Include="Embedded\EmbUserBase.cpp" />
     <ClCompile Include="Embedded\GNSSAnalyzer.cpp" />
     <ClCompile Include="Embedded\SerialPortIOHandler.cpp" />
+    <ClCompile Include="LidarSDK\AkuLidar.cpp" />
+    <ClCompile Include="LidarSDK\CheveningSrc\BlockRingBuf.cpp" />
+    <ClCompile Include="LidarSDK\CheveningSrc\Lidar.cpp" />
+    <ClCompile Include="LidarSDK\CheveningSrc\LidarComm.cpp" />
+    <ClCompile Include="LidarSDK\CheveningSrc\LidarImpl.cpp" />
+    <ClCompile Include="LidarSDK\CheveningSrc\LidarList.cpp" />
+    <ClCompile Include="LidarSDK\CheveningSrc\LidarProbe.cpp" />
+    <ClCompile Include="LidarSDK\CheveningSrc\lim.cpp" />
+    <ClCompile Include="LidarSDK\CheveningSrc\RingBuf.cpp" />
     <ClCompile Include="LocalNetworkNode\Impl\ClientBase.cpp" />
     <ClCompile Include="LocalNetworkNode\Impl\IMPL.cpp" />
     <ClCompile Include="LocalNetworkNode\Impl\LocalNodeGroup.cpp" />

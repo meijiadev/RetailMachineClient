@@ -8,7 +8,7 @@
 #include <mutex>
 #include "CommonDef/CommonDef.h"
 #include "Geometry/RangerPoints.h"
-#include "Lidar.h"
+#include "LidarSDK/CheveningSrc/Lidar.h"
 
 namespace DDRDrivers
 {

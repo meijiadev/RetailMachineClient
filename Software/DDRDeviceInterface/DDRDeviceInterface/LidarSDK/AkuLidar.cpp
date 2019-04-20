@@ -1,18 +1,9 @@
 #include "AkuLidar.h"
-
 #include <assert.h>
 
-#if 1
-#include "LidarSDK/lim.h"
-#include "LidarSDK/LidarSDK_errno.h"
+#include "LidarSDK/CheveningSrc/lim.h"
+#include "LidarSDK/CheveningSrc/LidarSDK_errno.h"
 
-#ifndef _WIN64
-#pragma comment(lib, "Drivers/LidarSDK/x86_r/LidarSDK.lib")
-#else
-#pragma comment(lib, "Drivers/LidarSDK/x64_r/LidarSDK.lib")
-#endif
-
-#endif
 namespace DDRDrivers {
 
 const int AKUSENSE_LIDAR_FILTEREDOUT_DISTANCE = 9999999; // range too far to be valid

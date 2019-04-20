@@ -43,6 +43,7 @@ public:
 
 	int start_lidar_config(int id);
 	int stop_lidar_config(int id);
+
 	//获取雷达配置
 	//	id : SDK分配的ID号
 	//	bWaitFlag: 是否等待结果，=1，等待结果再返回；=0，直接返回，然后再回调函数中处理查询结果；

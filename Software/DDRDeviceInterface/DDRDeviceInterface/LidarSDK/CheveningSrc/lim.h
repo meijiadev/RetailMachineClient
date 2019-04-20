@@ -1,6 +1,8 @@
 #ifndef __LIM_H__
 #define __LIM_H__
 
+#include "stdio.h"
+
 #if defined (LINUX)
 
 #ifndef STRUCTPACKED
@@ -179,7 +181,7 @@ return value: true / false
 Remark:
 1) composed LIM is returned in _lim.
 */
-bool LIM_Pack(LIM_HEAD*& _lim, unsigned int _cid, unsigned int _code, unsigned int* _data = nullptr, unsigned int _ext_data_len = 0, void* _ext_data = nullptr);
+bool LIM_Pack(LIM_HEAD*& _lim, unsigned int _cid, unsigned int _code, unsigned int* _data = NULL, unsigned int _ext_data_len = 0, void* _ext_data = NULL);
 /*
 LIM_Copy:
 Function: copy a LIM.

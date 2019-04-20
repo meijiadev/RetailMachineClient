@@ -28,6 +28,12 @@
     <Filter Include="CommLib">
       <UniqueIdentifier>{1cdee91e-29f5-4a2c-b37a-adc002076d8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LidarSDK">
+      <UniqueIdentifier>{9a6ee64d-d9d3-4816-af29-378b099a762f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LidarSDK\CheveningSrc">
+      <UniqueIdentifier>{30e1210f-9835-4822-b360-ea901c4f3514}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -126,6 +132,39 @@
     <ClInclude Include="DeleteUnwrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LidarSDK\AkuLidar.h">
+      <Filter>LidarSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="LidarSDK\CheveningSrc\BlockRingBuf.h">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="LidarSDK\CheveningSrc\common.h">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="LidarSDK\CheveningSrc\Lidar.h">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="LidarSDK\CheveningSrc\LidarComm.h">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="LidarSDK\CheveningSrc\LidarImpl.h">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="LidarSDK\CheveningSrc\LidarList.h">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="LidarSDK\CheveningSrc\LidarProbe.h">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="LidarSDK\CheveningSrc\LidarSDK_errno.h">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="LidarSDK\CheveningSrc\lim.h">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="LidarSDK\CheveningSrc\RingBuf.h">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -193,6 +232,33 @@
     </ClCompile>
     <ClCompile Include="CommLib\FrameSliceGenerator.cpp">
       <Filter>CommLib</Filter>
+    </ClCompile>
+    <ClCompile Include="LidarSDK\AkuLidar.cpp">
+      <Filter>LidarSDK</Filter>
+    </ClCompile>
+    <ClCompile Include="LidarSDK\CheveningSrc\BlockRingBuf.cpp">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="LidarSDK\CheveningSrc\Lidar.cpp">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="LidarSDK\CheveningSrc\LidarComm.cpp">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="LidarSDK\CheveningSrc\LidarImpl.cpp">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="LidarSDK\CheveningSrc\LidarList.cpp">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="LidarSDK\CheveningSrc\LidarProbe.cpp">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="LidarSDK\CheveningSrc\lim.cpp">
+      <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="LidarSDK\CheveningSrc\RingBuf.cpp">
+      <Filter>LidarSDK\CheveningSrc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
