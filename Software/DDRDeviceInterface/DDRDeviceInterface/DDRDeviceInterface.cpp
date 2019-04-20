@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "DDRDeviceInterface.h"
 #include "DeleteUnwrapper.h"
+#include "LidarSDK/AkuLidar.h"
 
 namespace DDRDevice {
 
@@ -12,12 +13,24 @@ namespace DDRDevice {
 
 	class DDRDeviceImpl : public DefaultDelete<DDRDeviceInterface> 
 	{
+		bool AddOneLidar(DDR_IN char* strLidarIP, DDR_OUT int *nLidarID)
+		{
+			return m_Lidar.AddOneLidar(strLidarIP, *nLidarID);
+		}
+
+		bool SendSpeed(DDR_IN float fSpeedA, DDR_IN float fSpeedL)
+		{
+			return true;
+		}
 
 		void _stdcall destroy()
 		{
 			delete this;
 			--g_cntPPOACModule;
 		}
+
+	private:
+		DDRDrivers::Lidar_AkuSense m_Lidar;
 	};
 
 	DDRDeviceInterface* _stdcall _createDDRDeviceModule() {
