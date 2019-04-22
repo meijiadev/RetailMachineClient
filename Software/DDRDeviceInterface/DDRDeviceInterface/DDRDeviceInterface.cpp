@@ -39,8 +39,10 @@ namespace DDRDevice {
 		}
 
 
+
 	private:
-		std::map<EnDeviceType, DevicePtrContainer*> m_mapDevice;
+		typedef std::map<unsigned int, DevicePtrContainer*> DeviceType;
+		std::map<EnDeviceType, DeviceType> m_mapDevice;
 
 		//m_mapDevice.insert(pair<int, string>(1, "student_one"));
 	};
