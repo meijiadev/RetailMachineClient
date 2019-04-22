@@ -182,6 +182,9 @@
     <ClInclude Include="Embedded\EmbManager.h">
       <Filter>Embedded</Filter>
     </ClInclude>
+    <ClInclude Include="Device\Device.h">
+      <Filter>Device</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

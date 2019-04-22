@@ -168,6 +168,7 @@
     <ClInclude Include="Device\DDRDeviceLidar.h" />
     <ClInclude Include="Device\DDRDeviceMotor.h" />
     <ClInclude Include="Device\DDRDeviceTypeBase.h" />
+    <ClInclude Include="Device\Device.h" />
     <ClInclude Include="Embedded\DDREmbConfig.h" />
     <ClInclude Include="Embedded\EmbManager.h" />
     <ClInclude Include="Embedded\EmbServer.h" />
