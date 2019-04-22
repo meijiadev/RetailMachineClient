@@ -4,7 +4,8 @@
 #include "stdafx.h"
 #include "DDRDeviceInterface.h"
 #include "DeleteUnwrapper.h"
-#include "LidarSDK/AkuLidar.h"
+#include "Device/DDRDeviceCommData.h"
+#include <map>
 
 namespace DDRDevice {
 
@@ -15,7 +16,7 @@ namespace DDRDevice {
 	{
 		bool AddOneLidar(DDR_IN char* strLidarIP, DDR_OUT int *nLidarID)
 		{
-			return m_Lidar.AddOneLidar(strLidarIP, *nLidarID);
+			return false;
 		}
 
 		bool SendSpeed(DDR_IN float fSpeedA, DDR_IN float fSpeedL)
@@ -30,7 +31,9 @@ namespace DDRDevice {
 		}
 
 	private:
-		DDRDrivers::Lidar_AkuSense m_Lidar;
+		//std::map<EnDeviceType, xxxxx> m_mapDevice;
+
+		//m_mapDevice.insert(pair<int, string>(1, "student_one"));
 	};
 
 	DDRDeviceInterface* _stdcall _createDDRDeviceModule() {
