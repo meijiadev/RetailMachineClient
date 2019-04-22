@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -163,7 +163,13 @@
     <ClInclude Include="DDRDeviceFactory.h" />
     <ClInclude Include="DDRDeviceInterface.h" />
     <ClInclude Include="DeleteUnwrapper.h" />
+    <ClInclude Include="Device\DDRDeviceCommData.h" />
+    <ClInclude Include="Device\DDRDeviceIMU.h" />
+    <ClInclude Include="Device\DDRDeviceLidar.h" />
+    <ClInclude Include="Device\DDRDeviceMotor.h" />
+    <ClInclude Include="Device\DDRDeviceTypeBase.h" />
     <ClInclude Include="Embedded\DDREmbConfig.h" />
+    <ClInclude Include="Embedded\EmbManager.h" />
     <ClInclude Include="Embedded\EmbServer.h" />
     <ClInclude Include="Embedded\EmbUser.h" />
     <ClInclude Include="Embedded\EmbUserBase.h" />
@@ -201,7 +207,11 @@
     <ClCompile Include="CommLib\FrameSliceGenerator.cpp" />
     <ClCompile Include="CommonDef\CommonDefFunc.cpp" />
     <ClCompile Include="DDRDeviceInterface.cpp" />
+    <ClCompile Include="Device\DDRDeviceIMU.cpp" />
+    <ClCompile Include="Device\DDRDeviceLidar.cpp" />
+    <ClCompile Include="Device\DDRDeviceMotor.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Embedded\EmbManager.cpp" />
     <ClCompile Include="Embedded\EmbServer.cpp" />
     <ClCompile Include="Embedded\EmbUser.cpp" />
     <ClCompile Include="Embedded\EmbUserBase.cpp" />

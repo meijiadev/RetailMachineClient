@@ -30,6 +30,9 @@
     <Filter Include="LidarSDK\CheveningSrc">
       <UniqueIdentifier>{30e1210f-9835-4822-b360-ea901c4f3514}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Device">
+      <UniqueIdentifier>{d75d1670-6553-43da-9dfd-712eff91c963}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -161,6 +164,24 @@
     <ClInclude Include="LidarSDK\CheveningSrc\RingBuf.h">
       <Filter>LidarSDK\CheveningSrc</Filter>
     </ClInclude>
+    <ClInclude Include="Device\DDRDeviceTypeBase.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DDRDeviceLidar.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DDRDeviceCommData.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DDRDeviceIMU.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DDRDeviceMotor.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Embedded\EmbManager.h">
+      <Filter>Embedded</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -255,6 +276,18 @@
     </ClCompile>
     <ClCompile Include="LidarSDK\CheveningSrc\RingBuf.cpp">
       <Filter>LidarSDK\CheveningSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DDRDeviceLidar.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DDRDeviceIMU.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DDRDeviceMotor.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Embedded\EmbManager.cpp">
+      <Filter>Embedded</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
