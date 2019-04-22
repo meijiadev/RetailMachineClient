@@ -13,6 +13,14 @@ namespace DDRDevice
 		virtual bool DeInit() = 0;
 		virtual std::shared_ptr<T> GetData() = 0;
 	};
+
+	class DevicePtrContainer
+	{
+	public:
+		EnDeviceType mType;
+
+	};
+
 }
 
 #endif //  __DDR_DEVICE_DATA_BASE_H__

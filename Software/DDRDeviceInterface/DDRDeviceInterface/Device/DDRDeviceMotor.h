@@ -6,7 +6,7 @@
 
 namespace DDRDevice
 {
-	class MotorBase :public DeviceTypeBase<MotorData>
+	class MotorBase :public DeviceTypeBase<MotorData> , public DevicePtrContainer
 	{
 	public:
 		bool Init();

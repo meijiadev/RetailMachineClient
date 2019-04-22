@@ -6,6 +6,7 @@
 #include "DeleteUnwrapper.h"
 #include "Device/DDRDeviceCommData.h"
 #include <map>
+#include "Device/DDRDeviceTypeBase.h"
 
 namespace DDRDevice {
 
@@ -30,8 +31,16 @@ namespace DDRDevice {
 			--g_cntPPOACModule;
 		}
 
+		template <class T>
+		T GetPtr(EnDeviceType type)
+		{
+			auto p = m_mapDevice[type];
+			return  (T*)p;
+		}
+
+
 	private:
-		//std::map<EnDeviceType, xxxxx> m_mapDevice;
+		std::map<EnDeviceType, DevicePtrContainer*> m_mapDevice;
 
 		//m_mapDevice.insert(pair<int, string>(1, "student_one"));
 	};
@@ -42,6 +51,10 @@ namespace DDRDevice {
 			return (new DDRDeviceImpl);
 		}
 		else { return nullptr; }
+
+
+
+
 	}
 }
 
