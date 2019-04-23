@@ -179,10 +179,10 @@
     <ClInclude Include="Device\DDRDeviceMotor.h">
       <Filter>Device</Filter>
     </ClInclude>
-    <ClInclude Include="Embedded\EmbManager.h">
-      <Filter>Embedded</Filter>
-    </ClInclude>
     <ClInclude Include="Device\Device.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceManager.h">
       <Filter>Device</Filter>
     </ClInclude>
   </ItemGroup>
@@ -289,8 +289,8 @@
     <ClCompile Include="Device\DDRDeviceMotor.cpp">
       <Filter>Device</Filter>
     </ClCompile>
-    <ClCompile Include="Embedded\EmbManager.cpp">
-      <Filter>Embedded</Filter>
+    <ClCompile Include="Device\DeviceManager.cpp">
+      <Filter>Device</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

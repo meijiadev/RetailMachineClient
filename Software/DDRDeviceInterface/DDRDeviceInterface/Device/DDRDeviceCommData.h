@@ -7,9 +7,11 @@ namespace DDRDevice
 {
 	enum EnDeviceType
 	{
-		en_DeviceLidar = 0,
 		en_DeviceIMU = 1,
 		en_DeviceMotor = 2,
+
+		en_DeviceLidar = 60,
+
 		en_DeviceMAX = 255,
 	};
 

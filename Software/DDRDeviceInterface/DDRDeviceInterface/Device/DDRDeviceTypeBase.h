@@ -1,6 +1,9 @@
 #ifndef __DDR_DEVICE_TYPE_BASE_H__
 #define __DDR_DEVICE_TYPE_BASE_H__
 
+
+#include "DDRDeviceCommData.h"
+
 #include <memory>
 
 namespace DDRDevice

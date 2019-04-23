@@ -3,11 +3,10 @@
 
 #include "DDRDeviceTypeBase.h"
 #include "DDRDeviceCommData.h"
-#include "LidarSDK/AkuLidar.h"
 
 namespace DDRDevice
 {
-	class LidarBase :public DeviceTypeBase<LidarData>
+	class LidarBase :public DeviceTypeBase<LidarData>, public DevicePtrContainer
 	{
 	public:
 		bool Init();
@@ -15,7 +14,6 @@ namespace DDRDevice
 		std::shared_ptr<LidarData> GetData();
 
 	private:
-		DDRDrivers::Lidar_AkuSense m_Lidar;
 	};
 }
 

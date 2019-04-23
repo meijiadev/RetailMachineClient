@@ -4,7 +4,7 @@
 #include "DDRDeviceCommData.h"
 namespace DDRDevice
 {
-	class IMUBase :public DeviceTypeBase<IMUData>
+	class IMUBase :public DeviceTypeBase<IMUData>, public DevicePtrContainer
 	{
 	public:
 		bool Init();
