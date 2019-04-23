@@ -1,5 +1,5 @@
-#ifndef __DDR_DEVICE_LIDAR_TYPE_BASE_H__
-#define __DDR_DEVICE_LIDAR_TYPE_BASE_H__
+#ifndef __DDR_DEVICE_MOTOR_TYPE_BASE_H__
+#define __DDR_DEVICE_MOTOR_TYPE_BASE_H__
 
 #include "DDRDeviceTypeBase.h"
 #include "DDRDeviceCommData.h"
@@ -17,5 +17,5 @@ namespace DDRDevice
 	};
 }
 
-#endif //  __DDR_DEVICE_LIDAR_TYPE_BASE_H__
+#endif //  __DDR_DEVICE_MOTOR_TYPE_BASE_H__
 

@@ -1,5 +1,5 @@
 #include "DDRDeviceMotor.h"
-#include "Embedded/EmbManager.h"
+#include "DeviceManager.h"
 
 namespace DDRDevice
 {
@@ -16,7 +16,7 @@ namespace DDRDevice
 	std::shared_ptr<MotorData> MotorBase::GetData()
 	{
 		MotorData data;
-		if (DDREmbeddedManager::GetInstance()->GetMotorData(data))
+		if (DDRDevicedManager::GetInstance()->GetMotorData(data))
 		{
 			std::shared_ptr<MotorData> ptr = std::make_shared<MotorData>();
 			ptr->m_sLeftMotorSpeed = data.m_sLeftMotorSpeed;

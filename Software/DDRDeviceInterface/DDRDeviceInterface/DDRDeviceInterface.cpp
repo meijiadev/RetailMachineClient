@@ -4,9 +4,11 @@
 #include "stdafx.h"
 #include "DDRDeviceInterface.h"
 #include "DeleteUnwrapper.h"
+#include "Device/Device.h"
 #include "Device/DDRDeviceCommData.h"
-#include <map>
 #include "Device/DDRDeviceTypeBase.h"
+#include <map>
+#include <iostream>
 
 namespace DDRDevice {
 
@@ -15,16 +17,29 @@ namespace DDRDevice {
 
 	class DDRDeviceImpl : public DefaultDelete<DDRDeviceInterface> 
 	{
-		bool AddOneLidar(DDR_IN char* strLidarIP, DDR_OUT int *nLidarID)
+		bool AddDevice(EnDeviceType type)
 		{
-			return false;
-		}
+			if (en_DeviceLidar == type)
+			{
+				std::cout << "Add Lidar Success...\n";
+				std::shared_ptr<DeviceType> pdevice = std::make_shared<DeviceType>();
+				std::shared_ptr<LidarBase> plidar = std::make_shared<LidarBase>();
+				pdevice->insert(std::pair<unsigned int, std::shared_ptr<DevicePtrContainer>>((int)en_DeviceLidar, plidar));
+				m_mapDevice.insert(std::pair<EnDeviceType, std::shared_ptr<DeviceType>>(en_DeviceLidar, pdevice));
 
-		bool SendSpeed(DDR_IN float fSpeedA, DDR_IN float fSpeedL)
-		{
+			}
 			return true;
 		}
 
+		bool RemoveDevice(EnDeviceType type)
+		{
+			if (en_DeviceLidar == type)
+			{
+				std::cout << "Remove Lidar Success...\n";
+			}
+
+			return true;
+		}
 		void _stdcall destroy()
 		{
 			delete this;
@@ -38,11 +53,25 @@ namespace DDRDevice {
 			return  (T*)p;
 		}
 
+		bool LidarTest()
+		{
+			auto p = m_mapDevice[en_DeviceLidar];
+			std::cout << "p size " << p->size() << std::endl;
+			
+			//auto pContainer = p[en_DeviceLidar];
 
+			//auto lidar = dynamic_cast<LidarBase*>(pContainer);
+
+
+			//lidar->Init();
+			//std::cout << lidar->mType << std::endl;
+			//auto p = GetPtr<en_DeviceLidar>(en_DeviceLidar);
+			return true;
+		}
 
 	private:
-		typedef std::map<unsigned int, DevicePtrContainer*> DeviceType;
-		std::map<EnDeviceType, DeviceType> m_mapDevice;
+		typedef std::map<unsigned int, std::shared_ptr<DevicePtrContainer>> DeviceType;
+		std::map<EnDeviceType, std::shared_ptr<DeviceType>> m_mapDevice;
 
 		//m_mapDevice.insert(pair<int, string>(1, "student_one"));
 	};
