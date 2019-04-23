@@ -1,0 +1,1609 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Shared">
+      <UniqueIdentifier>{f6df96da-85b1-4e24-9fd6-cc034a054cc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Network">
+      <UniqueIdentifier>{6668bc2e-d3ba-47df-947a-78be52d340ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\proto">
+      <UniqueIdentifier>{e8e346af-7d13-4324-9655-3bc634532a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Utility">
+      <UniqueIdentifier>{3d41e2ac-2279-414c-971a-bedf667dffb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty">
+      <UniqueIdentifier>{275aaa48-428f-4908-83ee-23a07b1b3026}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\tinyxml">
+      <UniqueIdentifier>{accabda9-aa32-4a5f-8f47-dc9a284b8a23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\FSM">
+      <UniqueIdentifier>{4092af65-06ea-41ca-a442-f233268d7a91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client">
+      <UniqueIdentifier>{bcec1af1-68e3-4685-8c6a-fb7ed06ea62e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\mini-al">
+      <UniqueIdentifier>{d81c0d60-49d7-4a4c-a71f-15bbe6bfb14f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\cppfs">
+      <UniqueIdentifier>{108fefcb-4f80-4b9f-a8b7-dba22b439df9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\cppfs\windows">
+      <UniqueIdentifier>{f584a3a8-8bd1-4c34-888c-7785fc840cbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\curl">
+      <UniqueIdentifier>{015391b9-b2e0-426e-8dd0-66a8a648b330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\curl\lib">
+      <UniqueIdentifier>{3b50230f-9c5f-4b8c-805e-7385f9922b5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\curl-asio">
+      <UniqueIdentifier>{5182c6c9-6284-4c12-8532-ddcd5b92e433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\protobuf">
+      <UniqueIdentifier>{a3972fa2-343f-4d5b-a120-6df722cd3b1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\protobuf\src">
+      <UniqueIdentifier>{a3972fa2-323f-4d5b-a130-6df722cd3b1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\protobuf\include">
+      <UniqueIdentifier>{a3972fa2-345f-4d5b-a130-6df7823d3bca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{4d2afff7-2152-4ed9-925b-a56615bc1ed1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\TcpServerBase.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\TcpClientBase.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\proto\BaseCmd.pb.cc">
+      <Filter>Shared\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Utility\XmlLoader.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Utility\CommonFunc.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp">
+      <Filter>Shared\Thirdparty\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\tinyxml\tinyxmlerror.cpp">
+      <Filter>Shared\Thirdparty\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\tinyxml\tinyxml.cpp">
+      <Filter>Shared\Thirdparty\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\tinyxml\tinystr.cpp">
+      <Filter>Shared\Thirdparty\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\MessageSerializer.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\BaseMessageDispatcher.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\TcpSocketContainer.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\UdpSocketBase.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\BaseSocketContainer.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Utility\Logger.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\GlobalManager.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\LocalClientDispatcher.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\LocalClientUdpDispatcher.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\LocalClientUdpProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\LocalTcpClient.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\LoginProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\mini-al\extras\stb_vorbis.c">
+      <Filter>Shared\Thirdparty\mini-al</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\mini-al\mini_al.cpp">
+      <Filter>Shared\Thirdparty\mini-al</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\mini-al\extras\dr_wav.cpp">
+      <Filter>Shared\Thirdparty\mini-al</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Utility\AudioCodec.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\StreamAddrProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Utility\LocalizationLoader.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\AlarmProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\windows\LocalFileHandle.cpp">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\windows\LocalFileIterator.cpp">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\windows\LocalFileSystem.cpp">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\AbstractFileHandleBackend.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\AbstractFileIteratorBackend.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\AbstractFileSystem.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\Change.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\cppfsUrl.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\Diff.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\FileHandle.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\FileIterator.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\FilePath.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\FileVisitor.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\fs.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\FunctionalFileVisitor.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\InputStream.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\LoginCredentials.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\OutputStream.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\system.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\Tree.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\amigaos.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\asyn-ares.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\asyn-thread.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\base64.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\conncache.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\connect.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\content_encoding.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\cookie.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_addrinfo.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_ctype.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_des.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_endian.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_fnmatch.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_gethostname.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_gssapi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_memrchr.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_multibyte.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_ntlm_core.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_ntlm_wb.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_path.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_range.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_rtmp.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_sasl.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_sspi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_threads.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\dict.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\doh.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\dotdot.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\easy.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\escape.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\file.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\fileinfo.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\formdata.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\ftp.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\ftplistparser.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\getenv.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\getinfo.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\gopher.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\hash.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\hmac.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\hostasyn.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\hostcheck.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\hostip.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\hostip4.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\hostip6.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\hostsyn.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http2.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http_chunks.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http_digest.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http_negotiate.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http_ntlm.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http_proxy.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\idn_win32.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\if2ip.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\imap.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\inet_ntop.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\inet_pton.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\krb5.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\ldap.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\llist.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\md4.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\md5.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\memdebug.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\mime.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\mprintf.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\multi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\netrc.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\non-ascii.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\nonblock.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\nwlib.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\nwos.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\openldap.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\parsedate.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\pingpong.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\pipeline.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\pop3.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\progress.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\psl.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\rand.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\rtsp.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\security.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\select.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\sendf.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\setopt.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\sha256.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\share.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\slist.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\smb.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\smtp.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\socks.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\socks_gssapi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\socks_sspi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\speedcheck.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\splay.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\ssh-libssh.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\ssh.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\strcase.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\strdup.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\strerror.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\strtok.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\strtoofft.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\system_win32.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\telnet.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\tftp.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\timeval.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\transfer.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\url.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\urlapi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\cleartext.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\cram.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\digest.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\digest_sspi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\krb5_gssapi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\krb5_sspi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\ntlm.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\ntlm_sspi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\oauth2.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\spnego_gssapi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\spnego_sspi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\vauth.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\version.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\cyassl.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\darwinssl.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\gskit.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\gtls.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\mbedtls.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\mesalink.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\nss.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\openssl.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\polarssl.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\polarssl_threadlock.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\schannel.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\schannel_verify.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\vtls.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\warnless.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\wildcard.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\x509asn1.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\FileAddressProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\HttpClient.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Utility\GlobalManagerBase.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\BaseProcessor.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Utility\MiniDump.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\src\Utility\PythonDebugTools.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\RemoteServerListProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\RemoteLoginProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\SelectLSProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\UnselectLSProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\RemoteFileAddressProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\CmdMoveProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\AudioTalkProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\proto\RemoteCmd.pb.cc">
+      <Filter>Shared\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\DDRClientInterface.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="DLLMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Network\TcpServerBase.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Network\TcpClientBase.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Utility\XmlLoader.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Utility\DDRMacro.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Utility\CommonFunc.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\tinyxml\tinyxml.h">
+      <Filter>Shared\Thirdparty\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\tinyxml\tinystr.h">
+      <Filter>Shared\Thirdparty\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Network\MessageSerializer.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\FSM\FSM.h">
+      <Filter>Shared\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Network\BaseProcessor.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Network\BaseMessageDispatcher.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Network\TcpSocketContainer.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Network\UdpSocketBase.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Network\BaseSocketContainer.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Utility\Singleton.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Utility\Logger.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\GlobalManager.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\LocalClientDispatcher.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\LocalClientUdpDispatcher.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\LocalClientUdpProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\LocalTcpClient.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\LoginProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\mini-al\mini_al.h">
+      <Filter>Shared\Thirdparty\mini-al</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\mini-al\extras\dr_flac.h">
+      <Filter>Shared\Thirdparty\mini-al</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\mini-al\extras\dr_mp3.h">
+      <Filter>Shared\Thirdparty\mini-al</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\mini-al\extras\dr_wav.h">
+      <Filter>Shared\Thirdparty\mini-al</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\mini-al\extras\jar_mod.h">
+      <Filter>Shared\Thirdparty\mini-al</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\mini-al\extras\jar_xm.h">
+      <Filter>Shared\Thirdparty\mini-al</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Utility\AudioCodec.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\StreamAddrProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Utility\LocalizationLoader.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\AlarmProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\amigaos.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\arpa_telnet.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\asyn.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\config-amigaos.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\config-dos.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\config-mac.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\config-os400.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\config-riscos.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\config-symbian.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\config-tpf.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\config-vxworks.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\config-win32.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\config-win32ce.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\conncache.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\connect.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\content_encoding.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\cookie.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curlx.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_addrinfo.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_base64.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_ctype.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_des.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_endian.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_fnmatch.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_gethostname.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_gssapi.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_hmac.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_ldap.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_md4.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_md5.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_memory.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_memrchr.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_multibyte.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_ntlm_core.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_ntlm_wb.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_path.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_printf.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_range.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_rtmp.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_sasl.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_sec.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_setup.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_setup_once.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_sha256.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_sspi.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\curl_threads.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\dict.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\doh.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\dotdot.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\easyif.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\escape.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\file.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\fileinfo.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\formdata.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\ftp.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\ftplistparser.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\getinfo.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\gopher.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\hash.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\hostcheck.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\hostip.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http2.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http_chunks.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http_digest.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http_negotiate.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http_ntlm.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\http_proxy.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\if2ip.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\imap.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\inet_ntop.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\inet_pton.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\llist.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\memdebug.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\mime.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\multihandle.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\multiif.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\netrc.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\non-ascii.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\nonblock.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\parsedate.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\pingpong.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\pipeline.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\pop3.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\progress.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\psl.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\rand.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\rtsp.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\select.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\sendf.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\setopt.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\setup-os400.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\setup-vms.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\share.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\sigpipe.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\slist.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\smb.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\smtp.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\sockaddr.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\socks.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\speedcheck.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\splay.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\ssh.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\strcase.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\strdup.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\strerror.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\strtok.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\strtoofft.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\system_win32.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\telnet.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\tftp.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\timeval.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\transfer.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\url.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\urlapi-int.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\urldata.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\digest.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\ntlm.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vauth\vauth.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\cyassl.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\darwinssl.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\gskit.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\gtls.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\mbedtls.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\mesalink.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\nssg.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\openssl.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\polarssl.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\polarssl_threadlock.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\schannel.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\vtls\vtls.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\warnless.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\wildcard.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\x509asn1.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl-asio\curl-asio.hpp">
+      <Filter>Shared\Thirdparty\curl-asio</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\FileAddressProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Network\HttpClient.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Utility\GlobalManagerBase.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\src\Utility\PythonDebugTools.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\RemoteServerListProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\RemoteLoginProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\SelectLSProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\UnselectLSProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\RemoteFileAddressProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\CmdMoveProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\AudioTalkProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\DDRClientInterface.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\arena.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\arenastring.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\extension_set.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\generated_message_table_driven_lite.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\generated_message_util.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\implicit_weak_message.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\io\coded_stream.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\io\zero_copy_stream.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\io\zero_copy_stream_impl_lite.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\message_lite.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\repeated_field.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\bytestream.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\common.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\int128.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\io_win32.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\status.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\statusor.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\stringpiece.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\stringprintf.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\structurally_valid.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\strutil.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\time.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\wire_format_lite.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\any.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\any.pb.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\api.pb.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\compiler\importer.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\compiler\parser.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\descriptor.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\descriptor.pb.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\descriptor_database.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\duration.pb.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\dynamic_message.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\empty.pb.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\extension_set_heavy.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\field_mask.pb.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\generated_message_reflection.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\generated_message_table_driven.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\io\gzip_stream.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\io\printer.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\io\strtod.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\io\tokenizer.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\io\zero_copy_stream_impl.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\map_field.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\message.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\reflection_ops.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\service.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\source_context.pb.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\struct.pb.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\mathlimits.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\substitute.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\text_format.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\timestamp.pb.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\type.pb.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\unknown_field_set.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\delimited_message_util.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\field_comparator.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\field_mask_util.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\datapiece.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\default_value_objectwriter.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\error_listener.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\field_mask_utility.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\json_escaping.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\json_objectwriter.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\json_stream_parser.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\object_writer.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\proto_writer.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\protostream_objectsource.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\protostream_objectwriter.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\type_info.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\type_info_test_helper.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\utility.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\json_util.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\message_differencer.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\time_util.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\type_resolver_util.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\wire_format.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\wrappers.pb.cc">
+      <Filter>Shared\Thirdparty\protobuf\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\any.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\any.pb.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\api.pb.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\compiler\importer.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\compiler\parser.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\descriptor.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\descriptor.pb.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\descriptor_database.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\duration.pb.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\dynamic_message.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\empty.pb.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\field_mask.pb.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\generated_message_reflection.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\io\gzip_stream.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\io\printer.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\io\strtod.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\io\tokenizer.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\io\zero_copy_stream_impl.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\map_field.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\message.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\reflection_ops.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\service.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\source_context.pb.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\struct.pb.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\mathlimits.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\stubs\substitute.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\text_format.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\timestamp.pb.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\type.pb.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\unknown_field_set.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\delimited_message_util.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\field_comparator.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\field_mask_util.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\datapiece.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\default_value_objectwriter.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\error_listener.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\field_mask_utility.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\json_escaping.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\json_objectwriter.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\json_stream_parser.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\object_writer.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\proto_writer.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\protostream_objectsource.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\protostream_objectwriter.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\type_info.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\type_info_test_helper.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\internal\utility.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\json_util.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\message_differencer.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\time_util.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\util\type_resolver_util.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\wire_format.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Shared\Thirdparty\protobuf\src\google\protobuf\wrappers.pb.h">
+      <Filter>Shared\Thirdparty\protobuf\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\Makefile.inc">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\objnames.inc">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </None>
+  </ItemGroup>
+</Project>
