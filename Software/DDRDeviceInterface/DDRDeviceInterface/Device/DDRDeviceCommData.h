@@ -11,6 +11,7 @@ namespace DDRDevice
 		en_DeviceMotor = 2,
 
 		en_DeviceLidar = 60,
+		en_DeviceLidar1 = 61,
 
 		en_DeviceMAX = 255,
 	};
