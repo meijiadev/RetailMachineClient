@@ -94,7 +94,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;USE_DDRSDK_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\..\Shared\;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/protobuf/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../DDRSDK/include/;$(ProjectDir)../DDRSDK/include/Shared;$(ProjectDir)../DDRSDK/include/Shared\thirdparty\protobuf\src;$(ProjectDir)../DDRClientSDK/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

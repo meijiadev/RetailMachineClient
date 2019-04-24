@@ -22,9 +22,6 @@
     <Filter Include="Shared\FSM">
       <UniqueIdentifier>{4092af65-06ea-41ca-a442-f233268d7a91}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Client">
-      <UniqueIdentifier>{bcec1af1-68e3-4685-8c6a-fb7ed06ea62e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shared\Thirdparty\mini-al">
       <UniqueIdentifier>{d81c0d60-49d7-4a4c-a71f-15bbe6bfb14f}</UniqueIdentifier>
     </Filter>
@@ -52,8 +49,20 @@
     <Filter Include="Shared\Thirdparty\protobuf\include">
       <UniqueIdentifier>{a3972fa2-345f-4d5b-a130-6df7823d3bca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Interface">
-      <UniqueIdentifier>{4d2afff7-2152-4ed9-925b-a56615bc1ed1}</UniqueIdentifier>
+    <Filter Include="include">
+      <UniqueIdentifier>{4656910c-a46f-4fc1-a156-cffdcb0ab886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{ced03781-b380-4b79-bfd6-5038074c379c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ClientSDK">
+      <UniqueIdentifier>{c184d4a2-6b4c-4230-8baf-f3d69449b0b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Interface">
+      <UniqueIdentifier>{7f105c70-f949-4df8-b829-fbc7632bbaf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Processors">
+      <UniqueIdentifier>{b98700f5-3a85-4d07-82dc-12d962df189d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -62,9 +71,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\TcpClientBase.cpp">
       <Filter>Shared\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\Shared\proto\BaseCmd.pb.cc">
-      <Filter>Shared\proto</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Utility\XmlLoader.cpp">
       <Filter>Shared\Utility</Filter>
@@ -102,24 +108,6 @@
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Utility\Logger.cpp">
       <Filter>Shared\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Client\GlobalManager.cpp">
-      <Filter>Client</Filter>
-    </ClCompile>
-    <ClCompile Include="Client\LocalClientDispatcher.cpp">
-      <Filter>Client</Filter>
-    </ClCompile>
-    <ClCompile Include="Client\LocalClientUdpDispatcher.cpp">
-      <Filter>Client</Filter>
-    </ClCompile>
-    <ClCompile Include="Client\LocalClientUdpProcessor.cpp">
-      <Filter>Client</Filter>
-    </ClCompile>
-    <ClCompile Include="Client\LocalTcpClient.cpp">
-      <Filter>Client</Filter>
-    </ClCompile>
-    <ClCompile Include="Client\LoginProcessor.cpp">
-      <Filter>Client</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\mini-al\extras\stb_vorbis.c">
       <Filter>Shared\Thirdparty\mini-al</Filter>
     </ClCompile>
@@ -132,14 +120,8 @@
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Utility\AudioCodec.cpp">
       <Filter>Shared\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Client\StreamAddrProcessor.cpp">
-      <Filter>Client</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Utility\LocalizationLoader.cpp">
       <Filter>Shared\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="Client\AlarmProcessor.cpp">
-      <Filter>Client</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\cppfs\source\windows\LocalFileHandle.cpp">
       <Filter>Shared\Thirdparty\cppfs\windows</Filter>
@@ -615,9 +597,6 @@
     <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\x509asn1.c">
       <Filter>Shared\Thirdparty\curl\lib</Filter>
     </ClCompile>
-    <ClCompile Include="Client\FileAddressProcessor.cpp">
-      <Filter>Client</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\HttpClient.cpp">
       <Filter>Shared\Network</Filter>
     </ClCompile>
@@ -633,34 +612,28 @@
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Utility\PythonDebugTools.cpp">
       <Filter>Shared\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Client\RemoteServerListProcessor.cpp">
-      <Filter>Client</Filter>
+    <ClCompile Include="DLLMain.cpp" />
+    <ClCompile Include="src\Processors\ClientSDKProcessor.cpp">
+      <Filter>src\Processors</Filter>
     </ClCompile>
-    <ClCompile Include="Client\RemoteLoginProcessor.cpp">
-      <Filter>Client</Filter>
+    <ClCompile Include="src\Processors\ClientSDKUdpProcessor.cpp">
+      <Filter>src\Processors</Filter>
     </ClCompile>
-    <ClCompile Include="Client\SelectLSProcessor.cpp">
-      <Filter>Client</Filter>
+    <ClCompile Include="src\ClientSDK\ClientSDKDispatcher.cpp">
+      <Filter>src\ClientSDK</Filter>
     </ClCompile>
-    <ClCompile Include="Client\UnselectLSProcessor.cpp">
-      <Filter>Client</Filter>
+    <ClCompile Include="src\ClientSDK\ClientSDKTcpClient.cpp">
+      <Filter>src\ClientSDK</Filter>
     </ClCompile>
-    <ClCompile Include="Client\RemoteFileAddressProcessor.cpp">
-      <Filter>Client</Filter>
+    <ClCompile Include="src\ClientSDK\ClientSDKUdpDispatcher.cpp">
+      <Filter>src\ClientSDK</Filter>
     </ClCompile>
-    <ClCompile Include="Client\CmdMoveProcessor.cpp">
-      <Filter>Client</Filter>
+    <ClCompile Include="src\Interface\DDRClientInterface.cpp">
+      <Filter>src\Interface</Filter>
     </ClCompile>
-    <ClCompile Include="Client\AudioTalkProcessor.cpp">
-      <Filter>Client</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\Shared\proto\RemoteCmd.pb.cc">
+    <ClCompile Include="..\..\..\..\..\..\Shared\proto\BaseCmd.pb.cc">
       <Filter>Shared\proto</Filter>
     </ClCompile>
-    <ClCompile Include="Interface\DDRClientInterface.cpp">
-      <Filter>Interface</Filter>
-    </ClCompile>
-    <ClCompile Include="DLLMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\Shared\src\Network\TcpServerBase.h">
@@ -711,24 +684,6 @@
     <ClInclude Include="..\..\..\..\..\..\Shared\src\Utility\Logger.h">
       <Filter>Shared\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Client\GlobalManager.h">
-      <Filter>Client</Filter>
-    </ClInclude>
-    <ClInclude Include="Client\LocalClientDispatcher.h">
-      <Filter>Client</Filter>
-    </ClInclude>
-    <ClInclude Include="Client\LocalClientUdpDispatcher.h">
-      <Filter>Client</Filter>
-    </ClInclude>
-    <ClInclude Include="Client\LocalClientUdpProcessor.h">
-      <Filter>Client</Filter>
-    </ClInclude>
-    <ClInclude Include="Client\LocalTcpClient.h">
-      <Filter>Client</Filter>
-    </ClInclude>
-    <ClInclude Include="Client\LoginProcessor.h">
-      <Filter>Client</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\mini-al\mini_al.h">
       <Filter>Shared\Thirdparty\mini-al</Filter>
     </ClInclude>
@@ -750,14 +705,8 @@
     <ClInclude Include="..\..\..\..\..\..\Shared\src\Utility\AudioCodec.h">
       <Filter>Shared\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Client\StreamAddrProcessor.h">
-      <Filter>Client</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\Shared\src\Utility\LocalizationLoader.h">
       <Filter>Shared\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Client\AlarmProcessor.h">
-      <Filter>Client</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl\lib\amigaos.h">
       <Filter>Shared\Thirdparty\curl\lib</Filter>
@@ -1164,9 +1113,6 @@
     <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\curl-asio\curl-asio.hpp">
       <Filter>Shared\Thirdparty\curl-asio</Filter>
     </ClInclude>
-    <ClInclude Include="Client\FileAddressProcessor.h">
-      <Filter>Client</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\Shared\src\Network\HttpClient.h">
       <Filter>Shared\Network</Filter>
     </ClInclude>
@@ -1176,29 +1122,26 @@
     <ClInclude Include="..\..\..\..\..\..\Shared\src\Utility\PythonDebugTools.h">
       <Filter>Shared\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Client\RemoteServerListProcessor.h">
-      <Filter>Client</Filter>
+    <ClInclude Include="src\Processors\ClientSDKProcessor.h">
+      <Filter>src\Processors</Filter>
     </ClInclude>
-    <ClInclude Include="Client\RemoteLoginProcessor.h">
-      <Filter>Client</Filter>
+    <ClInclude Include="src\Processors\ClientSDKUdpProcessor.h">
+      <Filter>src\Processors</Filter>
     </ClInclude>
-    <ClInclude Include="Client\SelectLSProcessor.h">
-      <Filter>Client</Filter>
+    <ClInclude Include="src\ClientSDK\ClientSDKDispatcher.h">
+      <Filter>src\ClientSDK</Filter>
     </ClInclude>
-    <ClInclude Include="Client\UnselectLSProcessor.h">
-      <Filter>Client</Filter>
+    <ClInclude Include="src\ClientSDK\ClientSDKTcpClient.h">
+      <Filter>src\ClientSDK</Filter>
     </ClInclude>
-    <ClInclude Include="Client\RemoteFileAddressProcessor.h">
-      <Filter>Client</Filter>
+    <ClInclude Include="src\ClientSDK\ClientSDKUdpDispatcher.h">
+      <Filter>src\ClientSDK</Filter>
     </ClInclude>
-    <ClInclude Include="Client\CmdMoveProcessor.h">
-      <Filter>Client</Filter>
+    <ClInclude Include="src\Interface\DDRClientInterface.h">
+      <Filter>src\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Client\AudioTalkProcessor.h">
-      <Filter>Client</Filter>
-    </ClInclude>
-    <ClInclude Include="Interface\DDRClientInterface.h">
-      <Filter>Interface</Filter>
+    <ClInclude Include="include\DDRClientSDK.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
