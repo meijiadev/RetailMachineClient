@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -81,7 +81,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -116,12 +116,11 @@
       <PreprocessorDefinitions>WIN32;_WINDOWS;SYSTEM_WINDOWS;_SCL_SECURE_NO_WARNINGS;HAVE_CONFIG_H;BUILDING_LIBCURL;CURL_HIDDEN_SYMBOLS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;PROTOBUF_ENCRYPT;PROTOBUF_USE_DLLS;LIBPROTOBUF_EXPORTS;ASIO_STANDALONE;_DEBUG;_CONSOLE;DR_WAV_IMPLEMENTATION;MINI_AL_IMPLEMENTATION;_DISABLE_EXTENDED_ALIGNED_STORAGE;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../../../;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/curl/include;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/curl/;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/curl-asio/include;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/curl/lib;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/tinyxml;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/protobuf/src;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/asio/include;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/jsoncpp/include;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/cppfs/include;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/python/PC;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/python/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\..\..\..\..\Shared\;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/curl/include;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/curl/;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/curl-asio/include;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/curl/lib;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/tinyxml;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/protobuf/src;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/asio/include;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/jsoncpp/include;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/cppfs/include;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/python/PC;$(ProjectDir)..\..\..\..\..\..\Shared\Thirdparty/python/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -172,7 +171,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\Shared\proto\BaseCmd.pb.cc" />
-    <ClCompile Include="..\..\..\..\..\..\Shared\proto\RemoteCmd.pb.cc" />
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\BaseMessageDispatcher.cpp" />
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\BaseProcessor.cpp" />
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\BaseSocketContainer.cpp" />
@@ -355,24 +353,13 @@
     <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\tinyxml\tinyxml.cpp" />
     <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\tinyxml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp" />
-    <ClCompile Include="Client\AlarmProcessor.cpp" />
-    <ClCompile Include="Client\AudioTalkProcessor.cpp" />
-    <ClCompile Include="Client\CmdMoveProcessor.cpp" />
-    <ClCompile Include="Client\FileAddressProcessor.cpp" />
-    <ClCompile Include="Client\GlobalManager.cpp" />
-    <ClCompile Include="Client\LocalClientDispatcher.cpp" />
-    <ClCompile Include="Client\LocalClientUdpDispatcher.cpp" />
-    <ClCompile Include="Client\LocalClientUdpProcessor.cpp" />
-    <ClCompile Include="Client\LocalTcpClient.cpp" />
-    <ClCompile Include="Client\LoginProcessor.cpp" />
-    <ClCompile Include="Client\RemoteFileAddressProcessor.cpp" />
-    <ClCompile Include="Client\RemoteLoginProcessor.cpp" />
-    <ClCompile Include="Client\RemoteServerListProcessor.cpp" />
-    <ClCompile Include="Client\SelectLSProcessor.cpp" />
-    <ClCompile Include="Client\StreamAddrProcessor.cpp" />
-    <ClCompile Include="Client\UnselectLSProcessor.cpp" />
     <ClCompile Include="DLLMain.cpp" />
-    <ClCompile Include="Interface\DDRClientInterface.cpp" />
+    <ClCompile Include="src\ClientSDK\ClientSDKDispatcher.cpp" />
+    <ClCompile Include="src\ClientSDK\ClientSDKTcpClient.cpp" />
+    <ClCompile Include="src\ClientSDK\ClientSDKUdpDispatcher.cpp" />
+    <ClCompile Include="src\Interface\DDRClientInterface.cpp" />
+    <ClCompile Include="src\Processors\ClientSDKProcessor.cpp" />
+    <ClCompile Include="src\Processors\ClientSDKUdpProcessor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\Shared\src\FSM\FSM.h" />
@@ -537,23 +524,13 @@
     <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\mini-al\mini_al.h" />
     <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\..\..\..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
-    <ClInclude Include="Client\AlarmProcessor.h" />
-    <ClInclude Include="Client\AudioTalkProcessor.h" />
-    <ClInclude Include="Client\CmdMoveProcessor.h" />
-    <ClInclude Include="Client\FileAddressProcessor.h" />
-    <ClInclude Include="Client\GlobalManager.h" />
-    <ClInclude Include="Client\LocalClientDispatcher.h" />
-    <ClInclude Include="Client\LocalClientUdpDispatcher.h" />
-    <ClInclude Include="Client\LocalClientUdpProcessor.h" />
-    <ClInclude Include="Client\LocalTcpClient.h" />
-    <ClInclude Include="Client\LoginProcessor.h" />
-    <ClInclude Include="Client\RemoteFileAddressProcessor.h" />
-    <ClInclude Include="Client\RemoteLoginProcessor.h" />
-    <ClInclude Include="Client\RemoteServerListProcessor.h" />
-    <ClInclude Include="Client\SelectLSProcessor.h" />
-    <ClInclude Include="Client\StreamAddrProcessor.h" />
-    <ClInclude Include="Client\UnselectLSProcessor.h" />
-    <ClInclude Include="Interface\DDRClientInterface.h" />
+    <ClInclude Include="include\DDRClientSDK.h" />
+    <ClInclude Include="src\ClientSDK\ClientSDKDispatcher.h" />
+    <ClInclude Include="src\ClientSDK\ClientSDKTcpClient.h" />
+    <ClInclude Include="src\ClientSDK\ClientSDKUdpDispatcher.h" />
+    <ClInclude Include="src\Interface\DDRClientInterface.h" />
+    <ClInclude Include="src\Processors\ClientSDKProcessor.h" />
+    <ClInclude Include="src\Processors\ClientSDKUdpProcessor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\protobuf\src\google\protobuf\arena.cc" />

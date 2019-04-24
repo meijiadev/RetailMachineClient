@@ -14,11 +14,11 @@
 using namespace DDRCommProto;
 
 
-class LocalClientUdpProcessor : public DDRFramework::BaseProcessor
+class ClientSDKUdpProcessor : public DDRFramework::BaseProcessor
 {
 public:
-	LocalClientUdpProcessor(DDRFramework::BaseMessageDispatcher& dispatcher);
-	~LocalClientUdpProcessor();
+	ClientSDKUdpProcessor(DDRFramework::BaseMessageDispatcher& dispatcher);
+	~ClientSDKUdpProcessor();
 
 
 	virtual void Process(std::shared_ptr<DDRFramework::BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) override;
