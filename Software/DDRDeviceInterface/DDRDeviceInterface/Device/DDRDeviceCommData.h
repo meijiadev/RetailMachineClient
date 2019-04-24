@@ -20,6 +20,9 @@ namespace DDRDevice
 		en_DeviceMAX = 255,
 	};
 
+	/*
+		设备信息的基类。
+	*/
 	class DeviceInfoBase
 	{
 	public:
@@ -27,13 +30,22 @@ namespace DDRDevice
 		EnDeviceType m_enType;
 	};
 
+	/*
+		雷达信息类。需要调用方设置。
+	*/
 	class LidarInfo:public DeviceInfoBase
 	{
 	public:
+		LidarInfo()
+		{
+			m_enType = en_DeviceLidar;
+		}
 		std::string m_strIp;
-		int m_nLidarID;
 	};
 
+	/*
+		雷达数据类。返回给调用方的数据结构
+	*/
 	class LidarData
 	{
 	public:
@@ -41,6 +53,7 @@ namespace DDRDevice
 		{
 			m_enType = en_DeviceLidar;
 			m_Data.resize(0);
+			m_nTimeStamp = 0;
 		}
 
 		struct Data 
@@ -55,6 +68,7 @@ namespace DDRDevice
 		};
 		std::vector<Data> m_Data;
 		EnDeviceType m_enType;
+		unsigned int m_nTimeStamp;
 	};
 
 	class IMUInfo :public DeviceInfoBase

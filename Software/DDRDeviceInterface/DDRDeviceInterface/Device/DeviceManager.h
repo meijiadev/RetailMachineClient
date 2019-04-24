@@ -5,28 +5,41 @@
 #include "Embedded/EmbUser.h"
 #include "Device/DDRDeviceCommData.h"
 #include "LidarSDK/AkuLidar.h"
+#include <map>
 
 namespace DDRDevice
 {
+	/*
+		设备管理的类（单例）
+		主要管理所有的设备。获取具体的设备数据。
+		每个DeviceTypeBase获取数据的来源都是从这里。
+	*/
 	class DDRDevicedManager
 	{
 		DDRDevicedManager();
+
 	public:
 		static DDRDevicedManager * GetInstance();
 		~DDRDevicedManager();
-		
-		bool AddOneLidar(char *ip, int &OutID);
-		bool GetOneScan(int nCID, std::vector<DDRGeometry::APoint> &result);
+	
+		// Lidar
+		bool AddLidar(char* ip, std::string strName);
+		bool GetLidarData(std::string strName, std::vector<DDRGeometry::APoint> &result);
+		bool RemoveLidar(std::string strName);
+
+		// Emb
 		bool GetIMUData(IMUData &data);
 		bool GetMotorData(MotorData &data);
 
+		// Stereo
 
+		static void  ParseEmbSubThread(void *param);
+		void ParseEmbData();
 	protected:
 		DDRDrivers::DDREmbeddedServer m_EmbServer;
 		DDRDrivers::EmbUser m_EmbUser;
-		DDRDrivers::Lidar_AkuSense m_Lidar;
-	private:
-		
+		std::map<std::string, std::shared_ptr<DDRDrivers::Lidar_AkuSenseEx>> m_mapLidar;
+		bool m_bQuit;
 	};
 }
 

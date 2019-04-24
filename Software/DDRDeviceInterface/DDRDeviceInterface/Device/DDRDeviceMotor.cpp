@@ -26,6 +26,17 @@ namespace DDRDevice
 
 		return nullptr;
 	}
+	MotorInfo MotorBase::GetDeviceInfo()
+	{
+		MotorInfo info;
+		return info;
+	}
+
+	bool MotorBase::SendData(MotorData data)
+	{
+		return true;
+	}
+
 }
 
 

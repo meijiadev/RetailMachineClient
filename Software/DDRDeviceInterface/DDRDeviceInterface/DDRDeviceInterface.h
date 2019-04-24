@@ -22,6 +22,7 @@
 
 #include "Device/DDRDeviceCommData.h"
 #include "Device/DDRDeviceTypeBase.h"
+#include "Device/DDRDeviceLidar.h"
 #include <memory>
 
 #define DDR_OUT // Output parameter
@@ -32,22 +33,54 @@ namespace DDRDevice
 	class DDRDeviceInterface
 	{
 	public:
+		/*
+		* @brief: 获取版本信息
+		*
+		* @retval: true-成功,  false-失败
+		*/
+		virtual std::string GetDeviceVersion() = 0;
 
-		///**
-		//* @brief: 添加一个雷达。一般获取雷达数据之前要先添加雷达
-		//* @param strLidarIP[输入参数]:要连接的雷达IP。比如:192.168.0.83
-		//* @param nLidarID[输出参数]:返回雷达ID
-		//*
-		//* @retval: true-成功,  false-失败
-		//*/
-		//virtual bool AddOneLidar(DDR_IN char* strLidarIP, DDR_OUT int *nLidarID) = 0;
+		/*
+		* @brief: 获取日期
+		*
+		* @retval: true-成功,  false-失败
+		*/
+		virtual std::string GetDeviceDate() = 0;
 
+		/*
+		* @brief: 添加设备
+		* @param type[输入参数]:设备类型
+		* @param strName[输入参数]:设备名字。每个设备有个唯一的名字。
+		*
+		* @retval: true-成功,  false-失败
+		*/
+		virtual bool AddDevice(DDR_IN EnDeviceType type, DDR_IN std::string strName) = 0;
 
-		virtual bool AddDevice(EnDeviceType type) = 0;
-		virtual bool RemoveDevice(EnDeviceType type) = 0;
+		/*
+		* @brief: 移除设备
+		* @param type[输入参数]:设备类型
+		* @param strName[输入参数]:设备名字
+		*
+		* @retval: true-成功,  false-失败
+		*/
+		virtual bool RemoveDevice(DDR_IN EnDeviceType type, DDR_IN std::string strName = "") = 0;
 
-		virtual DeviceTypeMap* GetPtrMap(EnDeviceType type) = 0;
-		virtual DevicePtrContainer* GetPtr(EnDeviceType type, std::string strName) = 0;
+		/*
+		* @brief: 根据类型获取设备。有的设备可能是同种类型，但是有多个。
+		* @param type[输入参数]:设备类型
+		*
+		* @retval: nullptr-失败。成功返回设备类型的指针。
+		*/
+		virtual DeviceTypeMap* GetPtrMap(DDR_IN EnDeviceType type) = 0;
+
+		/*
+		* @brief: 根据类型和名字查找设备。这里找的是某个特定的设备了。
+		* @param type[输入参数]:设备类型
+		* @param strName[输入参数]:设备名字。每个设备有个唯一的名字。
+		*
+		* @retval: nullptr-失败。成功返回设备指针。
+		*/
+		virtual DevicePtrContainer* GetPtr(DDR_IN EnDeviceType type, DDR_IN std::string strName) = 0;
 
 		virtual void _stdcall destroy() = 0;
 		void operator delete(void *p) {
@@ -58,7 +91,6 @@ namespace DDRDevice
 	};
 
 	extern "C" __API__DDRDEVICE__ DDRDeviceInterface* _stdcall _createDDRDeviceModule();
-
 }
 
 #endif // __DDR_PPOAC_INTERFACE_H_INCLUDED__

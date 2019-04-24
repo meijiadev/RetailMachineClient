@@ -16,6 +16,17 @@ namespace DDRDevice
 	{
 		return nullptr;
 	}
+
+	IMUInfo IMUBase::GetDeviceInfo()
+	{
+		IMUInfo info;
+		return info;
+	}
+
+	bool IMUBase::SendData(IMUData)
+	{
+		return false;
+	}
 }
 
 
