@@ -3,7 +3,7 @@
 
 namespace DDRDevice
 {
-	bool MotorBase::Init()
+	bool MotorBase::Init(MotorInfo info)
 	{
 		return true;
 	}

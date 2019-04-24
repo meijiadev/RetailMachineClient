@@ -7,13 +7,31 @@ namespace DDRDevice
 {
 	enum EnDeviceType
 	{
-		en_DeviceIMU = 1,
-		en_DeviceMotor = 2,
-
+		en_DeviceEmb = 1,
+		en_DeviceIMU = 2,
+		en_DeviceMotor = 3,
+		en_DeviceGPS = 4,
+		en_DeviceChargingSensor = 5,
+		en_DeviceUltrasound = 6,
+		en_DeviceInfrared = 7,
+		en_DeviceStereo = 8,
 		en_DeviceLidar = 60,
-		en_DeviceLidar1 = 61,
 
 		en_DeviceMAX = 255,
+	};
+
+	class DeviceInfoBase
+	{
+	public:
+		std::string m_strName;
+		EnDeviceType m_enType;
+	};
+
+	class LidarInfo:public DeviceInfoBase
+	{
+	public:
+		std::string m_strIp;
+		int m_nLidarID;
 	};
 
 	class LidarData
@@ -37,6 +55,11 @@ namespace DDRDevice
 		};
 		std::vector<Data> m_Data;
 		EnDeviceType m_enType;
+	};
+
+	class IMUInfo :public DeviceInfoBase
+	{
+	public:
 	};
 
 	class IMUData 
@@ -64,6 +87,11 @@ namespace DDRDevice
 		short m_sIMUTempBy100;
 		EnDeviceType m_enType;
 		unsigned int m_nTimeStamp;
+	};
+
+	class MotorInfo :public DeviceInfoBase
+	{
+	public:
 	};
 
 	class MotorData

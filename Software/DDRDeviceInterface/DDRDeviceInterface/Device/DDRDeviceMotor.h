@@ -6,10 +6,10 @@
 
 namespace DDRDevice
 {
-	class MotorBase :public DeviceTypeBase<MotorData> , public DevicePtrContainer
+	class MotorBase :public DeviceTypeBase<MotorData, MotorInfo> , public DevicePtrContainer
 	{
 	public:
-		bool Init();
+		bool Init(MotorInfo info);
 		bool DeInit();
 		std::shared_ptr<MotorData> GetData();
 

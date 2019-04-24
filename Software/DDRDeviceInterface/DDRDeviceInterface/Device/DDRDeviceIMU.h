@@ -4,10 +4,10 @@
 #include "DDRDeviceCommData.h"
 namespace DDRDevice
 {
-	class IMUBase :public DeviceTypeBase<IMUData>, public DevicePtrContainer
+	class IMUBase :public DeviceTypeBase<IMUData, IMUInfo>, public DevicePtrContainer
 	{
 	public:
-		bool Init();
+		bool Init(IMUInfo info);
 		bool DeInit();
 		std::shared_ptr<IMUData> GetData();
 	};

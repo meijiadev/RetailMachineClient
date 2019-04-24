@@ -21,6 +21,8 @@
 #endif
 
 #include "Device/DDRDeviceCommData.h"
+#include "Device/DDRDeviceTypeBase.h"
+#include <memory>
 
 #define DDR_OUT // Output parameter
 #define DDR_IN // Input parameter
@@ -43,7 +45,9 @@ namespace DDRDevice
 
 		virtual bool AddDevice(EnDeviceType type) = 0;
 		virtual bool RemoveDevice(EnDeviceType type) = 0;
-		virtual bool LidarTest() = 0;
+
+		virtual DeviceTypeMap* GetPtrMap(EnDeviceType type) = 0;
+		virtual DevicePtrContainer* GetPtr(EnDeviceType type, std::string strName) = 0;
 
 		virtual void _stdcall destroy() = 0;
 		void operator delete(void *p) {

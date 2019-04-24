@@ -35,8 +35,15 @@ namespace DDRDevice
 		return false;
 	}
 
+
+
 	bool DDRDevicedManager::AddOneLidar(char *ip, int &OutID)
 	{
 		return m_Lidar.AddOneLidar(ip, OutID);
+	}
+
+	bool DDRDevicedManager::GetOneScan(int nCID, std::vector<DDRGeometry::APoint> &result)
+	{
+		return m_Lidar.GetOneScan(nCID, result, true);
 	}
 }

@@ -6,14 +6,19 @@
 
 namespace DDRDevice
 {
-	class LidarBase :public DeviceTypeBase<LidarData>, public DevicePtrContainer
+	class LidarBase :public DeviceTypeBase<LidarData, LidarInfo>, public DevicePtrContainer
 	{
 	public:
-		bool Init();
+		bool Init(LidarInfo info);
 		bool DeInit();
 		std::shared_ptr<LidarData> GetData();
+		std::string GetName();
 
 	private:
+		int m_nLidarID;
+		
+		std::string m_strIp;
+		std::string m_strName;
 	};
 }
 

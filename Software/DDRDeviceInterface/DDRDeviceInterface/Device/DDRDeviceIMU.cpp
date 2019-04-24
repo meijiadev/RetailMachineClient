@@ -2,7 +2,7 @@
 
 namespace DDRDevice
 {
-	bool IMUBase::Init()
+	bool IMUBase::Init(IMUInfo info)
 	{
 		return true;
 	}

@@ -14,15 +14,19 @@ namespace DDRDevice
 	public:
 		static DDRDevicedManager * GetInstance();
 		~DDRDevicedManager();
-		 
+		
+		bool AddOneLidar(char *ip, int &OutID);
+		bool GetOneScan(int nCID, std::vector<DDRGeometry::APoint> &result);
 		bool GetIMUData(IMUData &data);
 		bool GetMotorData(MotorData &data);
+
+
 	protected:
 		DDRDrivers::DDREmbeddedServer m_EmbServer;
 		DDRDrivers::EmbUser m_EmbUser;
 		DDRDrivers::Lidar_AkuSense m_Lidar;
 	private:
-		bool AddOneLidar(char *ip, int &OutID);
+		
 	};
 }
 
