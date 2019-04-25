@@ -4,6 +4,7 @@
 #include "src/Network/BaseMessageDispatcher.h"
 #include "src/ClientSDK/ClientSDKDispatcher.h"
 #include "src/ClientSDK/ClientSDKUdpDispatcher.h"
+#include "src/Interface/DDRClientInterface.h"
 
 
 #include "src/Utility/DDRMacro.h"
@@ -32,7 +33,12 @@ namespace DDRSDK
 
 
 		StartHeartBeat();
-		DebugLog("OnConnectSuccess! ClientSDKTcpClient");
+		DebugLog("OnConnected! ClientSDKTcpClient");
+
+		if (m_wpParentInterface.lock()->m_spStatusListener)
+		{
+			m_wpParentInterface.lock()->m_spStatusListener->OnConnected();
+		}
 
 
 	}
@@ -41,16 +47,32 @@ namespace DDRSDK
 		StopHeartBeat();
 		TcpClientBase::OnDisconnect(spContainer);
 
+		DebugLog("OnDisconnect! ClientSDKTcpClient");
+
+		if (m_wpParentInterface.lock()->m_spStatusListener)
+		{
+			m_wpParentInterface.lock()->m_spStatusListener->OnDisconnected();
+		}
 	}
 
 	void ClientSDKTcpClient::OnConnectTimeout(std::shared_ptr<TcpSocketContainer> spContainer)
 	{
 
+		DebugLog("OnConnectTimeout! ClientSDKTcpClient");
+		if (m_wpParentInterface.lock()->m_spStatusListener)
+		{
+			m_wpParentInterface.lock()->m_spStatusListener->OnConnectTimeout();
+		}
 	}
 
 	void ClientSDKTcpClient::OnConnectFailed(std::shared_ptr<TcpSocketContainer> spContainer)
 	{
 
+		DebugLog("OnConnectFailed! ClientSDKTcpClient");
+		if (m_wpParentInterface.lock()->m_spStatusListener)
+		{
+			m_wpParentInterface.lock()->m_spStatusListener->OnConnectFailed();
+		}
 	}
 
 	void ClientSDKTcpClient::StartHeartBeat()

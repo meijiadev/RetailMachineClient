@@ -3,24 +3,29 @@
 
 
 #include <src/Utility/DDRMacro.h>
-#include <src/Utility/GlobalManagerBase.h>
 #include "include/DDRClientSDK.h"
+#include <src/Network/TcpClientBase.h>
+#include <src/Network/UdpSocketBase.h>
 
 namespace DDRSDK
 {
 
-	class  DDRClientInterface : public DDRFramework::GlobalManagerClientBase
+	class  DDRClientInterface : public std::enable_shared_from_this<DDRClientInterface>
 	{
 	public:	 
-		DDRClientInterface();
+		DDRClientInterface(std::shared_ptr<DDRStatusListener> spListener);
 		~DDRClientInterface();
 
-		virtual void Init() override;
-		virtual bool StartUdp() override;
+		void Init();
+		
+		bool StartUdp(int port);
+		void StopUdp();
 
 
-		virtual void TcpConnect(std::string ip, std::string port);
-		void TcpConnect();
+		void TcpConnect(std::string ip, std::string port);
+		void TcpDisconnect();
+
+		void Send(std::shared_ptr<google::protobuf::Message> spMsg);
 
 
 
@@ -28,7 +33,7 @@ namespace DDRSDK
 		{
 			m_spUdpReceiver = sp;
 		}
-		static void CallUdpReceiver(std::string name,std::string ip,std::string port)
+		void CallUdpReceiver(std::string name,std::string ip,std::string port)
 		{
 			if (m_spUdpReceiver)
 			{
@@ -36,7 +41,7 @@ namespace DDRSDK
 			}
 		}
 
-		static void Dispatch(std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
+		void Dispatch(std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 		{
 			if (m_ListenerMap.find(spMsg->GetTypeName()) != m_ListenerMap.end())
 			{
@@ -51,16 +56,40 @@ namespace DDRSDK
 		bool RemoveListener(std::shared_ptr<google::protobuf::Message> spMsg);
 
 
+		void OnUdpDisconnect(DDRFramework::UdpSocketBase& container);
 
+		std::shared_ptr<DDRStatusListener> m_spStatusListener;
+
+		static std::shared_ptr<DDRClientInterface> FindInterfacePtr(DDRHANDLE h)
+		{
+			if (m_InterfacePtrMap.find(h) != m_InterfacePtrMap.end())
+			{
+				return m_InterfacePtrMap[h];
+			}
+			return nullptr;
+		}
+		static void RemoveInterfacePtr(DDRHANDLE h)
+		{
+			if (m_InterfacePtrMap.find(h) != m_InterfacePtrMap.end())
+			{
+				m_InterfacePtrMap.erase(h);
+			}
+		}
+
+		static std::map<std::string, std::shared_ptr<DDRClientInterface>> m_InterfacePtrMap;
 	private:
-
+		
+		std::shared_ptr<DDRFramework::TcpClientBase> m_spTcpClient;
+		std::shared_ptr<DDRFramework::UdpSocketBase> m_spUdpClient;
 
 		std::string m_ServerIP;
 		std::string m_ServerPort;
 
 
-		static std::shared_ptr<DDRSDK::DDRBroadcastReceiver> m_spUdpReceiver;
-		static std::map<std::string, std::shared_ptr<DDRSDK::DDRBaseListener>> m_ListenerMap;
+		std::shared_ptr<DDRSDK::DDRBroadcastReceiver> m_spUdpReceiver;
+		std::map<std::string, std::shared_ptr<DDRSDK::DDRBaseListener>> m_ListenerMap;
+
+
 	};
 }
 

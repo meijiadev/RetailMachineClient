@@ -3,43 +3,53 @@
 #include <src/Network/BaseMessageDispatcher.h>
 
 #include "src/ClientSDK/ClientSDKTcpClient.h"
+#include "src/ClientSDK/ClientSDKUdpClient.h"
 #include "src/Processors/ClientSDKProcessor.h"
 #include "src/Processors/ClientSDKUdpProcessor.h"
 
 #include "include/DDRClientSDK.h"
 
+#include <thirdparty/crossguid/include/crossguid/guid.hpp>
+using namespace DDRFramework;
+
 namespace DDRSDK
 {
 
-	DDRHANDLE CreateDDR()
+	DDRHANDLE CreateDDR(std::shared_ptr<DDRStatusListener> spListener)
 	{
-		DDRClientInterface* pInterface = new DDRClientInterface();
-		pInterface->Init();
+		auto spInterface = std::make_shared<DDRClientInterface>(spListener);
 
-		return pInterface;
+
+		auto g = xg::newGuid();
+		std::string guid = g.str();
+		DDRClientInterface::m_InterfacePtrMap[guid] = spInterface;
+
+
+		spInterface->Init();
+
+		return guid;
 	}
 	void ReleaseDDR(DDRHANDLE h)
 	{
-		DDRClientInterface* pInterface = (DDRClientInterface*)h;
-		delete pInterface;
+		DDRClientInterface::RemoveInterfacePtr(h);
 	}
 
 
     bool RegisterListener(DDRHANDLE h, std::shared_ptr<google::protobuf::Message> spMsg, std::shared_ptr<DDRBaseListener> spListener)
 	{
-		DDRClientInterface* pInterface = (DDRClientInterface*)h;
-		if (pInterface)
+		auto spInterface = DDRClientInterface::FindInterfacePtr(h);
+		if (spInterface)
 		{
-			return	pInterface->AddListener(spMsg,spListener);
+			return	spInterface->AddListener(spMsg,spListener);
 		}
 		return false;
 	}
 	bool UnregisterListener(DDRHANDLE h, std::shared_ptr<google::protobuf::Message> spMsg)
 	{
-		DDRClientInterface* pInterface = (DDRClientInterface*)h;
-		if (pInterface)
+		auto spInterface = DDRClientInterface::FindInterfacePtr(h);
+		if (spInterface)
 		{
-			pInterface->RemoveListener(spMsg);
+			spInterface->RemoveListener(spMsg);
 
 		}
 		return false;
@@ -47,67 +57,89 @@ namespace DDRSDK
 
 
 
-	void StartReceivingBroadcast(DDRHANDLE h, std::shared_ptr<DDRBroadcastReceiver> spReceiver)
+	void StartReceivingBroadcast(DDRHANDLE h, std::shared_ptr<DDRBroadcastReceiver> spReceiver, int port)
 	{
-		DDRClientInterface* pInterface = (DDRClientInterface*)h;
-		if (pInterface)
+		auto spInterface = DDRClientInterface::FindInterfacePtr(h);
+		if (spInterface)
 		{
-			pInterface->SetUdpReceiver(dynamic_pointer_cast<DDRBroadcastReceiver>(spReceiver));
-			pInterface->StartUdp();
+			spInterface->SetUdpReceiver(dynamic_pointer_cast<DDRBroadcastReceiver>(spReceiver));
+			spInterface->StartUdp(port);
 		}
 	}
 	void StopReceivingBroadcast(DDRHANDLE h)
 	{
-		DDRClientInterface* pInterface = (DDRClientInterface*)h;
-		if (pInterface)
+		auto spInterface = DDRClientInterface::FindInterfacePtr(h);
+		if (spInterface)
 		{
-			pInterface->StopUdp();
+			spInterface->StopUdp();
 		}
 	}
 
 
 	bool StartCommunication(DDRHANDLE h,std::string ip, std::string port)
 	{
+		auto spInterface = DDRClientInterface::FindInterfacePtr(h);
+		if (spInterface)
+		{
+			spInterface->TcpConnect(ip,port);
+		}
+
 		return false;
 
 	}
 	bool StopCommunication(DDRHANDLE h)
 	{
+		auto spInterface = DDRClientInterface::FindInterfacePtr(h);
+		if (spInterface)
+		{
+			spInterface->TcpDisconnect();
+		}
 		return false;
 	}
 	void Send(DDRHANDLE h, std::shared_ptr<google::protobuf::Message> spmsg)
 	{
-
+		auto spInterface = DDRClientInterface::FindInterfacePtr(h);
+		if (spInterface)
+		{
+			spInterface->Send(spmsg);
+		}
 	}
 
 
 
-	std::shared_ptr<DDRSDK::DDRBroadcastReceiver> DDRClientInterface::m_spUdpReceiver;
-	std::map<std::string, std::shared_ptr<DDRSDK::DDRBaseListener>> DDRClientInterface::m_ListenerMap;
+	std::map<std::string, std::shared_ptr<DDRClientInterface>>  DDRClientInterface::m_InterfacePtrMap;
 
-	DDRClientInterface::DDRClientInterface()
+	DDRClientInterface::DDRClientInterface(std::shared_ptr<DDRStatusListener> spListener)
 	{
+		m_spStatusListener = spListener;
 	}
 	DDRClientInterface::~DDRClientInterface()
 	{
-
+		DebugLog("Destroy DDRClientInterface")
 	}
 
 	void DDRClientInterface::Init()
 	{
 		if (!m_spUdpClient)
 		{
-			m_spUdpClient = std::make_shared<UdpSocketBase>();
-			m_spUdpClient->BindOnDisconnect(std::bind(&GlobalManagerClientBase::OnUdpDisconnect, this, std::placeholders::_1));
+			auto spCLientSDKUdpClient = std::make_shared<ClientSDKUdpClient>();
+			spCLientSDKUdpClient->SetParentInterface(shared_from_this());
+			m_spUdpClient = spCLientSDKUdpClient;
+			m_spUdpClient->BindOnDisconnect(std::bind(&DDRClientInterface::OnUdpDisconnect, this, std::placeholders::_1));
 		
 		}
 		if (!m_spTcpClient)
 		{
-			m_spTcpClient = std::make_shared<ClientSDKTcpClient>();
+			auto spClientSDKTcpClient = std::make_shared<ClientSDKTcpClient>();
+			spClientSDKTcpClient->SetParentInterface(shared_from_this());
+			
+			
+			m_spTcpClient = spClientSDKTcpClient;
+
 			m_spTcpClient->Start();
 		}
 	}
-	bool DDRClientInterface::StartUdp()
+	bool DDRClientInterface::StartUdp(int port)
 	{
 		if (m_spUdpClient)
 		{
@@ -115,20 +147,29 @@ namespace DDRSDK
 
 			auto spDispatcher = std::make_shared<BaseUdpMessageDispatcher>();
 
-			//both AddProcessor or RegisterExternalProcessor is ok
-			//spDispatcher->AddProcessor<bcLSAddr, ClientSDKUdpProcessor>();
 			bcLSAddr msg;
 			spDispatcher->RegisterExternalProcessor(msg, std::make_shared<ClientSDKUdpProcessor>(*(spDispatcher.get())));
 
 
 			m_spUdpClient->GetSerializer()->BindDispatcher(spDispatcher);
-			m_spUdpClient->StartReceive(m_GlobalConfig.GetValue<int>("UdpPort"));
+			m_spUdpClient->StartReceive(port);
 		}
 		return true;
 
 	}
 
 
+
+	void DDRClientInterface::StopUdp()
+	{
+		if (m_spUdpClient && m_spUdpClient->IsWorking())
+		{
+			m_spUdpClient->StopReceive();
+			m_spUdpClient->Stop();
+			//m_spUdpClient.reset();donot reset here cause Stop is async ,it will release when OnDisconnect is called
+
+		}
+	}
 
 	bool DDRClientInterface::AddListener(std::shared_ptr<google::protobuf::Message> spMsg, std::shared_ptr<DDRBaseListener> spListener)
 	{
@@ -138,7 +179,8 @@ namespace DDRSDK
 		}
 		else
 		{
-			m_ListenerMap[spMsg->GetTypeName()] = spListener;
+			std::string stype = spMsg->GetTypeName();
+			m_ListenerMap.insert(std::make_pair(stype, spListener));
 		}
 	}
 
@@ -156,19 +198,38 @@ namespace DDRSDK
 
 
 
-	void DDRClientInterface::TcpConnect()
+	void DDRClientInterface::TcpConnect(std::string ip, std::string port)
 	{
-		if (!m_ServerIP.empty() && !m_ServerPort.empty())
+		if (m_spTcpClient)
 		{
-			GlobalManagerClientBase::TcpConnect(m_ServerIP, m_ServerPort);
+			m_spTcpClient->Connect(ip, port);
 		}
 	}
 
-	void DDRClientInterface::TcpConnect(std::string ip, std::string port)
+
+
+	void DDRClientInterface::TcpDisconnect()
 	{
-		GlobalManagerClientBase::TcpConnect(ip, port);
+		if (m_spTcpClient)
+		{
+			m_spTcpClient->Disconnect();
+		}
 	}
 
+	void DDRClientInterface::Send(std::shared_ptr<google::protobuf::Message> spMsg)
+	{
+		if (m_spTcpClient)
+		{
+			m_spTcpClient->Send(spMsg);
+		}
+	}
 
+	void DDRClientInterface::OnUdpDisconnect(UdpSocketBase& container)
+	{
+		if (m_spUdpClient)
+		{
+			m_spUdpClient->Stop();
+		}
+	}
 
 }

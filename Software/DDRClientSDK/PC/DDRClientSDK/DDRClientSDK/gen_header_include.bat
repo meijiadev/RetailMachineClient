@@ -5,7 +5,7 @@ cd %CurrentPath%
 
 
 
-xcopy /Y %CurrentPath%\Interface\*.h %CurrentPath%\..\DDRSDK\include\Interface /s /i
+xcopy /Y %CurrentPath%\include\*.h %CurrentPath%\..\DDRSDK\include\ /s /i
 
 
 

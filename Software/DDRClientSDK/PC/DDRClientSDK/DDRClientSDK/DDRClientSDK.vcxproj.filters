@@ -64,6 +64,9 @@
     <Filter Include="src\Processors">
       <UniqueIdentifier>{b98700f5-3a85-4d07-82dc-12d962df189d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shared\Thirdparty\crossguid">
+      <UniqueIdentifier>{c6c5f2b5-ab9f-4b5d-a4b6-7ef8a2e2b6c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\TcpServerBase.cpp">
@@ -634,6 +637,12 @@
     <ClCompile Include="..\..\..\..\..\..\Shared\proto\BaseCmd.pb.cc">
       <Filter>Shared\proto</Filter>
     </ClCompile>
+    <ClCompile Include="src\ClientSDK\ClientSDKUdpClient.cpp">
+      <Filter>src\ClientSDK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\crossguid\src\guid.cpp">
+      <Filter>Shared\Thirdparty\crossguid</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\Shared\src\Network\TcpServerBase.h">
@@ -1142,6 +1151,9 @@
     </ClInclude>
     <ClInclude Include="include\DDRClientSDK.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ClientSDK\ClientSDKUdpClient.h">
+      <Filter>src\ClientSDK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

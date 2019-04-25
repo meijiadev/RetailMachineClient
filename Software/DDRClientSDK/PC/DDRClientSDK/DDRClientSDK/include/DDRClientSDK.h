@@ -25,7 +25,22 @@ Description:Provide  DDRCleint SDK functions 
 
 namespace DDRSDK
 {
-	typedef void* DDRHANDLE;
+	typedef std::string DDRHANDLE;
+
+
+	//class to receive broadcast
+	DDRSDK_API class DDRStatusListener : public std::enable_shared_from_this<DDRStatusListener>
+	{
+	public:
+		
+		virtual void OnConnected() {};
+		virtual void OnDisconnected() {};
+		virtual void OnConnectTimeout() {};
+		virtual void OnConnectFailed() {};
+	};
+
+
+
 
 	//class to receive broadcast
 	DDRSDK_API class DDRBroadcastReceiver : public std::enable_shared_from_this<DDRBroadcastReceiver>
@@ -33,10 +48,7 @@ namespace DDRSDK
 	public:
 		virtual void OnBroadcastArrival(std::string name, std::string ip, std::string port) {};
 
-		std::shared_ptr<DDRBroadcastReceiver> shared_ptr_base()
-		{
-			return shared_from_this();
-		}
+
 	};
 
 	//class to listen DDR message
@@ -45,21 +57,18 @@ namespace DDRSDK
 	public:
 		virtual void OnMsgArrival(std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) {};
 
-		std::shared_ptr<DDRBaseListener> shared_ptr_base()
-		{
-			return shared_from_this();
-		}
+
 	};
 
 
 	//create ddr handle
-	DDRSDK_API DDRHANDLE CreateDDR();
+	DDRSDK_API DDRHANDLE CreateDDR(std::shared_ptr<DDRStatusListener> spListener);
 
 	//release ddr handle
 	DDRSDK_API void ReleaseDDR(DDRHANDLE h);
 
 	//start receving broadcast from devices
-	DDRSDK_API void StartReceivingBroadcast(DDRHANDLE h, std::shared_ptr<DDRBroadcastReceiver> spReceiver);
+	DDRSDK_API void StartReceivingBroadcast(DDRHANDLE h, std::shared_ptr<DDRBroadcastReceiver> spReceiver, int port = 28888);
 
 	//stop receving broadcast from devices
 	DDRSDK_API void StopReceivingBroadcast(DDRHANDLE h);
