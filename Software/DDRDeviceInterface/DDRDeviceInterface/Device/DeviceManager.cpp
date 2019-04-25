@@ -46,6 +46,11 @@ namespace DDRDevice
 				break;
 			}
 
+			if (m_EmbUser.ReadGNSS())
+			{
+				ParseGNSSData();
+			}
+
 			if (!m_EmbUser.ReadEmbMB())
 			{
 				DDRDevice::Sleep(2);
@@ -80,6 +85,11 @@ namespace DDRDevice
 					break;
 			}
 		}
+	}
+
+	void DDRDevicedManager::ParseGNSSData()
+	{
+	
 	}
 
 	bool DDRDevicedManager::GetIMUData(IMUData &data)

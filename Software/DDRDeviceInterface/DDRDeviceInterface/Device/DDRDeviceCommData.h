@@ -7,14 +7,34 @@ namespace DDRDevice
 {
 	enum EnDeviceType
 	{
-		en_DeviceEmb = 1,
+		// 1.嵌入式状态。比如急停 遥控 电量电压等
+		en_DeviceEmbStatus = 1,
+
+		// 2.IMU数据
 		en_DeviceIMU = 2,
+
+		// 3.轮机数据
 		en_DeviceMotor = 3,
-		en_DeviceGPS = 4,
-		en_DeviceChargingSensor = 5,
+
+		// 4.GPS数据
+		en_DeviceGNSS = 4,
+
+		// 5.充电相关数据
+		en_DeviceChargingRelated = 5,
+
+		// 6.超声数据（就类似于现有E巡上面的避障用的）
 		en_DeviceUltrasound = 6,
+
+		// 7.红外数据（同上）
 		en_DeviceInfrared = 7,
-		en_DeviceStereo = 8,
+
+		// 8.环境传感器。湿度  温度 PM2.5等
+		en_DeviceEnvironment = 8,
+
+		// 9.双目
+		en_DeviceStereo = 9,
+
+		// 10.雷达
 		en_DeviceLidar = 60,
 
 		en_DeviceMAX = 255,
@@ -126,6 +146,125 @@ namespace DDRDevice
 		unsigned int m_nTimeStamp;
 	};
 
+	class EmbStatusInfo :public DeviceInfoBase
+	{
+	public:
+	};
+
+	class EmbStatusData
+	{
+	public:
+
+		EmbStatusData()
+		{
+			m_bStickConStatus = 0;
+			m_bEmergencyStopStatus = 0;
+			m_bIRStopStatus = 0;
+			m_bUSStopStatus = 0;
+
+			m_sBattStat = 0;
+			m_sBattVoltageInMV = 0;
+			m_sBattPercentageBy100 = 0;
+			m_sBattTemp_2Bytes = 0;
+			m_nTimeStamp = 0;
+			m_enType = en_DeviceEmbStatus;
+		}
+
+		bool m_bStickConStatus;
+		bool m_bEmergencyStopStatus;
+		bool m_bIRStopStatus;
+		bool m_bUSStopStatus;
+
+		unsigned short m_sBattStat;
+		unsigned short m_sBattVoltageInMV;
+		unsigned short m_sBattPercentageBy100;
+		short m_sBattTemp_2Bytes;
+
+		EnDeviceType m_enType;
+		unsigned int m_nTimeStamp;
+	};
+
+	class EnvironmentInfo :public DeviceInfoBase
+	{
+	public:
+	};
+
+	class EnvironmentData
+	{
+	public:
+		EnvironmentData()
+		{
+			m_sEBREnvTempBy100 = 0;
+			m_sEBREnvHumBy100 = 0;
+			m_sEBREnvPM25 = 0;
+			m_nTimeStamp = 0;
+			m_enType = en_DeviceEnvironment;
+		}
+
+		short m_sEBREnvTempBy100;
+		unsigned short m_sEBREnvHumBy100;
+		unsigned short m_sEBREnvPM25;
+		EnDeviceType m_enType;
+		unsigned int m_nTimeStamp;
+	};
+
+	class ChargingRelatedInfo :public DeviceInfoBase
+	{
+	public:
+	};
+
+	class ChargingRelatedData
+	{
+	public:
+		ChargingRelatedData()
+		{
+			m_chRcgIsRcgMode = 0;
+			m_chRcgState = 0;
+			m_chRcgIsRcgCharging = 0;
+			m_chRcgIsRcgDocked = 0;
+			m_chRcgRcgRightReceived = 0;
+			m_chRcgLeftReceived = 0;
+			m_chRcgMiddleReceived = 0;
+			m_nTimeStamp = 0;
+			m_enType = en_DeviceChargingRelated;
+		}
+
+		unsigned char m_chRcgIsRcgMode;
+		unsigned char m_chRcgState;
+		unsigned char m_chRcgIsRcgCharging;
+		unsigned char m_chRcgIsRcgDocked;
+		unsigned char m_chRcgRcgRightReceived;
+		unsigned char m_chRcgLeftReceived;
+		unsigned char m_chRcgMiddleReceived;
+		EnDeviceType m_enType;
+		unsigned int m_nTimeStamp;
+	};
+
+	class GNSSInfo :public DeviceInfoBase
+	{
+	public:
+	};
+
+	class GNSSData
+	{
+	public:
+		GNSSData()
+		{
+			m_dstLng = 0;
+			m_dstLat = 0;
+			m_chCog = 0;
+			m_fAltitude = 0;
+			m_nTimeStamp = 0;
+			m_enType = en_DeviceGNSS;
+		}
+
+		double m_dstLng;
+		double m_dstLat;
+		unsigned short m_chCog;
+		float m_fAltitude;
+		EnDeviceType m_enType;
+		unsigned int m_nTimeStamp;
+	};
 }
 
 #endif //  __DDR_DEVICE_COMM_DATA_BASE_H__
