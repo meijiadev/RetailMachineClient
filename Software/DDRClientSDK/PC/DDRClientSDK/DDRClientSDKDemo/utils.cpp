@@ -10,7 +10,7 @@ using namespace std;
 ConsoleUtility::ConsoleUtility()
 {
 	m_Quit = false;
-
+	AddCommand("quit", std::bind(&ConsoleUtility::Quit, this));
 }
 
 

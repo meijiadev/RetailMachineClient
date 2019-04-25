@@ -142,6 +142,7 @@ int main()
 
 
 	//此处是消息循环，在你的程序里使用你自己的方案，用来响应输入设备(键盘鼠标及其它输入),执行相应方法
+	//输入quit退出程序
 	ConsoleUtility consoleUtility;
 	consoleUtility.AddCommand("connect", std::bind(Connect));//命令行输入connect执行Connect方法，下同
 	consoleUtility.AddCommand("disconnect", std::bind(Disconnect));
