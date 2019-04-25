@@ -96,6 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB;WIN32</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>4996,</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -110,6 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB;WIN32</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -126,6 +128,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB;WIN32</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>4996,</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -144,6 +147,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB;WIN32</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -165,12 +169,12 @@
     <ClInclude Include="DDRDeviceFactory.h" />
     <ClInclude Include="DDRDeviceInterface.h" />
     <ClInclude Include="DeleteUnwrapper.h" />
+    <ClInclude Include="Device\CommPublicFun.h" />
     <ClInclude Include="Device\DDRDeviceCommData.h" />
     <ClInclude Include="Device\DDRDeviceIMU.h" />
     <ClInclude Include="Device\DDRDeviceLidar.h" />
     <ClInclude Include="Device\DDRDeviceMotor.h" />
     <ClInclude Include="Device\DDRDeviceTypeBase.h" />
-    <ClInclude Include="Device\Device.h" />
     <ClInclude Include="Device\DeviceManager.h" />
     <ClInclude Include="Embedded\DDREmbConfig.h" />
     <ClInclude Include="Embedded\EmbServer.h" />
@@ -210,6 +214,7 @@
     <ClCompile Include="CommLib\FrameSliceGenerator.cpp" />
     <ClCompile Include="CommonDef\CommonDefFunc.cpp" />
     <ClCompile Include="DDRDeviceInterface.cpp" />
+    <ClCompile Include="Device\CommPublicFun.cpp" />
     <ClCompile Include="Device\DDRDeviceIMU.cpp" />
     <ClCompile Include="Device\DDRDeviceLidar.cpp" />
     <ClCompile Include="Device\DDRDeviceMotor.cpp" />

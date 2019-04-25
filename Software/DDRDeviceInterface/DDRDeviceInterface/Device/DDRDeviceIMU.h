@@ -10,6 +10,8 @@ namespace DDRDevice
 		bool Init(IMUInfo info);
 		bool DeInit();
 		std::shared_ptr<IMUData> GetData();
+		IMUInfo GetDeviceInfo();
+		bool SendData(IMUData);
 	};
 }
 

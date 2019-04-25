@@ -179,10 +179,10 @@
     <ClInclude Include="Device\DDRDeviceMotor.h">
       <Filter>Device</Filter>
     </ClInclude>
-    <ClInclude Include="Device\Device.h">
+    <ClInclude Include="Device\DeviceManager.h">
       <Filter>Device</Filter>
     </ClInclude>
-    <ClInclude Include="Device\DeviceManager.h">
+    <ClInclude Include="Device\CommPublicFun.h">
       <Filter>Device</Filter>
     </ClInclude>
   </ItemGroup>
@@ -290,6 +290,9 @@
       <Filter>Device</Filter>
     </ClCompile>
     <ClCompile Include="Device\DeviceManager.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\CommPublicFun.cpp">
       <Filter>Device</Filter>
     </ClCompile>
   </ItemGroup>

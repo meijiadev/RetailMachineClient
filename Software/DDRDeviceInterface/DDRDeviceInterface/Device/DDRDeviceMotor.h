@@ -12,7 +12,8 @@ namespace DDRDevice
 		bool Init(MotorInfo info);
 		bool DeInit();
 		std::shared_ptr<MotorData> GetData();
-
+		MotorInfo GetDeviceInfo();
+		bool SendData(MotorData data);
 	private:
 	};
 }
