@@ -6,6 +6,7 @@
 #include "src/Utility/DDRMacro.h"
 #include "src/Utility/Logger.h"
 #include "src/Interface/DDRClientInterface.h"
+#include "src/ClientSDK/ClientSDKTcpClient.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
@@ -26,8 +27,13 @@ namespace DDRSDK
 
 	void ClientSDKProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 	{
+		auto spTcp = spSockContainer->GetTcp();
+		auto spSDKClient = dynamic_pointer_cast<DDRSDK::ClientSDKTcpClient>(spTcp);
+		if (spSDKClient)
+		{
 
-		DDRSDK::DDRClientInterface::Dispatch(spHeader,spMsg);
+			spSDKClient->GetParentInterface()->Dispatch(spHeader, spMsg);
+		}
 
 	}
 
