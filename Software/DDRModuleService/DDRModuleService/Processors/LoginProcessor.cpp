@@ -1,7 +1,7 @@
 #include "LoginProcessor.h"
 #include <memory>
-#include "../../../Shared/proto/BaseCmd.pb.h"
-#include "../../../Shared/src/Utility/DDRMacro.h"
+#include "proto/BaseCmd.pb.h"
+#include "src/Utility/DDRMacro.h"
 #include "../Managers/GlobalManager.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;

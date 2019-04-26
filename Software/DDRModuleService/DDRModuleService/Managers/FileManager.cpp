@@ -14,9 +14,9 @@
 
 #include "GlobalManager.h"
 
-#include "../../../Shared/src/Utility/CommonFunc.h"
-#include "../../../Shared/src/Utility/DDRMacro.h"
-#include "../../../Shared/src/Utility/Logger.h"
+#include "src/Utility/CommonFunc.h"
+#include "src/Utility/DDRMacro.h"
+#include "src/Utility/Logger.h"
 using namespace cppfs;
 
 FileManager::FileManager()

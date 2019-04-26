@@ -1,10 +1,10 @@
 
 
 #include <memory>
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 #include "RegisteLSProcessor.h"
-#include "../../../Shared/src/Utility/DDRMacro.h"
-#include "../../../Shared/src/Utility/Logger.h"
+#include "src/Utility/DDRMacro.h"
+#include "src/Utility/Logger.h"
 #include "../../Managers/StreamRelayServiceManager.h"
 
 using namespace DDRFramework;

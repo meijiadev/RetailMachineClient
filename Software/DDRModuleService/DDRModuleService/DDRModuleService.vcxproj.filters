@@ -82,6 +82,9 @@
     <Filter Include="Shared\Thirdparty\protobuf\include">
       <UniqueIdentifier>{a3972fa2-345f-4d5b-a130-6df7823d3bca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{408f8f8f-0ba5-4b2b-944f-7dc73b4e1683}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Shared\src\Network\TcpServerBase.cpp">
@@ -757,6 +760,12 @@
     <ClCompile Include="Processors\RemoteServer\RegisteLSProcessor.cpp">
       <Filter>Processors\RemoteServer</Filter>
     </ClCompile>
+    <ClCompile Include="Logic\IdleState.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\RobotEntity.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Shared\src\Network\TcpServerBase.h">
@@ -1032,6 +1041,12 @@
     </ClInclude>
     <ClInclude Include="Processors\RemoteServer\RegisteLSProcessor.h">
       <Filter>Processors\RemoteServer</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\IdleState.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\RobotEntity.h">
+      <Filter>Logic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

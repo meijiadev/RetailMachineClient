@@ -1,10 +1,10 @@
 
 
 #include <memory>
-#include "../../../Shared/proto/RemoteCmd.pb.h"
+#include "proto/RemoteCmd.pb.h"
 #include "RtspStreamUploadAddrProcessor.h"
-#include "../../../Shared/src/Utility/DDRMacro.h"
-#include "../../../Shared/src/Utility/Logger.h"
+#include "src/Utility/DDRMacro.h"
+#include "src/Utility/Logger.h"
 #include "../../Managers/StreamRelayServiceManager.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;

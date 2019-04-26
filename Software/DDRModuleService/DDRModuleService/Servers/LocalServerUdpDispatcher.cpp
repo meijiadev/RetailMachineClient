@@ -1,6 +1,6 @@
 #include "LocalServerUdpDispatcher.h"
 #include "../Processors/LocalServerUdpProcessor.h"
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 #include "../Processors/LoginProcessor.h"
 #include "../Processors/HeartBeatProcessor.h"
 

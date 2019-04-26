@@ -3,7 +3,7 @@
 
 
 
-#include "../../../Shared/src/Network/BaseMessageDispatcher.h"
+#include "src/Network/BaseMessageDispatcher.h"
 
 
 class LSClientDispatcher : public DDRFramework::BaseMessageDispatcher

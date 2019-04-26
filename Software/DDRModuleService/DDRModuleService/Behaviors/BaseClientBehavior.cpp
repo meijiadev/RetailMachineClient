@@ -1,10 +1,10 @@
 #include "../Behaviors/BaseClientBehavior.h"
-#include "../../../Shared/src/Network/TcpSocketContainer.h"
-#include "../../../Shared/src/Utility/DDRMacro.h"
+#include "src/Network/TcpSocketContainer.h"
+#include "src/Utility/DDRMacro.h"
 #include <chrono>
 #include <thread>
 
-#include "../../../Shared/src/Utility/Logger.h"
+#include "src/Utility/Logger.h"
 BaseClientBehavior::BaseClientBehavior()
 {
 }

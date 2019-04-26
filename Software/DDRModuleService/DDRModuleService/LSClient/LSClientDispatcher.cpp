@@ -1,5 +1,5 @@
 #include "LSClientDispatcher.h"
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 
 #include "../Processors/RemoteServer/RemoteServerListProcessor.h"
 #include "../Processors/RemoteServer/UploadFileProcessor.h"

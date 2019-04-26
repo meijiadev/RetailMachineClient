@@ -1,6 +1,6 @@
 #include "StatusProcessor.h"
-#include "../../../Shared/proto/BaseCmd.pb.h"
-#include "../../../Shared/src/Utility/DDRMacro.h"
+#include "proto/BaseCmd.pb.h"
+#include "src/Utility/DDRMacro.h"
 #include "../Behaviors/BaseClientBehavior.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;

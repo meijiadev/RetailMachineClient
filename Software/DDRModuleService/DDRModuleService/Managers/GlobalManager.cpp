@@ -1,15 +1,15 @@
 #include "GlobalManager.h"
 
 
-#include "../../../Shared/src/Utility/XmlLoader.h"
-#include "../../../Shared/src/Utility/CommonFunc.h"
+#include "src/Utility/XmlLoader.h"
+#include "src/Utility/CommonFunc.h"
 #include "../Servers/LocalServerUdpDispatcher.h"
 #include <thread>
 #include <chrono>
 #include <iostream>
 #include <fstream>
 
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 using namespace DDRCommProto;
 using namespace std;
 

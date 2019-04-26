@@ -1,13 +1,13 @@
 #ifndef StreamRelayServiceManager_h__
 #define StreamRelayServiceManager_h__
 #include <string>
-#include "../../../Shared/src/Utility/XmlLoader.h"
-#include "../../../Shared/src/Utility/Singleton.h"
+#include "src/Utility/XmlLoader.h"
+#include "src/Utility/Singleton.h"
 
-#include "../../../Shared/src/Network/TcpServerBase.h"
-#include "../../../Shared/proto/BaseCmd.pb.h"
-#include "../../../Shared/proto/RemoteCmd.pb.h"
-#include "eventpp/eventdispatcher.h"
+#include "src/Network/TcpServerBase.h"
+#include "proto/BaseCmd.pb.h"
+#include "proto/RemoteCmd.pb.h"
+#include "thirdparty/eventpp/eventdispatcher.h"
 #include "../Servers/LocalTcpServer.h"
 
 using namespace DDRCommProto;

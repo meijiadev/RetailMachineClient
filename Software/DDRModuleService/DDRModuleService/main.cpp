@@ -1,18 +1,20 @@
-#include "../../../Shared/src/Network/MessageSerializer.h"
-#include "../../../Shared/src/Network/TcpServerBase.h"
-#include "../../../Shared/src/Network/TcpClientBase.h"
-#include "../../../Shared/src/Utility/XmlLoader.h"
-#include "../../../Shared/src/Utility/LocalizationLoader.h"
-#include "../../../Shared/src/Utility/MiniDump.h"
-#include "../../../Shared/src/Utility/CommonFunc.h"
-#include "../../../Shared/src/Network/UdpSocketBase.h"
+#include "src/Network/MessageSerializer.h"
+#include "src/Network/TcpServerBase.h"
+#include "src/Network/TcpClientBase.h"
+#include "src/Utility/XmlLoader.h"
+#include "src/Utility/LocalizationLoader.h"
+#include "src/Utility/MiniDump.h"
+#include "src/Utility/CommonFunc.h"
+#include "src/Network/UdpSocketBase.h"
 #include "Servers/LocalServerUdpDispatcher.h"
 #include "Managers/GlobalManager.h"
 #include "Managers/FileManager.h"
 #include "Servers/LocalTcpServer.h"
 #include "LSClient/LSClientManager.h"
 
-#include "../../Shared/src/Utility/PythonDebugTools.h"
+#include "src/Utility/PythonDebugTools.h"
+#include "Logic/RobotEntity.h"
+
 
 #include <thread>
 #include <chrono>
@@ -31,15 +33,15 @@ using namespace std;
 
 char gQuit = 0;
 
-#include "../../../Shared/thirdparty/curl-asio/curl-asio.hpp"
-#include "../../../Shared/thirdparty/cpp-sqlite3/cppsqlite3.h"
+#include "thirdparty/curl-asio/curl-asio.hpp"
+#include "thirdparty/cpp-sqlite3/cppsqlite3.h"
 #include <ctime>
 #include <iostream>
 
 #include <iostream>
 #include <fstream>
 
-#include "../../Shared/src/Utility/Logger.h"
+#include "src/Utility/Logger.h"
 #include <regex>
 
 
@@ -286,6 +288,8 @@ int main()
 
 	}
 	
+	DDRFramework::RobotLogic::Instance()->GetEntity()->Init();
+
 
 	_ConsoleDebug::Instance()->ConsoleDebugLoop();
 
