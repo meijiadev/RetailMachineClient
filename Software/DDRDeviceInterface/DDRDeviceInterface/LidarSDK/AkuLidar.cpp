@@ -1,37 +1,154 @@
 #include "AkuLidar.h"
+
+#if LIDAR_DEVICE_CHOICE == AKUSENSE_LIDAR
 #include "LidarSDK/CheveningSrc/lim.h"
 #include "LidarSDK/CheveningSrc/LidarSDK_errno.h"
+#endif
+
 #include <iostream>
 
+#ifdef SHOW_LIDAR_DATA
+#include "opencv2/opencv.hpp"
+void showData(std::vector<DDRGeometry::Points_2d> ret_Point_2d)
+{
+	cv::Mat black_img = cv::Mat::zeros(cv::Size(1600, 1024), CV_8UC3);//黑色图像
+	const int n = ret_Point_2d.size();
+	for (int k = 0; k < n; k++)
+	{
+		cv::Point2f pt;
+		//the unit of x and y is mm
+		pt.x = -ret_Point_2d[k].y / 10 + 800;
+		pt.y = -ret_Point_2d[k].x / 10 + 600;
+		if (pt.x < black_img.cols && pt.y < black_img.rows)
+		{
+			cv::circle(black_img, pt, 3, cv::Scalar(255, 255, 255), 2);
+		}
+	}
+
+	cv::imshow("lidar", black_img);
+	cv::waitKey(10);
+}
+#endif
 namespace DDRDrivers {
 
-	Lidar_AkuSenseEx::Lidar_AkuSenseEx()
+	Lidar_AkuSense::Lidar_AkuSense()
 	{
 		m_bNewData = false;
 		m_bIsOpen = false;
 	}
 
-	void Lidar_AkuSenseEx::End()
+	bool Lidar_AkuSense::AddOneLidar(char *ip, int &OutID)
 	{
+#if LIDAR_DEVICE_CHOICE == AKUSENSE_LIDAR
+		OutID = open_lidar(ip);
+		return OutID > 0;
+#elif LIDAR_DEVICE_CHOICE == SICK_LIDAR
+		m_Lidar.Connect(ip, LASER_SERVER_PORT);
+
+		if (!m_Lidar.IsConnected())
+		{
+			std::cout << "connection failend" << std::endl;
+			return false;
+		}
+
+		std::cout << "Connected to laser" << std::endl;
+		std::cout << "Loging in ..." << std::endl;
+
+		m_Lidar.Login();
+		m_Lidar.StopMeas();
+
+		// nesscessary
+		if (!m_Lidar.InitLidarParams())
+		{
+			std::cout << "Set Lidar Params Failed." << ::std::endl;
+		}
+
+		std::cout << "Start measurements ..." << std::endl;
+
+		m_Lidar.StartMeas();
+
+		std::cout << "Wait for ready status ..." << std::endl;
+
+		int ret = 0;
+		while (ret != 7)
+		{
+			// wait several seconds
+			ret = m_Lidar.QueryStatus();
+		}
+
+		std::cout << "Laser ready ret = " << ret << std::endl;
+
+		std::cout << "Start continuous data transmission ..." << std::endl;
+
+		m_Lidar.ScanContinous(1);
+		return 1;
+#endif
+	}
+
+	bool Lidar_AkuSense::GetOneScan(int nCID, std::vector<DDRGeometry::APoint> &result, bool bRaw)
+	{
+#if LIDAR_DEVICE_CHOICE == AKUSENSE_LIDAR
+		if (!m_Lidar_MUTEX.try_lock()) { return false; }
+		if (!m_bNewData)
+		{
+			m_Lidar_MUTEX.unlock();
+			return false;
+		}
+		result.resize(m_lidarData.size());
+		memcpy((void*)(&result[0]), (const void*)(&m_lidarData[0]), sizeof(DDRGeometry::APoint) * m_lidarData.size());
+		m_bNewData = false;
+		m_Lidar_MUTEX.unlock();
+		return true;
+#elif LIDAR_DEVICE_CHOICE == SICK_LIDAR
+		std::vector<DDRGeometry::Points_2d> ret_Point_2d;
+		uint64_t times;
+		if (!m_Lidar.GetOneScan(ret_Point_2d, times))
+		{
+			return false;
+		}
+#ifdef SHOW_LIDAR_DATA
+		showData(ret_Point_2d);
+#endif
+		result.resize(0);
+		for (int i = 0; i < ret_Point_2d.size(); i++)
+		{
+			DDRGeometry::APoint point;
+			int x2 = (ret_Point_2d[i].x / 10) * (ret_Point_2d[i].x / 10);
+			int y2 = (ret_Point_2d[i].y / 10) * (ret_Point_2d[i].y / 10);
+			point.distance = sqrt(x2 + y2);
+			point.angle = atan2(ret_Point_2d[i].y, ret_Point_2d[i].x);
+			result.push_back(point);
+		}
+		return true;
+#endif
+	}
+
+	void Lidar_AkuSense::End()
+	{
+#if LIDAR_DEVICE_CHOICE == AKUSENSE_LIDAR
 		close_lidar();
+#elif LIDAR_DEVICE_CHOICE == SICK_LIDAR
+
+#endif
 		m_bIsOpen = false;
 	}
 
+#if LIDAR_DEVICE_CHOICE == AKUSENSE_LIDAR
 	// 雷达测量数据回调函数
 	void LidarDataCallback(int id, LIM_HEAD *lim, void *data)
 	{
-		Lidar_AkuSenseEx *pThis = (Lidar_AkuSenseEx*)data;
+		Lidar_AkuSense *pThis = (Lidar_AkuSense*)data;
 		pThis->DealLidarData(id, lim);
 	}
 
 	// 雷达状态变化回调函数
 	void LidarStateCallback(int id, LIM_HEAD *lim, void *data)
 	{
-		Lidar_AkuSenseEx *pThis = (Lidar_AkuSenseEx*)data;
+		Lidar_AkuSense *pThis = (Lidar_AkuSense*)data;
 		pThis->DealLidarState(id, lim);
 	}
 
-	int Lidar_AkuSenseEx::close_lidar()
+	int Lidar_AkuSense::close_lidar()
 	{
 		int id = m_lidar.get_id();
 		if (0 >= id)
@@ -49,11 +166,11 @@ namespace DDRDrivers {
 			>0 - open lidar success. return lidar ID
 			-1 - failed
 	*/
-	int Lidar_AkuSenseEx::open_lidar(char *ip)
+	int Lidar_AkuSense::open_lidar(char *ip)
 	{
 		if (m_bIsOpen)
 		{
-			std::cout << "Lidar_AkuSenseEx::open_lidar() error. lidar is open\n";
+			std::cout << "Lidar_AkuSense::open_lidar() error. lidar is open\n";
 			return -1;
 		}
 
@@ -67,7 +184,7 @@ namespace DDRDrivers {
 		if (0 > id)
 		{
 			m_lidar.close_lidar(id);
-			std::cout << "Lidar_AkuSenseEx::open_lidar() error. id = " << id << std::endl;
+			std::cout << "Lidar_AkuSense::open_lidar() error. id = " << id << std::endl;
 			return -1;
 		}
 
@@ -82,28 +199,7 @@ namespace DDRDrivers {
 		return id;
 	}
 
-	bool Lidar_AkuSenseEx::AddOneLidar(char *ip, int &OutID)
-	{
-		OutID = open_lidar(ip);
-		return OutID > 0;
-	}
-
-	bool Lidar_AkuSenseEx::GetOneScan(int nCID, std::vector<DDRGeometry::APoint> &result, bool bRaw)
-	{
-		if (!m_Lidar_MUTEX.try_lock()) { return false; }
-		if (!m_bNewData)
-		{
-			m_Lidar_MUTEX.unlock();
-			return false;
-		}
-		result.resize(m_lidarData.size());
-		memcpy((void*)(&result[0]), (const void*)(&m_lidarData[0]), sizeof(DDRGeometry::APoint) * m_lidarData.size());
-		m_bNewData = false;
-		m_Lidar_MUTEX.unlock();
-		return true;
-	}
-
-	void Lidar_AkuSenseEx::DealLidarData(int id, LIM_HEAD *_lim)
+	void Lidar_AkuSense::DealLidarData(int id, LIM_HEAD *_lim)
 	{
 		std::lock_guard<std::mutex> lock(m_Lidar_MUTEX);
 
@@ -122,7 +218,7 @@ namespace DDRDrivers {
 		return;
 	}
 
-	void Lidar_AkuSenseEx::DealLidarState(int id, LIM_HEAD *lim)
+	void Lidar_AkuSense::DealLidarState(int id, LIM_HEAD *lim)
 	{
 
 		if (LIM_CODE_FMSIG == lim->nCode)
@@ -154,4 +250,8 @@ namespace DDRDrivers {
 			//m_pIO->draw_io_status(lim->Data[0]);
 		}
 	}
+
+#elif LIDAR_DEVICE_CHOICE == SICK_LIDAR
+
+#endif
 }

@@ -65,6 +65,7 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="opencv_debug_new.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -193,6 +194,7 @@
     <ClInclude Include="LidarSDK\CheveningSrc\LidarSDK_errno.h" />
     <ClInclude Include="LidarSDK\CheveningSrc\lim.h" />
     <ClInclude Include="LidarSDK\CheveningSrc\RingBuf.h" />
+    <ClInclude Include="LidarSDK\SickSDK\SickLidar.h" />
     <ClInclude Include="LocalNetworkNode\Impl\ClientBase.h" />
     <ClInclude Include="LocalNetworkNode\Impl\DefaultConfig.h" />
     <ClInclude Include="LocalNetworkNode\Impl\LocalNodeGroup.h" />
@@ -234,6 +236,7 @@
     <ClCompile Include="LidarSDK\CheveningSrc\LidarProbe.cpp" />
     <ClCompile Include="LidarSDK\CheveningSrc\lim.cpp" />
     <ClCompile Include="LidarSDK\CheveningSrc\RingBuf.cpp" />
+    <ClCompile Include="LidarSDK\SickSDK\SickLidar.cpp" />
     <ClCompile Include="LocalNetworkNode\Impl\ClientBase.cpp" />
     <ClCompile Include="LocalNetworkNode\Impl\IMPL.cpp" />
     <ClCompile Include="LocalNetworkNode\Impl\LocalNodeGroup.cpp" />

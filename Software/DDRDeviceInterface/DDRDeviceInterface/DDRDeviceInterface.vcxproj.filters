@@ -33,6 +33,9 @@
     <Filter Include="Device">
       <UniqueIdentifier>{d75d1670-6553-43da-9dfd-712eff91c963}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LidarSDK\SickSDK">
+      <UniqueIdentifier>{020a415d-3f40-4fff-9b13-f7c05690e2a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -185,6 +188,9 @@
     <ClInclude Include="Device\CommPublicFun.h">
       <Filter>Device</Filter>
     </ClInclude>
+    <ClInclude Include="LidarSDK\SickSDK\SickLidar.h">
+      <Filter>LidarSDK\SickSDK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -294,6 +300,9 @@
     </ClCompile>
     <ClCompile Include="Device\CommPublicFun.cpp">
       <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="LidarSDK\SickSDK\SickLidar.cpp">
+      <Filter>LidarSDK\SickSDK</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

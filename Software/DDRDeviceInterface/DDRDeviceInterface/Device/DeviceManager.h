@@ -35,10 +35,11 @@ namespace DDRDevice
 
 		static void  ParseEmbSubThread(void *param);
 		void ParseEmbData();
+		void ParseGNSSData();
 	protected:
 		DDRDrivers::DDREmbeddedServer m_EmbServer;
 		DDRDrivers::EmbUser m_EmbUser;
-		std::map<std::string, std::shared_ptr<DDRDrivers::Lidar_AkuSenseEx>> m_mapLidar;
+		std::map<std::string, std::shared_ptr<DDRDrivers::Lidar_AkuSense>> m_mapLidar;
 		bool m_bQuit;
 	};
 }

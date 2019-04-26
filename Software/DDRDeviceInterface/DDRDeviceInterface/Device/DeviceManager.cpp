@@ -105,12 +105,12 @@ namespace DDRDevice
 	bool DDRDevicedManager::AddLidar(char* ip, std::string strName)
 	{
 		bool bret = false;
-		std::shared_ptr<DDRDrivers::Lidar_AkuSenseEx> pLidar = std::make_shared<DDRDrivers::Lidar_AkuSenseEx>();
+		std::shared_ptr<DDRDrivers::Lidar_AkuSense> pLidar = std::make_shared<DDRDrivers::Lidar_AkuSense>();
 		int OutID = 0;
 		if (pLidar->AddOneLidar(ip, OutID))
 		{
 			bret = true;
-			m_mapLidar.insert(std::pair<std::string, std::shared_ptr<DDRDrivers::Lidar_AkuSenseEx>>(strName, pLidar));
+			m_mapLidar.insert(std::pair<std::string, std::shared_ptr<DDRDrivers::Lidar_AkuSense>>(strName, pLidar));
 		}
 
 		return bret;
