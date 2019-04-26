@@ -191,6 +191,21 @@
     <ClInclude Include="LidarSDK\SickSDK\SickLidar.h">
       <Filter>LidarSDK\SickSDK</Filter>
     </ClInclude>
+    <ClInclude Include="Device\DataFormat.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DDRDeviceEmbStatus.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DDRDeviceGnss.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DDRDeviceChargingRelated.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DDRDeviceEnvironment.h">
+      <Filter>Device</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -303,6 +318,18 @@
     </ClCompile>
     <ClCompile Include="LidarSDK\SickSDK\SickLidar.cpp">
       <Filter>LidarSDK\SickSDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DDRDeviceEmbStatus.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DDRDeviceGnss.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DDRDeviceChargingRelated.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DDRDeviceEnvironment.cpp">
+      <Filter>Device</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

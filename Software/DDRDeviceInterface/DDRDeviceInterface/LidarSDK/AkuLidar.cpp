@@ -6,7 +6,7 @@
 #endif
 
 #include <iostream>
-
+#define SHOW_LIDAR_DATA
 #ifdef SHOW_LIDAR_DATA
 #include "opencv2/opencv.hpp"
 void showData(std::vector<DDRGeometry::Points_2d> ret_Point_2d)
@@ -113,10 +113,10 @@ namespace DDRDrivers {
 		for (int i = 0; i < ret_Point_2d.size(); i++)
 		{
 			DDRGeometry::APoint point;
-			int x2 = (ret_Point_2d[i].x / 10) * (ret_Point_2d[i].x / 10);
-			int y2 = (ret_Point_2d[i].y / 10) * (ret_Point_2d[i].y / 10);
+			float x2 = (ret_Point_2d[i].x / 10) * (ret_Point_2d[i].x / 10);
+			float y2 = (ret_Point_2d[i].y / 10) * (ret_Point_2d[i].y / 10);
 			point.distance = sqrt(x2 + y2);
-			point.angle = atan2(ret_Point_2d[i].y, ret_Point_2d[i].x);
+			point.angle = atan2(ret_Point_2d[i].y, ret_Point_2d[i].x) * (180 / 3.14159265358979f);
 			result.push_back(point);
 		}
 		return true;

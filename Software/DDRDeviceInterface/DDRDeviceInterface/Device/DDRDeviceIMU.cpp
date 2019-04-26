@@ -1,4 +1,5 @@
 #include "DDRDeviceIMU.h"
+#include "DeviceManager.h"
 
 namespace DDRDevice
 {
@@ -14,6 +15,12 @@ namespace DDRDevice
 
 	std::shared_ptr<IMUData> IMUBase::GetData()
 	{
+		std::shared_ptr<IMUData> ptr = std::make_shared<IMUData>();
+		if (DDRDevicedManager::GetInstance()->GetIMUData(*ptr))
+		{
+			return ptr;
+		}
+		ptr.reset();
 		return nullptr;
 	}
 
@@ -23,9 +30,10 @@ namespace DDRDevice
 		return info;
 	}
 
-	bool IMUBase::SendData(IMUData)
+	bool IMUBase::SendData(IMUData data)
 	{
-		return false;
+		DDRDevicedManager::GetInstance()->SetIMUTargetTemp((float)data.m_sIMUTempBy100 / 100.0f);
+		return true;
 	}
 }
 

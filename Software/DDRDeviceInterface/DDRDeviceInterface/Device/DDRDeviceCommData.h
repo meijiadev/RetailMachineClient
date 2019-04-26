@@ -2,6 +2,9 @@
 #define __DDR_DEVICE_COMM_DATA_BASE_H__
 
 #include <vector>
+#include "DataFormat.h"
+
+using namespace DDRData;
 
 namespace DDRDevice
 {
@@ -72,23 +75,12 @@ namespace DDRDevice
 		LidarData()
 		{
 			m_enType = en_DeviceLidar;
-			m_Data.resize(0);
 			m_nTimeStamp = 0;
 		}
 
-		struct Data 
-		{
-			Data()
-			{
-				angle = 0;
-				distance = 0;
-			}
-			float angle; // in DEGREE and COUNTER-CLOCKWISE (0 defined as directly forward)
-			float distance; // in CENTIMETERS
-		};
-		std::vector<Data> m_Data;
+		LidarScan_2D m_Data;
 		EnDeviceType m_enType;
-		unsigned int m_nTimeStamp;
+		U64_TIMESTAMP m_nTimeStamp;
 	};
 
 	class IMUInfo :public DeviceInfoBase
@@ -211,6 +203,7 @@ namespace DDRDevice
 	class ChargingRelatedInfo :public DeviceInfoBase
 	{
 	public:
+		bool m_bEnterCharging; // true - Enter. false - quit
 	};
 
 	class ChargingRelatedData
@@ -240,15 +233,15 @@ namespace DDRDevice
 		unsigned int m_nTimeStamp;
 	};
 
-	class GNSSInfo :public DeviceInfoBase
+	class GnssInfo :public DeviceInfoBase
 	{
 	public:
 	};
 
-	class GNSSData
+	class GnssData
 	{
 	public:
-		GNSSData()
+		GnssData()
 		{
 			m_dstLng = 0;
 			m_dstLat = 0;
