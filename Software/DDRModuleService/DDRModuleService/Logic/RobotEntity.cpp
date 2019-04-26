@@ -81,7 +81,7 @@ int usedMs##name = (int)(endTime##name - startTime##name);// / CLOCKS_PER_SEC;
 
 			STOPCLOCK(total)
 
-			DebugLog("RobotLogic TotalTime:%i Frame:%i", usedMstotal / CLOCKS_PER_SEC ,ii++);
+			//LevelLog("RobotLogic TotalTime:%i Frame:%i", usedMstotal / CLOCKS_PER_SEC ,ii++);
 		}
 
 

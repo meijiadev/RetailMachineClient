@@ -16,6 +16,8 @@
 #include "Logic/RobotEntity.h"
 
 
+#include <src/Utility/DDRMacro.h>
+
 #include <thread>
 #include <chrono>
 using namespace DDRFramework;
@@ -114,6 +116,8 @@ public:
 
 		AddCommand("send2all", std::bind(&_ConsoleDebug::Send2All, this));
 		AddCommand("startbroadcast", std::bind(&_ConsoleDebug::BroadcastCheck, this));
+
+		AddCommand("log", std::bind(&_ConsoleDebug::TestLog, this));
 	}
 	void PrintVersion()
 	{
@@ -268,6 +272,20 @@ public:
 	{
 		LSClientManager::Instance()->StartCheckBroadcast();
 	}
+
+	void TestLog()
+	{
+		//设置LOG为INFO级，大于INFO级的会被打印
+		DDRFramework::Log::getInstance()->setLevel(DDRFramework::Log::Level::INFO);
+
+		//设置输出目标（屏幕,文件或..)
+		DDRFramework::Log::getInstance()->setTarget(Log::Target::STDOUT);// (Log::Target::STDOUT | Log::Target::LOG_FILE);
+
+		LevelLog(DDRFramework::Log::Level::DEBUG, "DEBUG level %f", 10.12f);
+		LevelLog(DDRFramework::Log::Level::INFO, "Info level %i", 100);
+		LevelLog(DDRFramework::Log::Level::ERR, "Error level %s", "abc");
+		LevelLog(DDRFramework::Log::Level::WARNING, "WARNING level %f", 10.12f);
+	}
 };
 
 
@@ -281,12 +299,15 @@ int main()
 	GlobalManager::Instance()->StartUdpServer();
 
 
-	if (GlobalManager::Instance()->CheckRemoteNetwork())
-	{
-		LSClientManager::Instance()->Init();
-		LSClientManager::Instance()->StartCheckBroadcast();
+	//if (GlobalManager::Instance()->CheckRemoteNetwork())
+	//{
+	//	LSClientManager::Instance()->Init();
+	//	LSClientManager::Instance()->StartCheckBroadcast();
 
-	}
+	//}
+
+
+
 	
 	DDRFramework::RobotLogic::Instance()->GetEntity()->Init();
 
