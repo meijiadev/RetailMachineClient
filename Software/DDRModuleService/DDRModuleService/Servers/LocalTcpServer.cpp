@@ -1,11 +1,11 @@
 #include "LocalTcpServer.h"
-#include "../../../Shared/src/Network/TcpSocketContainer.h"
-#include "../../../Shared/src/Network/MessageSerializer.h"
-#include "../../../Shared/src/Network/BaseMessageDispatcher.h"
+#include "src/Network/TcpSocketContainer.h"
+#include "src/Network/MessageSerializer.h"
+#include "src/Network/BaseMessageDispatcher.h"
 #include "LocalServerDispatcher.h"
 #include "LocalServerHeadRuleRouter.h"
 #include "../Managers/GlobalManager.h"
-#include "../../../Shared/src/Utility/XmlLoader.h"
+#include "src/Utility/XmlLoader.h"
 #include "../Behaviors/BaseClientBehavior.h"
 
 

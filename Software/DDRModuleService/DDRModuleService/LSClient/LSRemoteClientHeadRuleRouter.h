@@ -1,6 +1,6 @@
 #ifndef LocalServerHeadRuleRouter_h__
 #define LocalServerHeadRuleRouter_h__
-#include "../../../Shared/src/Network/BaseProcessor.h"
+#include "src/Network/BaseProcessor.h"
 #include "asio.hpp"
 using namespace DDRFramework;
 class LSRemoteClientHeadRuleRouter : public BaseHeadRuleRouter

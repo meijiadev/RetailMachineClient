@@ -2,12 +2,12 @@
 #define LSClientManager_h__
 
 
-#include "../../../Shared/src/Network/UdpSocketBase.h"
-#include "../../../Shared/src/Network/TcpClientBase.h"
-#include "../../../Shared/src/Utility/Singleton.h"
+#include "src/Network/UdpSocketBase.h"
+#include "src/Network/TcpClientBase.h"
+#include "src/Utility/Singleton.h"
 #include "LSTcpClient.h"
-#include "../../../Shared/src/Utility/LocalizationLoader.h"
-#include "../../../Shared/src/Utility/GlobalManagerBase.h"
+#include "src/Utility/LocalizationLoader.h"
+#include "src/Utility/GlobalManagerBase.h"
 
 using namespace DDRFramework;
 class LSClientManager : public DDRFramework::CSingleton<LSClientManager> , public GlobalManagerClientBase

@@ -1,6 +1,6 @@
 #include "LocalServerDispatcher.h"
 
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 #include "../Processors/LoginProcessor.h"
 #include "../Processors/StreamRelay/StreamServiceInfoProcessor.h"
 #include "../Processors/HeartBeatProcessor.h"

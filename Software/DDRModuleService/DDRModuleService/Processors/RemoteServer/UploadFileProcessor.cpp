@@ -1,12 +1,12 @@
 
 
 #include <memory>
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 #include "UploadFileProcessor.h"
-#include "../../../Shared/src/Utility/DDRMacro.h"
-#include "../../../Shared/src/Utility/Logger.h"
+#include "src/Utility/DDRMacro.h"
+#include "src/Utility/Logger.h"
 #include "../../Managers/GlobalManager.h"
-#include "../../../Shared/src/Network/HttpClient.h"
+#include "src/Network/HttpClient.h"
 #include "../../Managers/FileManager.h"
 
 using namespace DDRFramework;

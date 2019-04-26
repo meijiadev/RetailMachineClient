@@ -1,8 +1,8 @@
 #ifndef BaseClientBehavior_h__
 #define BaseClientBehavior_h__
-#include "../../../Shared/src/Logic/BaseBehavior.h"
+#include "src/Logic/BaseBehavior.h"
 #include "asio.hpp"
-#include "../../../Shared/src/Utility/Timer.hpp"
+#include "src/Utility/Timer.hpp"
 class BaseClientBehavior : public DDRFramework::BaseBehavior
 {
 public:

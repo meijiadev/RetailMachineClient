@@ -1,11 +1,11 @@
 #include "LSTcpClient.h"
-#include "../../../Shared/src/Network/TcpSocketContainer.h"
-#include "../../../Shared/src/Network/MessageSerializer.h"
-#include "../../../Shared/src/Network/BaseMessageDispatcher.h"
+#include "src/Network/TcpSocketContainer.h"
+#include "src/Network/MessageSerializer.h"
+#include "src/Network/BaseMessageDispatcher.h"
 #include "LSClientDispatcher.h"
 #include "LSRemoteClientHeadRuleRouter.h"
 
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 #include "../Managers/GlobalManager.h"
 #include "LSClientManager.h"
 using namespace DDRCommProto;

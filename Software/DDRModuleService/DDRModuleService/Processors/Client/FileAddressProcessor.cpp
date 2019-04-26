@@ -1,17 +1,17 @@
 
 
 #include <memory>
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 #include "FileAddressProcessor.h"
-#include "../../../Shared/src/Utility/DDRMacro.h"
-#include "../../../Shared/src/Utility/Logger.h"
+#include "src/Utility/DDRMacro.h"
+#include "src/Utility/Logger.h"
 #include "../../Managers//GlobalManager.h"
 #include "../../Managers//StreamRelayServiceManager.h"
 
 
-#include "eventpp/callbacklist.h"
-#include "eventpp/eventdispatcher.h"
-#include "eventpp/eventqueue.h"
+#include "thirdparty/eventpp/callbacklist.h"
+#include "thirdparty/eventpp/eventdispatcher.h"
+#include "thirdparty/eventpp/eventqueue.h"
 #include "../../Servers/LocalTcpServer.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;

@@ -1,8 +1,8 @@
 #ifndef LocalServerDispatcher_h__
 #define LocalServerDispatcher_h__
 
-#include "../../../Shared/src/Network/BaseMessageDispatcher.h"
-#include "../../../shared/src/Network/BaseSocketContainer.h"
+#include "src/Network/BaseMessageDispatcher.h"
+#include "src/Network/BaseSocketContainer.h"
 
 #endif // LocalServerDispatcher_h__
 class LocalServerDispatcher : public DDRFramework::BaseMessageDispatcher

@@ -3,10 +3,10 @@
 
 
 
-#include "../../../Shared/src/Network/TcpClientBase.h"
-#include "../../../Shared/src/Utility/Singleton.h"
-#include "../../../Shared/src/Utility/Timer.hpp"
-#include "../../../Shared/src/Utility/DeviceUDID.h"
+#include "src/Network/TcpClientBase.h"
+#include "src/Utility/Singleton.h"
+#include "src/Utility/Timer.hpp"
+#include "src/Utility/DeviceUDID.h"
 
 using namespace DDRFramework;
 class LSTcpClient : public TcpClientBase 

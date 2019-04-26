@@ -1,8 +1,8 @@
 #ifndef LocalTcpServer_h__
 #define LocalTcpServer_h__
 
-#include "../../../Shared/src/Network/TcpServerBase.h"
-#include "../../../Shared/src/Utility/Singleton.h"
+#include "src/Network/TcpServerBase.h"
+#include "src/Utility/Singleton.h"
 using namespace DDRFramework;
 
 

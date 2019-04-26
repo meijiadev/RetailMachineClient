@@ -1,18 +1,18 @@
 
 #include <memory>
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 #include "FileStatusProcessor.h"
-#include "../../../Shared/src/Utility/DDRMacro.h"
-#include "../../../Shared/src/Utility/Logger.h"
-#include "../../../Shared/src/Network/TcpServerBase.h"
-#include "../../../Shared/src/Network/HttpClient.h"
+#include "src/Utility/DDRMacro.h"
+#include "src/Utility/Logger.h"
+#include "src/Network/TcpServerBase.h"
+#include "src/Network/HttpClient.h"
 #include "../Managers/StreamRelayServiceManager.h"
 #include "../Managers/GlobalManager.h"
 #include "../Managers/FileManager.h"
 #include "../Servers/LocalTcpServer.h"
 #include "../LSClient/LSClientManager.h"
-#include "../../../Shared/thirdparty/cppfs/include/cppfs/windows/LocalFileSystem.h"
-#include "../../../Shared/thirdparty/cppfs/include/cppfs/FilePath.h"
+#include "thirdparty/cppfs/include/cppfs/windows/LocalFileSystem.h"
+#include "thirdparty/cppfs/include/cppfs/FilePath.h"
 
 using namespace DDRFramework;
 using namespace DDRCommProto;

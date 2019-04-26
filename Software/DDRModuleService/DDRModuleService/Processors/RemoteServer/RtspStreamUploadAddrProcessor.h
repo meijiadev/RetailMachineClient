@@ -2,8 +2,8 @@
 #define RtspStreamUploadAddrProcessor_h__
 
 
-#include "../../../Shared/src/Network/MessageSerializer.h"
-#include "../../../Shared/src/Network/BaseProcessor.h"
+#include "src/Network/MessageSerializer.h"
+#include "src/Network/BaseProcessor.h"
 
 
 using namespace DDRFramework;

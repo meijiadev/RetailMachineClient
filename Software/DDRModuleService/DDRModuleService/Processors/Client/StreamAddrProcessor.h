@@ -4,8 +4,8 @@
 
 
 
-#include "../../../Shared/src/Network/BaseProcessor.h"
-#include "../../../Shared/src/Network/TcpSocketContainer.h"
+#include "src/Network/BaseProcessor.h"
+#include "src/Network/TcpSocketContainer.h"
 
 class  StreamAddrProcessor : public DDRFramework::BaseProcessor
 {
