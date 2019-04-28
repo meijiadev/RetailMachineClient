@@ -15,8 +15,12 @@
 #include "src/Utility/PythonDebugTools.h"
 #include "Logic/RobotEntity.h"
 
+#include "Logic/IdleState/IdleState.h"
+#include "Logic/AutoState/AutoState.h"
 
 #include <src/Utility/DDRMacro.h>
+
+
 
 #include <thread>
 #include <chrono>
@@ -118,6 +122,11 @@ public:
 		AddCommand("startbroadcast", std::bind(&_ConsoleDebug::BroadcastCheck, this));
 
 		AddCommand("log", std::bind(&_ConsoleDebug::TestLog, this));
+
+
+		AddCommand("idle", std::bind(&_ConsoleDebug::ToIdleState, this));
+		AddCommand("auto", std::bind(&_ConsoleDebug::ToAutoState, this));
+
 	}
 	void PrintVersion()
 	{
@@ -295,6 +304,16 @@ public:
 		LevelLog(DDRFramework::Log::Level::INFO, "Info level %i", 100);
 		LevelLog(DDRFramework::Log::Level::ERR, "Error level %s", "abc");
 		LevelLog(DDRFramework::Log::Level::WARNING, "WARNING level %f", 10.12f);
+	}
+
+	void ToAutoState()
+	{
+		DDRFramework::RobotLogic::Instance()->GetEntity()->SwitchState<AutoState>();
+	}
+	void ToIdleState()
+	{
+		DDRFramework::RobotLogic::Instance()->GetEntity()->SwitchState<IdleState>();
+
 	}
 };
 

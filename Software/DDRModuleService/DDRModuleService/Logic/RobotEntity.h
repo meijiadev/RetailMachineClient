@@ -29,43 +29,59 @@ namespace DDRFramework
 		std::shared_ptr<RobotEntity> m_spEntity;
 	};
 
-	class RobotEntity : public std::enable_shared_from_this<RobotEntity>
+
+	class StateEntity
+	{
+	public:
+		virtual bool Init();;
+		virtual void Deinit() {};
+		virtual void Update();
+
+		template <class T>
+		void SwitchState()
+		{
+			auto spState = m_spStateMachine->findState<T>();
+			if (spState && m_spStateMachine->canEnterState<T>())
+			{
+				m_spStateMachine->enterState(typeid(T).name());
+			}
+		};
+
+	protected:
+
+		std::shared_ptr<StateMachine<RobotEntity>> m_spStateMachine;
+		std::mutex m_MutexUpdate;
+	};
+
+
+	class RobotEntity : public std::enable_shared_from_this<RobotEntity> , public StateEntity
 	{
 	public:
 		RobotEntity();
 		~RobotEntity();
 
-		virtual bool Init();
-		virtual void Update();
-
+		virtual bool Init() override;
 	protected:
-		virtual void ThreadEntry();
+		void ThreadEntry();
 
-
-		std::shared_ptr<StateMachine<RobotEntity>> m_spStateMachine;
-
-		std::mutex m_MutexUpdate;
 
 		int m_FrameRate;
 		int m_FrameTimeLenMs;
 	};
 
 
-	class RobotStatusBaseState : public State<RobotEntity>
+	class RobotStatusBaseState : public State<RobotEntity> , public StateEntity
 	{
 	public:
-		RobotStatusBaseState(std::shared_ptr<RobotEntity> sp) : State<RobotEntity>::State(sp)
-		{
+		RobotStatusBaseState(std::shared_ptr<RobotEntity> sp);;
+		~RobotStatusBaseState();
 
-		};
-		~RobotStatusBaseState()
-		{
 
-		}
+		virtual void didEnterWithPreviousState(std::shared_ptr<State<RobotEntity>> previousState) override {} ;
+		virtual void updateWithDeltaTime(float delta) override;
+		virtual bool isValidNextState(std::shared_ptr<State<RobotEntity>> state) override { return true; };
+		virtual void willExitWithNextState(std::shared_ptr<State<RobotEntity>> nextState) override {};
 
-		virtual bool isValidNextState(std::shared_ptr<State<RobotEntity>> state) { return true; };
-
-	private:
 
 	};
 }
