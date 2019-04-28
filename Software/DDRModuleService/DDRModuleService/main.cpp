@@ -170,13 +170,23 @@ public:
 	void ListClientConnections()
 	{
 		printf_s("\nClient Connections");
-		auto spSession = LSClientManager::Instance()->GetTcpClient()->GetConnectedSession();
-		auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spSession);
-		if (spServerSessionTcp)
+	
+		auto spClient = LSClientManager::Instance()->GetTcpClient();
+		if (spClient)
 		{
 
-			std::string ip = spServerSessionTcp->GetSocket().remote_endpoint().address().to_string();
-			printf_s("\n%s  type:%i", ip.c_str(), spServerSessionTcp->GetLoginInfo().type());
+			auto spSession = spClient->GetConnectedSession();
+			auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spSession);
+			if (spServerSessionTcp)
+			{
+
+				std::string ip = spServerSessionTcp->GetSocket().remote_endpoint().address().to_string();
+				printf_s("\n%s  type:%i", ip.c_str(), spServerSessionTcp->GetLoginInfo().type());
+			}
+		}
+		else
+		{
+			printf_s("\n no lsclient");
 		}
 
 

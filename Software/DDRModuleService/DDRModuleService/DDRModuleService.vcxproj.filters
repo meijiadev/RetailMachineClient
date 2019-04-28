@@ -85,6 +85,9 @@
     <Filter Include="Logic">
       <UniqueIdentifier>{408f8f8f-0ba5-4b2b-944f-7dc73b4e1683}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Processors\SDK">
+      <UniqueIdentifier>{9cf7f640-a01f-408d-90f5-fd175ef7d02a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Shared\src\Network\TcpServerBase.cpp">
@@ -766,6 +769,15 @@
     <ClCompile Include="Logic\RobotEntity.cpp">
       <Filter>Logic</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\proto\DDRModuleCmd.pb.cc">
+      <Filter>Shared\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\SDK\RobotVersionInfoProcessor.cpp">
+      <Filter>Processors\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\SDK\SetParameterProcessor.cpp">
+      <Filter>Processors\SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Shared\src\Network\TcpServerBase.h">
@@ -1047,6 +1059,12 @@
     </ClInclude>
     <ClInclude Include="Logic\RobotEntity.h">
       <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\SDK\RobotVersionInfoProcessor.h">
+      <Filter>Processors\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\SDK\SetParameterProcessor.h">
+      <Filter>Processors\SDK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

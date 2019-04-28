@@ -190,6 +190,7 @@ xcopy /Y $(SolutionDir)DDRModuleService\Config\*.*   $(SolutionDir)x64\Release\C
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Shared\proto\BaseCmd.pb.cc" />
+    <ClCompile Include="..\..\..\..\Shared\proto\DDRModuleCmd.pb.cc" />
     <ClCompile Include="..\..\..\..\Shared\proto\RemoteCmd.pb.cc" />
     <ClCompile Include="..\..\..\..\Shared\src\Network\BaseMessageDispatcher.cpp" />
     <ClCompile Include="..\..\..\..\Shared\src\Network\BaseProcessor.cpp" />
@@ -406,6 +407,8 @@ xcopy /Y $(SolutionDir)DDRModuleService\Config\*.*   $(SolutionDir)x64\Release\C
     <ClCompile Include="Processors\RemoteServer\RemoteServerListProcessor.cpp" />
     <ClCompile Include="Processors\RemoteServer\RtspStreamUploadAddrProcessor.cpp" />
     <ClCompile Include="Processors\RemoteServer\UploadFileProcessor.cpp" />
+    <ClCompile Include="Processors\SDK\RobotVersionInfoProcessor.cpp" />
+    <ClCompile Include="Processors\SDK\SetParameterProcessor.cpp" />
     <ClCompile Include="Processors\StatusProcessor.cpp" />
     <ClCompile Include="Processors\StreamRelay\StreamRelayAlarmProcessor.cpp" />
     <ClCompile Include="Processors\StreamRelay\StreamServiceInfoProcessor.cpp" />
@@ -501,6 +504,8 @@ xcopy /Y $(SolutionDir)DDRModuleService\Config\*.*   $(SolutionDir)x64\Release\C
     <ClInclude Include="Processors\RemoteServer\RemoteServerListProcessor.h" />
     <ClInclude Include="Processors\RemoteServer\RtspStreamUploadAddrProcessor.h" />
     <ClInclude Include="Processors\RemoteServer\UploadFileProcessor.h" />
+    <ClInclude Include="Processors\SDK\RobotVersionInfoProcessor.h" />
+    <ClInclude Include="Processors\SDK\SetParameterProcessor.h" />
     <ClInclude Include="Processors\StatusProcessor.h" />
     <ClInclude Include="Processors\StreamRelay\StreamRelayAlarmProcessor.h" />
     <ClInclude Include="Processors\StreamRelay\StreamServiceInfoProcessor.h" />
