@@ -24,7 +24,7 @@ bool AutoState::Init()
 	StateEntity::Init();
 
 
-	ADD_STATE(m_spStateMachine, IdleState)
+	//ADD_STATE(m_spStateMachine, Auto_State)
 
 	return true;
 }
