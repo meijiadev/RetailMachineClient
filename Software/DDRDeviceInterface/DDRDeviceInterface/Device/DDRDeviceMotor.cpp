@@ -15,15 +15,12 @@ namespace DDRDevice
 
 	std::shared_ptr<MotorData> MotorBase::GetData()
 	{
-		MotorData data;
-		if (DDRDevicedManager::GetInstance()->GetMotorData(data))
+		std::shared_ptr<MotorData> ptr = std::make_shared<MotorData>();
+		if (DDRDevicedManager::GetInstance()->GetMotorData(*ptr))
 		{
-			std::shared_ptr<MotorData> ptr = std::make_shared<MotorData>();
-			ptr->m_sLeftMotorSpeed = data.m_sLeftMotorSpeed;
-			ptr->m_sRightMotorSpeed = data.m_sRightMotorSpeed;
 			return ptr;
 		}
-
+		ptr.reset();
 		return nullptr;
 	}
 	MotorInfo MotorBase::GetDeviceInfo()

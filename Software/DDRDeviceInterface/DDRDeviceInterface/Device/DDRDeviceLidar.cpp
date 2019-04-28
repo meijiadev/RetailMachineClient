@@ -34,7 +34,7 @@ namespace DDRDevice
 			std::cout << "LidarBase::Init() +++ failed\n";
 		}
 
-		return true;
+		return bret;
 	}
 
 	bool LidarBase::DeInit()
@@ -59,12 +59,14 @@ namespace DDRDevice
 
 		std::shared_ptr<LidarData> pData = std::make_shared<LidarData>();
 		pData->m_nTimeStamp = getSystemTimeMillitm();
+		pData->m_Data.scanTime = 0;
+		pData->m_Data.timeStamp = pData->m_nTimeStamp;
 		for (int i = 0; i < result.size(); i++)
 		{
-			LidarData::Data data;
+			LidarPoint_2D data;
 			data.angle = result[i].angle;
 			data.distance = result[i].distance;
-			pData->m_Data.push_back(data);
+			pData->m_Data.pts.push_back(data);
 		}
 
 		return pData;

@@ -306,6 +306,9 @@ namespace DDRDrivers
 			if (retval) {
 				len += recv(sockDesc, buf + len, 20000 - len, 0);
 			}
+
+			if (len > 10000)
+				return;
 		} while ((buf[0] != 0x02) || (buf[len - 1] != 0x03));
 
 		buf[len - 1] = 0;

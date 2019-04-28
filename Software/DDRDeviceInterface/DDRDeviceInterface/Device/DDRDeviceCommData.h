@@ -2,6 +2,9 @@
 #define __DDR_DEVICE_COMM_DATA_BASE_H__
 
 #include <vector>
+#include "DataFormat.h"
+
+using namespace DDRData;
 
 namespace DDRDevice
 {
@@ -46,6 +49,7 @@ namespace DDRDevice
 	class DeviceInfoBase
 	{
 	public:
+		DeviceInfoBase() :m_strName("") {}
 		std::string m_strName;
 		EnDeviceType m_enType;
 	};
@@ -69,26 +73,11 @@ namespace DDRDevice
 	class LidarData
 	{
 	public:
-		LidarData()
-		{
-			m_enType = en_DeviceLidar;
-			m_Data.resize(0);
-			m_nTimeStamp = 0;
-		}
+		LidarData():m_enType(en_DeviceLidar), m_nTimeStamp(0){}
 
-		struct Data 
-		{
-			Data()
-			{
-				angle = 0;
-				distance = 0;
-			}
-			float angle; // in DEGREE and COUNTER-CLOCKWISE (0 defined as directly forward)
-			float distance; // in CENTIMETERS
-		};
-		std::vector<Data> m_Data;
+		LidarScan_2D m_Data;
 		EnDeviceType m_enType;
-		unsigned int m_nTimeStamp;
+		U64_TIMESTAMP m_nTimeStamp;
 	};
 
 	class IMUInfo :public DeviceInfoBase
@@ -99,18 +88,8 @@ namespace DDRDevice
 	class IMUData 
 	{
 	public:
-		IMUData()
-		{
-			m_sAccX = 0;
-			m_sAccY = 0;
-			m_sAccZ = 0;
-			m_sGX = 0;
-			m_sGY = 0;
-			m_sGZ = 0;
-			m_sIMUTempBy100 = 0;
-			m_nTimeStamp = 0;
-			m_enType = en_DeviceIMU;
-		}
+		IMUData():m_sAccX(0), m_sAccY(0), m_sAccZ(0), m_sGX(0), m_sGY(0), m_sGZ(0), m_sIMUTempBy100(0), 
+			m_nTimeStamp(0), m_enType(en_DeviceIMU){}
 	
 		short m_sAccX;
 		short m_sAccY;
@@ -132,13 +111,8 @@ namespace DDRDevice
 	{
 	public:
 
-		MotorData()
-		{
-			m_sLeftMotorSpeed = 0;
-			m_sRightMotorSpeed = 0;
-			m_nTimeStamp = 0;
-			m_enType = en_DeviceMotor;
-		}
+		MotorData():m_sLeftMotorSpeed(0), m_sRightMotorSpeed(0),
+			m_nTimeStamp(0), m_enType(en_DeviceMotor){}
 
 		short m_sLeftMotorSpeed;
 		short m_sRightMotorSpeed;
@@ -155,20 +129,16 @@ namespace DDRDevice
 	{
 	public:
 
-		EmbStatusData()
-		{
-			m_bStickConStatus = 0;
-			m_bEmergencyStopStatus = 0;
-			m_bIRStopStatus = 0;
-			m_bUSStopStatus = 0;
-
-			m_sBattStat = 0;
-			m_sBattVoltageInMV = 0;
-			m_sBattPercentageBy100 = 0;
-			m_sBattTemp_2Bytes = 0;
-			m_nTimeStamp = 0;
-			m_enType = en_DeviceEmbStatus;
-		}
+		EmbStatusData():m_bStickConStatus(0),
+			m_bEmergencyStopStatus(0),
+			m_bIRStopStatus(0),
+			m_bUSStopStatus(0),
+			m_sBattStat(0),
+			m_sBattVoltageInMV(0),
+			m_sBattPercentageBy100(0),
+			m_sBattTemp_2Bytes(0),
+			m_nTimeStamp(0),
+			m_enType(en_DeviceEmbStatus){}
 
 		bool m_bStickConStatus;
 		bool m_bEmergencyStopStatus;
@@ -192,14 +162,8 @@ namespace DDRDevice
 	class EnvironmentData
 	{
 	public:
-		EnvironmentData()
-		{
-			m_sEBREnvTempBy100 = 0;
-			m_sEBREnvHumBy100 = 0;
-			m_sEBREnvPM25 = 0;
-			m_nTimeStamp = 0;
-			m_enType = en_DeviceEnvironment;
-		}
+		EnvironmentData():m_sEBREnvTempBy100(0), m_sEBREnvHumBy100(0), m_sEBREnvPM25(0), 
+			m_nTimeStamp(0), m_enType(en_DeviceEnvironment){}
 
 		short m_sEBREnvTempBy100;
 		unsigned short m_sEBREnvHumBy100;
@@ -211,23 +175,15 @@ namespace DDRDevice
 	class ChargingRelatedInfo :public DeviceInfoBase
 	{
 	public:
+		bool m_bEnterCharging; // true - Enter. false - quit
 	};
 
 	class ChargingRelatedData
 	{
 	public:
-		ChargingRelatedData()
-		{
-			m_chRcgIsRcgMode = 0;
-			m_chRcgState = 0;
-			m_chRcgIsRcgCharging = 0;
-			m_chRcgIsRcgDocked = 0;
-			m_chRcgRcgRightReceived = 0;
-			m_chRcgLeftReceived = 0;
-			m_chRcgMiddleReceived = 0;
-			m_nTimeStamp = 0;
-			m_enType = en_DeviceChargingRelated;
-		}
+		ChargingRelatedData():m_chRcgIsRcgMode(0), m_chRcgState(0), m_chRcgIsRcgCharging(0), m_chRcgIsRcgDocked(0),
+			m_chRcgRcgRightReceived(0), m_chRcgLeftReceived(0), m_chRcgMiddleReceived(0),
+			m_nTimeStamp(0), m_enType(en_DeviceChargingRelated){}
 
 		unsigned char m_chRcgIsRcgMode;
 		unsigned char m_chRcgState;
@@ -240,23 +196,16 @@ namespace DDRDevice
 		unsigned int m_nTimeStamp;
 	};
 
-	class GNSSInfo :public DeviceInfoBase
+	class GnssInfo :public DeviceInfoBase
 	{
 	public:
 	};
 
-	class GNSSData
+	class GnssData
 	{
 	public:
-		GNSSData()
-		{
-			m_dstLng = 0;
-			m_dstLat = 0;
-			m_chCog = 0;
-			m_fAltitude = 0;
-			m_nTimeStamp = 0;
-			m_enType = en_DeviceGNSS;
-		}
+		GnssData():m_dstLng(0), m_dstLat(0), m_chCog(0), m_fAltitude(0),
+			m_nTimeStamp(0), m_enType(en_DeviceGNSS){}
 
 		double m_dstLng;
 		double m_dstLat;
