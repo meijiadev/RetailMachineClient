@@ -124,7 +124,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y  $(ProjectDir)include\*.h $(SolutionDir)DDRSDK\include /s /i</Command>
+      <Command>xcopy /Y  $(ProjectDir)include\*.h $(SolutionDir)DDRSDK\include /s /i
+xcopy /Y  $(SolutionDir)x64\Debug\DDRClientSDK.lib $(SolutionDir)DDRSDK\lib\Debug /s /i</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -168,6 +169,10 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)../../Shared/lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y  $(ProjectDir)include\*.h $(SolutionDir)DDRSDK\include /s /i
+xcopy /Y  $(SolutionDir)x64\Release\DDRClientSDK.lib $(SolutionDir)DDRSDK\lib\Release /s /i</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\Shared\proto\BaseCmd.pb.cc" />
