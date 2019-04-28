@@ -124,8 +124,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /Y  $(ProjectDir)include\*.h $(SolutionDir)DDRSDK\include /s /i</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -172,6 +171,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\Shared\proto\BaseCmd.pb.cc" />
+    <ClCompile Include="..\..\..\..\..\..\Shared\proto\DDRModuleCmd.pb.cc" />
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\BaseMessageDispatcher.cpp" />
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\BaseProcessor.cpp" />
     <ClCompile Include="..\..\..\..\..\..\Shared\src\Network\BaseSocketContainer.cpp" />
