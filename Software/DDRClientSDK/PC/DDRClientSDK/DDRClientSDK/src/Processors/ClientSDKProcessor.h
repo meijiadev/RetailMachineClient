@@ -10,6 +10,22 @@ using namespace DDRFramework;
 
 namespace DDRSDK
 {
+	class DDRClientInterface;
+
+	//注册消息监听器类，收到回包后会回调到 OnMsgArrival
+	class LoginListener : public DDRSDK::DDRBaseListener
+	{
+
+	public:
+		LoginListener(std::shared_ptr<DDRClientInterface> spInterface)
+		{
+			m_spInterface = spInterface;
+		}
+		virtual void OnMsgArrival(std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) override;
+
+	protected:
+		std::shared_ptr<DDRClientInterface> m_spInterface;
+	};
 
 	class ClientSDKProcessor : public BaseProcessor
 	{

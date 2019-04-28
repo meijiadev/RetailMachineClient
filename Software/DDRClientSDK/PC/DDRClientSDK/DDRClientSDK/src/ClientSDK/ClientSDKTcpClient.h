@@ -14,6 +14,26 @@ using namespace DDRFramework;
 namespace DDRSDK
 {
 	class DDRClientInterface;
+	class ClientSDKTcpClient;
+
+	class ClientSDKSession : public TcpClientSessionBase
+	{
+	public:
+		ClientSDKSession(asio::io_context& context);
+		~ClientSDKSession();
+
+		void SetParentClient(std::shared_ptr<ClientSDKTcpClient> sp)
+		{
+			m_wpParentClient = sp;
+		}
+		std::shared_ptr<ClientSDKTcpClient> GetParentClient()
+		{
+			return m_wpParentClient.lock();
+		}
+
+	private:
+		std::weak_ptr<ClientSDKTcpClient> m_wpParentClient;
+	};
 
 	class ClientSDKTcpClient : public TcpClientBase
 	{

@@ -3,6 +3,7 @@
 
 #include "../Processors/ClientSDKProcessor.h"
 using namespace DDRCommProto;
+using namespace DDRModuleCmd;
 using namespace DDRFramework;
 
 
@@ -17,50 +18,53 @@ namespace DDRSDK
 	{
 		auto sp = std::make_shared<ClientSDKProcessor>(*this);
 
-		//RegisterClientSDKProcessor(rspLogin)
+		RegisterClientSDKProcessor(rspLogin)
 
-		//	RegisterClientSDKProcessor(rspCmdMove)
-		//	RegisterClientSDKProcessor(rspCmdChangeSpeed)
-		//	RegisterClientSDKProcessor(rspCmdPauseResume)
-		//	RegisterClientSDKProcessor(rspCmdAudio)
+			RegisterClientSDKProcessor(rspRobotVersionInfo)
+			RegisterClientSDKProcessor(rspSetParameter)
 
-
-		//	RegisterClientSDKProcessor(rspCmdUpdateConfig)
-		//	RegisterClientSDKProcessor(rspCmdGetConfigdata)
-		//	RegisterClientSDKProcessor(rspCmdSetWorkPath)
-		//	RegisterClientSDKProcessor(rspCmdAutoChat)
-		//	RegisterClientSDKProcessor(rspCmdGeneralOctree)
-		//	RegisterClientSDKProcessor(rspCmdStartActionMode)
-		//	RegisterClientSDKProcessor(rspCmdEndActionMode)
-		//	RegisterClientSDKProcessor(rspCmdDeleteCurrRouteOrPath)
-		//	RegisterClientSDKProcessor(rspCmdGetCurrRouteAndPath)
-		//	RegisterClientSDKProcessor(rspCmdSignPoint)
+			RegisterClientSDKProcessor(rspCmdMove)
+			RegisterClientSDKProcessor(rspCmdChangeSpeed)
+			RegisterClientSDKProcessor(rspCmdPauseResume)
+			RegisterClientSDKProcessor(rspCmdAudio)
 
 
-		//	RegisterClientSDKProcessor(notifyBaseStatus)
-		//	RegisterClientSDKProcessor(notifyAlarmInfo)
-		//	RegisterClientSDKProcessor(notifyAlarmNewFace)
-		//	RegisterClientSDKProcessor(notifyAlarmFire)
+			RegisterClientSDKProcessor(rspCmdUpdateConfig)
+			RegisterClientSDKProcessor(rspCmdGetConfigdata)
+			RegisterClientSDKProcessor(rspCmdSetWorkPath)
+			RegisterClientSDKProcessor(rspCmdAutoChat)
+			RegisterClientSDKProcessor(rspCmdGeneralOctree)
+			RegisterClientSDKProcessor(rspCmdStartActionMode)
+			RegisterClientSDKProcessor(rspCmdEndActionMode)
+			RegisterClientSDKProcessor(rspCmdDeleteCurrRouteOrPath)
+			RegisterClientSDKProcessor(rspCmdGetCurrRouteAndPath)
+			RegisterClientSDKProcessor(rspCmdSignPoint)
 
 
-		//	RegisterClientSDKProcessor(rspStreamAddr)
-		//	RegisterClientSDKProcessor(rspAudioTalk)
-		//	RegisterClientSDKProcessor(notifyStreamAddr)
-		//	RegisterClientSDKProcessor(notifyAlarm)
-		//	RegisterClientSDKProcessor(rspFileAddress)
+			RegisterClientSDKProcessor(notifyBaseStatus)
+			RegisterClientSDKProcessor(notifyAlarmInfo)
+			RegisterClientSDKProcessor(notifyAlarmNewFace)
+			RegisterClientSDKProcessor(notifyAlarmFire)
+
+
+			RegisterClientSDKProcessor(rspStreamAddr)
+			RegisterClientSDKProcessor(rspAudioTalk)
+			RegisterClientSDKProcessor(notifyStreamAddr)
+			//RegisterClientSDKProcessor(DDRCommProto::notifyAlarm)
+			RegisterClientSDKProcessor(rspFileAddress)
 
 
 
-		//	RegisterClientSDKProcessor(rspStreamServiceInfo)
-		//	RegisterClientSDKProcessor(notifyStreamServiceInfoChanged)
-		//	RegisterClientSDKProcessor(rspCmdGetThermalParams)
-		//	RegisterClientSDKProcessor(rspCmdSetThermalParams)
-		//	RegisterClientSDKProcessor(rspCmdAddFace)
-		//	RegisterClientSDKProcessor(rspCmdFaceDataBaseOrder)
+			RegisterClientSDKProcessor(rspStreamServiceInfo)
+			RegisterClientSDKProcessor(notifyStreamServiceInfoChanged)
+			RegisterClientSDKProcessor(rspCmdGetThermalParams)
+			RegisterClientSDKProcessor(rspCmdSetThermalParams)
+			RegisterClientSDKProcessor(rspCmdAddFace)
+			RegisterClientSDKProcessor(rspCmdFaceDataBaseOrder)
 
 
-		//	RegisterClientSDKProcessor(rspCmdGetFaceParams)
-		//	RegisterClientSDKProcessor(rspCmdSetFaceParams)
+			RegisterClientSDKProcessor(rspCmdGetFaceParams)
+			RegisterClientSDKProcessor(rspCmdSetFaceParams)
 	}
 
 
