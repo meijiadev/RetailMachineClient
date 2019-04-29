@@ -14,13 +14,13 @@ Description:Provide  DDRCleint SDK functions 
 #define DDRClientSDK_h__
 
 #include <proto/BaseCmd.pb.h>
+#include <proto/DDRModuleCmd.pb.h>
 
 #if !defined(USE_DDRSDK_DLL) // inside DLL
 #   define DDRSDK_API   __declspec(dllexport)
 #else // outside DLL
 #   define DDRSDK_API   __declspec(dllimport)
 #endif 
-
 
 
 namespace DDRSDK
@@ -37,6 +37,9 @@ namespace DDRSDK
 		virtual void OnDisconnected() {};
 		virtual void OnConnectTimeout() {};
 		virtual void OnConnectFailed() {};
+		
+		virtual void OnLoginSuccess() {};
+		virtual void OnLoginFailed(std::string error) {};
 	};
 
 
@@ -82,8 +85,16 @@ namespace DDRSDK
 	//remove a msg type listener 
 	DDRSDK_API bool UnregisterListener(DDRHANDLE h, std::shared_ptr<google::protobuf::Message> spMsg);
 
+
+
+	DDRSDK_API enum eClietType
+	{
+		ECT_PC,
+		ECT_ANDROID,
+		ECT_LOCALSERVICE,
+	};
 	//connect device by ip and port to start communication with robot
-	DDRSDK_API bool StartCommunication(DDRHANDLE h,std::string ip, std::string port);
+	DDRSDK_API bool StartCommunication(DDRHANDLE h,std::string ip, std::string port, eClietType astype = eClietType::ECT_LOCALSERVICE,std::string username = "" ,std::string password = "");
 
 	//stop communication
 	DDRSDK_API bool StopCommunication(DDRHANDLE h);

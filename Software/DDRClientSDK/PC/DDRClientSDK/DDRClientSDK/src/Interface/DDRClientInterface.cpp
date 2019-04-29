@@ -76,11 +76,25 @@ namespace DDRSDK
 	}
 
 
-	bool StartCommunication(DDRHANDLE h,std::string ip, std::string port)
+	bool StartCommunication(DDRHANDLE h,std::string ip, std::string port, eClietType astype, std::string username, std::string password)
 	{
 		auto spInterface = DDRClientInterface::FindInterfacePtr(h);
 		if (spInterface)
 		{
+			eCltType type = eForwarderClient;
+			if (astype == ECT_ANDROID)
+			{
+				type = eCltType::eLocalAndroidClient;
+			}	
+			else if (astype == ECT_PC)
+			{
+				type = eCltType::eLocalPCClient;
+			}
+			else if (astype == ECT_LOCALSERVICE)
+			{
+				type = eCltType::eForwarderClient;
+			}
+			spInterface->SetUserInfo(type,username, password);
 			spInterface->TcpConnect(ip,port);
 		}
 
@@ -136,8 +150,12 @@ namespace DDRSDK
 			
 			m_spTcpClient = spClientSDKTcpClient;
 
+
 			m_spTcpClient->Start();
 		}
+
+
+		AddListener(std::make_shared<DDRCommProto::rspLogin>(), std::make_shared<LoginListener>(shared_from_this()));
 	}
 	bool DDRClientInterface::StartUdp(int port)
 	{
@@ -214,6 +232,24 @@ namespace DDRSDK
 		{
 			m_spTcpClient->Disconnect();
 		}
+	}
+
+	void DDRClientInterface::SetUserInfo(eCltType astype,std::string username, std::string password)
+	{
+		m_AsType = astype;
+		m_Username = username;
+		m_Password = password;
+	}
+
+	void DDRClientInterface::Login()
+	{
+
+		auto spReq = std::make_shared<DDRCommProto::reqLogin>();
+		spReq->set_username(m_Username);
+		spReq->set_userpwd(m_Password);;
+		spReq->set_type(m_AsType);
+		Send(spReq);
+
 	}
 
 	void DDRClientInterface::Send(std::shared_ptr<google::protobuf::Message> spMsg)

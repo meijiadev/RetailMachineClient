@@ -13,6 +13,17 @@ using namespace DDRCommProto;
 
 namespace DDRSDK
 {
+	ClientSDKSession::ClientSDKSession(asio::io_context& context) : TcpClientSessionBase(context)
+	{
+
+	}
+
+
+	ClientSDKSession::~ClientSDKSession()
+	{
+
+	}
+
 	ClientSDKTcpClient::ClientSDKTcpClient()
 	{
 	}
@@ -25,8 +36,10 @@ namespace DDRSDK
 
 	std::shared_ptr<TcpClientSessionBase> ClientSDKTcpClient::BindSerializerDispatcher()
 	{
-		BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, TcpClientSessionBase, MessageSerializer, ClientSDKDispatcher, BaseHeadRuleRouter)
-			return spTcpClientSessionBase;
+		BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, ClientSDKSession, MessageSerializer, ClientSDKDispatcher, BaseHeadRuleRouter)
+
+			spClientSDKSession->SetParentClient(shared_from_base());
+			return spClientSDKSession;
 	}
 	void ClientSDKTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
 	{
@@ -40,6 +53,7 @@ namespace DDRSDK
 			m_wpParentInterface.lock()->m_spStatusListener->OnConnected();
 		}
 
+		m_wpParentInterface.lock()->Login();
 
 	}
 	void ClientSDKTcpClient::OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)

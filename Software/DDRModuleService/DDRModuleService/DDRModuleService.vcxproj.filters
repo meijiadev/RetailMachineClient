@@ -85,6 +85,21 @@
     <Filter Include="Logic">
       <UniqueIdentifier>{408f8f8f-0ba5-4b2b-944f-7dc73b4e1683}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Processors\SDK">
+      <UniqueIdentifier>{9cf7f640-a01f-408d-90f5-fd175ef7d02a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\AutoState">
+      <UniqueIdentifier>{db0d38f2-b5e3-4951-bc08-f68b53c44478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\IdleState">
+      <UniqueIdentifier>{98babf0a-215c-407c-82b1-609a4a790a00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\BuildingMapState">
+      <UniqueIdentifier>{430ed893-ffcb-41fe-a20f-f31782418bef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ChargingState">
+      <UniqueIdentifier>{880c148e-fe3d-4186-b37a-05811c90251d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Shared\src\Network\TcpServerBase.cpp">
@@ -760,11 +775,29 @@
     <ClCompile Include="Processors\RemoteServer\RegisteLSProcessor.cpp">
       <Filter>Processors\RemoteServer</Filter>
     </ClCompile>
-    <ClCompile Include="Logic\IdleState.cpp">
-      <Filter>Logic</Filter>
-    </ClCompile>
     <ClCompile Include="Logic\RobotEntity.cpp">
       <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\proto\DDRModuleCmd.pb.cc">
+      <Filter>Shared\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\SDK\RobotVersionInfoProcessor.cpp">
+      <Filter>Processors\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\SDK\SetParameterProcessor.cpp">
+      <Filter>Processors\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\AutoState\AutoState.cpp">
+      <Filter>Logic\AutoState</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\BuildingMapStae\BuildingMapState.cpp">
+      <Filter>Logic\BuildingMapState</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\ChargingState\ChargingState.cpp">
+      <Filter>Logic\ChargingState</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\IdleState\IdleState.cpp">
+      <Filter>Logic\IdleState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1042,11 +1075,29 @@
     <ClInclude Include="Processors\RemoteServer\RegisteLSProcessor.h">
       <Filter>Processors\RemoteServer</Filter>
     </ClInclude>
-    <ClInclude Include="Logic\IdleState.h">
-      <Filter>Logic</Filter>
-    </ClInclude>
     <ClInclude Include="Logic\RobotEntity.h">
       <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\SDK\RobotVersionInfoProcessor.h">
+      <Filter>Processors\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\SDK\SetParameterProcessor.h">
+      <Filter>Processors\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\DataFormat.h">
+      <Filter>Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\AutoState\AutoState.h">
+      <Filter>Logic\AutoState</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\BuildingMapStae\BuildingMapState.h">
+      <Filter>Logic\BuildingMapState</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\ChargingState\ChargingState.h">
+      <Filter>Logic\ChargingState</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\IdleState\IdleState.h">
+      <Filter>Logic\IdleState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

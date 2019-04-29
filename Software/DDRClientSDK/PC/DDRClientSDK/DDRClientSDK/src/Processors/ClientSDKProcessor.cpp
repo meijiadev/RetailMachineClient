@@ -16,6 +16,35 @@ using namespace DDRCommProto;
 namespace DDRSDK
 {
 
+
+	void LoginListener::OnMsgArrival(std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
+	{
+		auto spRsp = std::dynamic_pointer_cast<DDRCommProto::rspLogin>(spMsg);
+		if (spRsp)
+		{
+			printf("\Login Listener:%i", spRsp->yourrole());
+
+			if (spRsp->retcode() == rspLogin_eLoginRetCode_success)
+			{
+				if (m_spInterface)
+				{
+					m_spInterface->m_spStatusListener->OnLoginSuccess();
+				}
+			}
+			else
+			{
+				if (m_spInterface)
+				{
+					m_spInterface->m_spStatusListener->OnLoginFailed("");
+				}
+
+			}
+
+		}
+	}
+
+
+
 	ClientSDKProcessor::ClientSDKProcessor(BaseMessageDispatcher& dispatcher) :BaseProcessor(dispatcher)
 	{
 	}
@@ -28,11 +57,11 @@ namespace DDRSDK
 	void ClientSDKProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 	{
 		auto spTcp = spSockContainer->GetTcp();
-		auto spSDKClient = dynamic_pointer_cast<DDRSDK::ClientSDKTcpClient>(spTcp);
-		if (spSDKClient)
+		auto spClientSDKSession = dynamic_pointer_cast<DDRSDK::ClientSDKSession>(spTcp);
+		if (spClientSDKSession)
 		{
 
-			spSDKClient->GetParentInterface()->Dispatch(spHeader, spMsg);
+			spClientSDKSession->GetParentClient()->GetParentInterface()->Dispatch(spHeader, spMsg);
 		}
 
 	}
@@ -42,4 +71,5 @@ namespace DDRSDK
 
 
 	}
+
 }

@@ -25,6 +25,9 @@ namespace DDRSDK
 		void TcpConnect(std::string ip, std::string port);
 		void TcpDisconnect();
 
+		void SetUserInfo(eCltType astype, std::string username, std::string password);
+		void Login();
+
 		void Send(std::shared_ptr<google::protobuf::Message> spMsg);
 
 
@@ -84,6 +87,9 @@ namespace DDRSDK
 
 		std::string m_ServerIP;
 		std::string m_ServerPort;
+		std::string m_Username;
+		std::string m_Password;
+		eCltType m_AsType;
 
 
 		std::shared_ptr<DDRSDK::DDRBroadcastReceiver> m_spUdpReceiver;

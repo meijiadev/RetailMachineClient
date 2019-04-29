@@ -15,8 +15,12 @@
 #include "src/Utility/PythonDebugTools.h"
 #include "Logic/RobotEntity.h"
 
+#include "Logic/IdleState/IdleState.h"
+#include "Logic/AutoState/AutoState.h"
 
 #include <src/Utility/DDRMacro.h>
+
+
 
 #include <thread>
 #include <chrono>
@@ -118,6 +122,11 @@ public:
 		AddCommand("startbroadcast", std::bind(&_ConsoleDebug::BroadcastCheck, this));
 
 		AddCommand("log", std::bind(&_ConsoleDebug::TestLog, this));
+
+
+		AddCommand("idle", std::bind(&_ConsoleDebug::ToIdleState, this));
+		AddCommand("auto", std::bind(&_ConsoleDebug::ToAutoState, this));
+
 	}
 	void PrintVersion()
 	{
@@ -170,13 +179,23 @@ public:
 	void ListClientConnections()
 	{
 		printf_s("\nClient Connections");
-		auto spSession = LSClientManager::Instance()->GetTcpClient()->GetConnectedSession();
-		auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spSession);
-		if (spServerSessionTcp)
+	
+		auto spClient = LSClientManager::Instance()->GetTcpClient();
+		if (spClient)
 		{
 
-			std::string ip = spServerSessionTcp->GetSocket().remote_endpoint().address().to_string();
-			printf_s("\n%s  type:%i", ip.c_str(), spServerSessionTcp->GetLoginInfo().type());
+			auto spSession = spClient->GetConnectedSession();
+			auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spSession);
+			if (spServerSessionTcp)
+			{
+
+				std::string ip = spServerSessionTcp->GetSocket().remote_endpoint().address().to_string();
+				printf_s("\n%s  type:%i", ip.c_str(), spServerSessionTcp->GetLoginInfo().type());
+			}
+		}
+		else
+		{
+			printf_s("\n no lsclient");
 		}
 
 
@@ -285,6 +304,16 @@ public:
 		LevelLog(DDRFramework::Log::Level::INFO, "Info level %i", 100);
 		LevelLog(DDRFramework::Log::Level::ERR, "Error level %s", "abc");
 		LevelLog(DDRFramework::Log::Level::WARNING, "WARNING level %f", 10.12f);
+	}
+
+	void ToAutoState()
+	{
+		DDRFramework::RobotLogic::Instance()->GetEntity()->SwitchState<AutoState>();
+	}
+	void ToIdleState()
+	{
+		DDRFramework::RobotLogic::Instance()->GetEntity()->SwitchState<IdleState>();
+
 	}
 };
 

@@ -42,6 +42,19 @@ public:
 	{
 		printf("\nDemoStatusListener OnConnectFailed");
 	}
+
+
+
+	virtual void OnLoginSuccess() override
+	{
+		printf("\nDemoStatusListener OnLoginSuccess");
+
+	}
+	virtual void OnLoginFailed(std::string error)  override
+	{
+		printf("\nDemoStatusListener OnLoginFailed");
+
+	}
 };
 
 //广播消息接收器类，收到有设备存在的广播消息，会回调OnBroadcastArrival
@@ -60,30 +73,28 @@ class DemoBroadcastReceiver : public DDRSDK::DDRBroadcastReceiver
 
 
 
-//注册消息监听器类，收到回包后会回调到 OnMsgArrival
-class DemoLoginListener : public DDRSDK::DDRBaseListener
+//移动消息监听器类，收到回包后会回调到 OnMsgArrival
+class DemoRobotVersionInfoListener : public DDRSDK::DDRBaseListener
 {
 	virtual void OnMsgArrival(std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) override
 	{
-		auto spRsp = std::dynamic_pointer_cast<DDRCommProto::rspLogin>(spMsg);
+		auto spRsp = std::dynamic_pointer_cast<DDRModuleCmd::rspRobotVersionInfo>(spMsg);
 		if (spRsp)
 		{
-			printf("\nDemo Login Listener:%i", spRsp->yourrole());
-
-			//to do 在这里写收到登录消息后的具体逻辑
+			printf("\nDemo RobotVersionInfo Listener RobotID:%s", spRsp->robotid().c_str());
+			printf("\nDemo RobotVersionInfo Listener Hardware Version:%s", spRsp->hardwareversion().c_str());
 		}
 	}
 };
 
-//移动消息监听器类，收到回包后会回调到 OnMsgArrival
-class DemoCmdMoveListener : public DDRSDK::DDRBaseListener
+class DemoSetParameterListener : public DDRSDK::DDRBaseListener
 {
 	virtual void OnMsgArrival(std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) override
 	{
-		auto spRsp = std::dynamic_pointer_cast<DDRCommProto::rspCmdMove>(spMsg);
+		auto spRsp = std::dynamic_pointer_cast<DDRModuleCmd::rspSetParameter>(spMsg);
 		if (spRsp)
 		{
-			printf("\nDemo CmdMove Listener:%i", spRsp->type());
+			printf("\nDemo SetParameter Listener:%i", spRsp->ret());
 		}
 	}
 };
@@ -92,7 +103,7 @@ class DemoCmdMoveListener : public DDRSDK::DDRBaseListener
 //连接到设备，收到广播设备信息后，连接到指定设备IP,端口，连接成功后，会回调DemoStatusListener的OnConnected
 void Connect()
 {
-	DDRSDK::StartCommunication(gDDRHandle, gIP, gPort);
+	DDRSDK::StartCommunication(gDDRHandle, gIP, gPort,DDRSDK::eClietType::ECT_PC,"admin","admin");
 }
 
 //断开设备连接
@@ -101,22 +112,18 @@ void Disconnect()
 	DDRSDK::StopCommunication(gDDRHandle);
 }
 
-//登录设备
-void Login()
+//发送指令。这里以reqRobotVersionInfo为例。指令详见proto文件
+void RobotVersionInfo()
 {
-	auto spReq = std::make_shared<DDRCommProto::reqLogin>();
-	spReq->set_username("admin");
-	spReq->set_userpwd("admin");;
-	spReq->set_type(DDRCommProto::eCltType::eLocalPCClient);
-	DDRSDK::Send(gDDRHandle,spReq);
+	auto spReq = std::make_shared<DDRModuleCmd::reqRobotVersionInfo>();
+	DDRSDK::Send(gDDRHandle, spReq);
 }
 
-//发送指令。这里以reqCmdMove为例。指令详见proto文件
-void CmdMove()
+void SetParameter()
 {
-	auto spReq = std::make_shared<DDRCommProto::reqCmdMove>();
-	spReq->set_line_speed(123);
-	spReq->set_angulau_speed(456);
+	auto spReq = std::make_shared<DDRModuleCmd::reqSetParameter>();
+	spReq->set_posangulauspeed(12);
+	spReq->set_poslinespeed(99);
 	DDRSDK::Send(gDDRHandle, spReq);
 }
 
@@ -127,9 +134,9 @@ int main()
 	//状态回调监听类，负责监听与设备通讯的状态变化
 	gDDRHandle = DDRSDK::CreateDDR(std::make_shared<DemoStatusListener>());
 
-	//注册相应消息的监听器
-	DDRSDK::RegisterListener(gDDRHandle, std::make_shared<DDRCommProto::rspLogin>(), std::make_shared<DemoLoginListener>());
-	DDRSDK::RegisterListener(gDDRHandle, std::make_shared<DDRCommProto::rspCmdMove>(), std::make_shared<DemoCmdMoveListener>());
+	//
+	DDRSDK::RegisterListener(gDDRHandle, std::make_shared<DDRModuleCmd::rspRobotVersionInfo>(), std::make_shared<DemoRobotVersionInfoListener>());
+	DDRSDK::RegisterListener(gDDRHandle, std::make_shared<DDRModuleCmd::rspSetParameter>(), std::make_shared<DemoSetParameterListener>());
 
 
 	//创建广播接收器
@@ -146,8 +153,8 @@ int main()
 	ConsoleUtility consoleUtility;
 	consoleUtility.AddCommand("connect", std::bind(Connect));//命令行输入connect执行Connect方法，下同
 	consoleUtility.AddCommand("disconnect", std::bind(Disconnect));
-	consoleUtility.AddCommand("login", std::bind(Login));
-	consoleUtility.AddCommand("move", std::bind(CmdMove));
+	consoleUtility.AddCommand("reqRobotVersionInfo", std::bind(RobotVersionInfo));
+	consoleUtility.AddCommand("reqSetParameter", std::bind(SetParameter));
 	consoleUtility.ConsoleLoop();
 
 

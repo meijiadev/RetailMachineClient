@@ -643,6 +643,9 @@
     <ClCompile Include="..\..\..\..\..\..\Shared\thirdparty\crossguid\src\guid.cpp">
       <Filter>Shared\Thirdparty\crossguid</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Shared\proto\DDRModuleCmd.pb.cc">
+      <Filter>Shared\proto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\Shared\src\Network\TcpServerBase.h">

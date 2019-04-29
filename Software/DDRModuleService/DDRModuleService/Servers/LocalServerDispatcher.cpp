@@ -1,6 +1,5 @@
 #include "LocalServerDispatcher.h"
 
-#include "proto/BaseCmd.pb.h"
 #include "../Processors/LoginProcessor.h"
 #include "../Processors/StreamRelay/StreamServiceInfoProcessor.h"
 #include "../Processors/HeartBeatProcessor.h"
@@ -10,7 +9,13 @@
 #include "../Processors/FileStatusProcessor.h"
 #include "LocalTcpServer.h"
 
+#include "../Processors/SDK/RobotVersionInfoProcessor.h"
+#include "../Processors/SDK/SetParameterProcessor.h"
+
+#include "src/Utility/DDRMacro.h"
+
 using namespace DDRCommProto;
+using namespace DDRModuleCmd;
 using namespace DDRFramework;
 
 LocalServerDispatcher::LocalServerDispatcher()
@@ -19,7 +24,9 @@ LocalServerDispatcher::LocalServerDispatcher()
 	m_ProcessorMap[hBeat.GetTypeName()] = std::make_shared<HeartBeatProcessor>(*this);
 
 		//Global
-		RegisterProcessor(req, Login)
+	RegisterProcessor(req, Login)
+		RegisterProcessor(req, RobotVersionInfo)
+		RegisterProcessor(req, SetParameter)
 
 
 		//Client
@@ -33,7 +40,7 @@ LocalServerDispatcher::LocalServerDispatcher()
 			RegisterProcessor(ans, FileStatus)
 
 
-}
+}\
 
 
 LocalServerDispatcher::~LocalServerDispatcher()
