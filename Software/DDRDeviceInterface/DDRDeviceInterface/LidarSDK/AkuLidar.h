@@ -43,6 +43,10 @@ namespace DDRDrivers
 		void DealLidarState(int id, LIM_HEAD *lim); //由回调函数调用，处理雷达状态变化
 #elif  LIDAR_DEVICE_CHOICE == SICK_LIDAR
 		Lidar_SickLMS m_Lidar;
+		static void  GetDataSubThread(void *param);
+		void GetLidarData();
+		std::thread m_subThread;
+		bool m_bQuitSubThread;
 #endif
 	};
 }

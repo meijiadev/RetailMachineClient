@@ -43,45 +43,19 @@ namespace DDRDrivers {
 		OutID = open_lidar(ip);
 		return OutID > 0;
 #elif LIDAR_DEVICE_CHOICE == SICK_LIDAR
-		m_Lidar.Connect(ip, LASER_SERVER_PORT);
+		bool bStatus = m_Lidar.GetInitStatus();
 
-		if (!m_Lidar.IsConnected())
+		if (!m_Lidar.AddLidar(ip, LASER_SERVER_PORT, bStatus))
 		{
-			std::cout << "connection failend" << std::endl;
+			std::cout << "Connection fail." << std::endl;
 			return false;
 		}
+		m_subThread = std::thread(&Lidar_AkuSense::GetDataSubThread, this);
+		m_bQuitSubThread = false;
+		//std::thread t2(&Lidar_AkuSense::GetDataSubThread, this);
+		//t2.detach();
+		return true;
 
-		std::cout << "Connected to laser" << std::endl;
-		std::cout << "Loging in ..." << std::endl;
-
-		m_Lidar.Login();
-		m_Lidar.StopMeas();
-
-		// nesscessary
-		if (!m_Lidar.InitLidarParams())
-		{
-			std::cout << "Set Lidar Params Failed." << ::std::endl;
-		}
-
-		std::cout << "Start measurements ..." << std::endl;
-
-		m_Lidar.StartMeas();
-
-		std::cout << "Wait for ready status ..." << std::endl;
-
-		int ret = 0;
-		while (ret != 7)
-		{
-			// wait several seconds
-			ret = m_Lidar.QueryStatus();
-		}
-
-		std::cout << "Laser ready ret = " << ret << std::endl;
-
-		std::cout << "Start continuous data transmission ..." << std::endl;
-
-		m_Lidar.ScanContinous(1);
-		return ret;
 #endif
 	}
 
@@ -100,25 +74,16 @@ namespace DDRDrivers {
 		m_Lidar_MUTEX.unlock();
 		return true;
 #elif LIDAR_DEVICE_CHOICE == SICK_LIDAR
-		std::vector<DDRGeometry::Points_2d> ret_Point_2d;
-		uint64_t times;
-		if (!m_Lidar.GetOneScan(ret_Point_2d, times))
+		if (!m_Lidar_MUTEX.try_lock()) { return false; }
+		if (!m_bNewData)
 		{
+			m_Lidar_MUTEX.unlock();
 			return false;
 		}
-#ifdef SHOW_LIDAR_DATA
-		showData(ret_Point_2d);
-#endif
-		result.resize(0);
-		for (int i = 0; i < ret_Point_2d.size(); i++)
-		{
-			DDRGeometry::APoint point;
-			float x2 = (ret_Point_2d[i].x / 10) * (ret_Point_2d[i].x / 10);
-			float y2 = (ret_Point_2d[i].y / 10) * (ret_Point_2d[i].y / 10);
-			point.distance = sqrt(x2 + y2);
-			point.angle = atan2(ret_Point_2d[i].y, ret_Point_2d[i].x) * (180 / 3.14159265358979f);
-			result.push_back(point);
-		}
+		result.resize(m_lidarData.size());
+		memcpy((void*)(&result[0]), (const void*)(&m_lidarData[0]), sizeof(DDRGeometry::APoint) * m_lidarData.size());
+		m_bNewData = false;
+		m_Lidar_MUTEX.unlock();
 		return true;
 #endif
 	}
@@ -130,6 +95,8 @@ namespace DDRDrivers {
 		close_lidar();
 #elif LIDAR_DEVICE_CHOICE == SICK_LIDAR
 		m_Lidar.Disconnect();
+		m_bQuitSubThread = true;
+		m_subThread.join();
 #endif
 		m_bIsOpen = false;
 	}
@@ -254,5 +221,46 @@ namespace DDRDrivers {
 
 #elif LIDAR_DEVICE_CHOICE == SICK_LIDAR
 
+	void  Lidar_AkuSense::GetDataSubThread(void *param)
+	{
+		Lidar_AkuSense *pManager = (Lidar_AkuSense *)param;
+		if (pManager)
+		{
+			pManager->GetLidarData();
+		}
+	}
+
+	void Lidar_AkuSense::GetLidarData()
+	{
+		while (1)
+		{
+			if (m_bQuitSubThread)
+			{
+				break;
+			}
+
+			std::vector<DDRGeometry::Points_2d> ret_Point_2d;
+			uint64_t times;
+
+			if (!m_Lidar.GetOneScan(ret_Point_2d, times))
+			{
+				continue;
+			}
+
+			std::lock_guard<std::mutex> lock(m_Lidar_MUTEX);
+			m_lidarData.resize(0);
+			for (int i = 0; i < ret_Point_2d.size(); i++)
+			{
+				DDRGeometry::APoint point;
+				float x2 = (ret_Point_2d[i].x / 10) * (ret_Point_2d[i].x / 10);
+				float y2 = (ret_Point_2d[i].y / 10) * (ret_Point_2d[i].y / 10);
+				point.distance = sqrt(x2 + y2);
+				point.angle = atan2(ret_Point_2d[i].y, ret_Point_2d[i].x) * (180 / 3.14159265358f);
+				m_lidarData.push_back(point);
+			}
+			m_bNewData = true;
+		}
+		std::cout << "Sick lidar sub thread end ...\n";
+	}
 #endif
 }
