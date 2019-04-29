@@ -828,9 +828,6 @@
     <ClInclude Include="..\..\..\..\Shared\src\FSM\FSM.h">
       <Filter>Shared\FSM</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Shared\src\Network\Singleton.h">
-      <Filter>Shared\Network</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\Shared\src\Network\BaseProcessor.h">
       <Filter>Shared\Network</Filter>
     </ClInclude>
@@ -1098,6 +1095,9 @@
     </ClInclude>
     <ClInclude Include="Logic\IdleState\IdleState.h">
       <Filter>Logic\IdleState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Shared\src\Utility\Singleton.h">
+      <Filter>Shared\Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
