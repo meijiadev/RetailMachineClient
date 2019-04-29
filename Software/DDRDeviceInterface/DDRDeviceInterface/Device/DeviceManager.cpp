@@ -21,7 +21,8 @@ namespace DDRDevice
 		DDRFramework::Log::getInstance()->setLevel(DDRFramework::Log::Level::INFO);
 
 		// 设定输出的地方
-		DDRFramework::Log::getInstance()->setTarget(DDRFramework::Log::Target::STDOUT);
+		DDRFramework::Log::getInstance()->setTarget(/*DDRFramework::Log::Target::STDOUT |*/
+			DDRFramework::Log::Target::LOG_FILE);
 
 		// 输出Log
 		//LevelLog(DDRFramework::Log::Level::INFO, "Debug level %s", "ssssssss");

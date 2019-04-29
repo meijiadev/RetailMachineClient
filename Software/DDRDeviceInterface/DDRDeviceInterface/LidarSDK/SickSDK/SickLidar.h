@@ -10,7 +10,7 @@
 
 #pragma comment(lib, "ws2_32.lib")
 
-#define  LASER_SERVER_IP      "192.168.1.91"
+#define  LASER_SERVER_IP      "192.168.0.82"
 #define  LASER_SERVER_PORT     2112
 
 
@@ -135,7 +135,7 @@ namespace DDRDrivers
 		 * @brief Number of samples in dist1.
 		 *
 		 */
-		int dist_len1;
+		int dist_len1 = 0;
 
 		/*!
 		 * @brief Radial distance for the first reflected pulse
@@ -191,7 +191,6 @@ namespace DDRDrivers
 		ready_for_measurement = 7
 	} status_t;
 
-
 	class Lidar_SickLMS
 	{
 	public:
@@ -205,7 +204,7 @@ namespace DDRDrivers
 		* @param host LMS1xx host name or ip address.
 		* @param port LMS1xx port number.
 		*/
-		void Connect(std::string host, int port = 2112);
+		bool Connect(std::string host, int port = 2112);
 
 		/*!
 		* @brief Disconnect from LMS1xx device.
@@ -310,16 +309,29 @@ namespace DDRDrivers
 		*/
 		bool GetOneScan(std::vector<DDRGeometry::Points_2d> &result, uint64_t &time);
 
+		/*!
+		* @brief Connect to lidar with giving IP and status.
+		* @param host LMS1xx host name or ip address.
+		* @param port LMS1xx port number.
+		* @param init status, false for fisrt connect.
+		*/
+		bool AddLidar(std::string host, int port = 2112, bool initstatus = false);
+
+		/*!
+		* @brief Get lidar ready status.
+		*/
+		bool GetInitStatus() { return m_initDone; }
+
 	private:
-		
+
 		const double PI_TEMP = 3.1415926;
+
 		float m_fAngleRes;
 		
 		uint64_t m_TimeStampCounter = 0;
 		uint64_t m_PreviousTimeStamp = 0;
 		uint64_t m_InitialTime = 0;
 
-	
 		bool m_bTimestampInit = true;
 
 		std::mutex m_lidarPointMutex;
@@ -328,6 +340,8 @@ namespace DDRDrivers
 
 		bool connected = false;
 		bool debug = false;
+
+		bool m_initDone = false;
 	};
 
 }//namespace LidarDriver

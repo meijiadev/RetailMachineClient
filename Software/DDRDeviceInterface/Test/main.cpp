@@ -65,7 +65,13 @@ bool GetGotoMain()
 
 void lidarTest(void *params)
 {
+	std::cout << "Lidar test begin ...\n";
 	std::shared_ptr<DDRDevice::DDRDeviceInterface> ptr = DDRDevice::CreateDDRDeviceModule();
+
+	if (!ptr.get())
+	{
+		return;
+	}
 
 	std::cout << "Device Version:" << ptr->GetDeviceVersion().c_str() << " Date:" << ptr->GetDeviceDate().c_str() << std::endl;
 
@@ -106,6 +112,8 @@ void lidarTest(void *params)
 	}
 
 	ptr->RemoveDevice(DDRDevice::en_DeviceLidar);
+
+	std::cout << "Lidar test end ...\n";
 }
 
 int KeyTest() {
@@ -126,14 +134,15 @@ int KeyTest() {
 
 void EmbTest(void *)
 {
+	std::cout << "Emb test Begin ...\n";
 	std::shared_ptr<DDRDevice::DDRDeviceInterface> ptr = DDRDevice::CreateDDRDeviceModule();
-
-	std::cout << "Device Version:" << ptr->GetDeviceVersion().c_str() << " Date:" << ptr->GetDeviceDate().c_str() << std::endl;
-
 	if (!ptr.get())
 	{
 		return;
 	}
+
+	std::cout << "Device Version:" << ptr->GetDeviceVersion().c_str() << " Date:" << ptr->GetDeviceDate().c_str() << std::endl;
+
 
 	// IMU test
 	std::string strImuName("IMU");
@@ -187,7 +196,7 @@ void EmbTest(void *)
 				auto controlData = pDeviceConrtol->GetData();
 				if (controlData.get())
 				{
-					std::cout << "Ang:" << controlData->m_Ang.x_av << " Line:" << controlData->m_Lin.x_lv << std::endl;
+					// std::cout << "Ang:" << controlData->m_Ang.x_av << " Line:" << controlData->m_Lin.x_lv << std::endl;
 				}
 
 				DDRDevice::ControlMoveNormalData sendData;
@@ -225,6 +234,12 @@ void EmbTest(void *)
 				std::cout << "Batt:" << pData->m_sBattStat << " BattPercentageBy100:" << pData->m_sBattPercentageBy100 << std::endl;
 			}
 
+			if (GetGotoMain())
+			{
+				pEmbStatus->DeInit();
+				break;
+			}
+
 			//DDRDevice::ControlMoveNormalData sendData;
 			//sendData.m_Ang.x_av = 0;
 			//sendData.m_Lin.x_lv = 0.5;
@@ -237,7 +252,7 @@ void EmbTest(void *)
 			//}
 		}
 	}
-
+	std::cout << "Emb test end ...\n";
 }
 
 

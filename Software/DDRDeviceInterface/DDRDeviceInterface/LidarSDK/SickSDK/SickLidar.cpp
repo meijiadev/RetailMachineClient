@@ -17,6 +17,7 @@ namespace DDRDrivers
 		m_TimeStampCounter = 0;
 		m_PreviousTimeStamp = 0;
 		m_fAngleRes = 5000;//default frequency 50hz, angle resolution 0.5deg
+		m_initDone = false;
 	}
 
 	Lidar_SickLMS::~Lidar_SickLMS()
@@ -84,7 +85,7 @@ namespace DDRDrivers
 		return true;
 	}
 
-	void Lidar_SickLMS::Connect(std::string host, int port)
+	bool Lidar_SickLMS::Connect(std::string host, int port)
 	{
 		if (!connected) {
 
@@ -95,6 +96,11 @@ namespace DDRDrivers
 			//需要WSACleanup
 
 			sockDesc = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+
+			//非阻塞
+			int iMode = 1;
+			ioctlsocket(sockDesc, FIONBIO, (u_long FAR*)&iMode);
+
 			if (sockDesc) {
 				
 				struct sockaddr_in stSockAddr;
@@ -103,23 +109,69 @@ namespace DDRDrivers
 				stSockAddr.sin_port = htons(port);
 				Res = inet_pton(AF_INET, host.c_str(), &stSockAddr.sin_addr);
 
+
 				//::表示全局
 				int ret = ::connect(sockDesc, (struct sockaddr *) &stSockAddr, sizeof stSockAddr);
 				if (ret == 0) {
 					connected = true;
 				}
 				else{
-					std::cout << "Can not connect to Sick Lidar, please check the hardware status." << std::endl;
+					struct timeval tv;
+					tv.tv_sec = 5;
+					tv.tv_usec = 0;
+
+					fd_set rfds;
+					FD_ZERO(&rfds);
+					FD_SET(sockDesc, &rfds);
+
+					if (select(-1, NULL, &rfds, NULL, &tv) <= 0)
+					{
+						ret = -1; // 有错误(select错误或者超时)
+						connected = false;
+					}
+					else
+					{
+						int error = -1;
+						int optLen = sizeof(int);
+						getsockopt(sockDesc, SOL_SOCKET, SO_ERROR, (char*)&error, &optLen);
+
+						if (0 != error)
+						{
+							ret = -1; // 有错误
+							connected = false;
+						}
+						else
+						{
+							ret = 1;  // 无错误
+							connected = true;
+						}
+					}
+
 				}
 			}
+
+			iMode = 0;
+			ioctlsocket(sockDesc, FIONBIO, (u_long FAR*)&iMode); //设置为阻塞模式
 		}
+
+		return connected;
 	}
 
 	void Lidar_SickLMS::Disconnect()
 	{
+		ScanContinous(0);
+		StopMeas();
 		if (connected) {
+			char buf[100];
+			sprintf_s(buf, "%c%s%c", 0x02, "sMN Run", 0x03);
+
+			send(sockDesc, buf, strlen(buf), 0);
+
+			int len = recv(sockDesc, buf, 100, 0);
+
 			closesocket(sockDesc);
 			connected = false;
+			std::cout << "Disconnect from laser" << std::endl;
 		}
 	}
 
@@ -295,6 +347,9 @@ namespace DDRDrivers
 		struct timeval tv;
 		int retval, len;
 		len = 0;
+		//each telegram size with 0.5 resolution and 270 degree is 2798(5498 for 0.25 resolution)
+		int len_fix = 2798;
+		bool bOK = false;
 
 		do {
 			FD_ZERO(&rfds);
@@ -305,12 +360,31 @@ namespace DDRDrivers
 			retval = select(sockDesc + 1, &rfds, NULL, NULL, &tv);
 			if (retval) {
 				len += recv(sockDesc, buf + len, 20000 - len, 0);
+				if (len > len_fix){
+					for (size_t i = 0; i < len; i++){
+						if (buf[i] == 0x02){
+							if ((i + len_fix) < len){
+								if (buf[i + len_fix] == 0x03) {
+									bOK = true;
+									break;
+								}		
+							}
+							else{
+								continue;
+							}
+						}
+					}
+					if (!bOK){
+						// no stx
+						memset(buf, 0, len);
+						len = 0;
+					}
+				}
+				else{
+					continue; //length is not match
+				}
 			}
-
-			if (len > 10000)
-				return;
 		} while ((buf[0] != 0x02) || (buf[len - 1] != 0x03));
-
 		buf[len - 1] = 0;
 		char* tok = strtok_s(buf, " ", &buftmp); //Type of command 3
 		tok = strtok_s(NULL, " ", &buftmp); //Command 11 
@@ -375,7 +449,7 @@ namespace DDRDrivers
 
 			tok = strtok_s(NULL, " ", &buftmp); //Angular step width
 			tok = strtok_s(NULL, " ", &buftmp); //NumberData
-			int NumberData;
+			int NumberData = 0;
 			sscanf_s(tok, "%X", &NumberData, sizeof(NumberData));
 
 			if (debug)
@@ -523,6 +597,51 @@ namespace DDRDrivers
 		m_lidarPointMutex.unlock();
 		return true;
 	}
+
+	bool Lidar_SickLMS::AddLidar(std::string host, int port, bool initstatus)
+	{
+		if (!Connect(host, port))
+		{
+			std::cout << "Connection fail" << std::endl;
+			return false;
+		}
+
+		std::cout << "Connected to laser" << std::endl;
+		std::cout << "Loging in ..." << std::endl;
+
+		Login();
+
+		if (!initstatus)
+		{
+			StopMeas();
+			if (!InitLidarParams())
+			{
+				std::cout << "Set Lidar Params Failed." << ::std::endl;
+				return false;
+			}
+
+			std::cout << "Start measurements ..." << std::endl;
+
+			StartMeas();
+
+			std::cout << "Wait for ready status, it may take several seconds..." << std::endl;
+
+			int ret = 0;
+			while (ret != 7)
+			{
+				// wait several seconds
+				ret = QueryStatus();
+			}
+
+			std::cout << "Laser ready" << std::endl;
+			m_initDone = true;
+		}
+		std::cout << "Start continuous data transmission ..." << std::endl;
+		ScanContinous(1);
+
+		return true;
+	}
+
 
 }//namespace LidarDriver
 

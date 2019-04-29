@@ -29,9 +29,9 @@ namespace DDRDevice {
 
 		bool AddDevice(EnDeviceType type, std::string strName)
 		{
+			Init();
 			bool bret = false;
 			LevelLog(DDRFramework::Log::Level::INFO, "AddDevice Device Type:%d, Name:%s", type, strName.c_str());
-			std::cout << "AddDevice Device Type:" << type << " Name:" << strName.c_str() << std::endl;
 			if (en_DeviceLidar == type)
 			{
 				std::shared_ptr<LidarBase> plidar = std::make_shared<LidarBase>();
@@ -82,7 +82,6 @@ namespace DDRDevice {
 			}
 			else if (en_DeviceChargingRelated == type)
 			{
-				// DDRDeviceChargingRelated
 				std::shared_ptr<ChargingRelatedBase> pDevice = std::make_shared<ChargingRelatedBase>();
 				std::shared_ptr<DeviceTypeMap> deviceMap = std::make_shared<DeviceTypeMap>();
 				deviceMap->insert(std::pair<std::string, std::shared_ptr<DevicePtrContainer>>(strName, pDevice));
@@ -103,7 +102,7 @@ namespace DDRDevice {
 
 		bool RemoveDevice(EnDeviceType type, std::string strName)
 		{
-			std::cout << "RemoveDevice Device Type:" << type << " Name:" << strName.c_str() << std::endl;
+			LevelLog(DDRFramework::Log::Level::INFO, "RemoveDevice Device Type:%d, Name:%s", type, strName.c_str());
 			auto deviceMap = m_mapDevice[type]; // 找到 总map 中的 设备map
 			auto itMapPtr = m_mapDevice.find(type); // 主要是移除需要用到
 			
@@ -144,18 +143,34 @@ namespace DDRDevice {
 
 		DevicePtrContainer* GetPtr(EnDeviceType type, std::string strName)
 		{
-
-			
-
-
 			auto ptrDeviceMap = GetPtrMap(type);
 			DeviceTypeMap map = *((DeviceTypeMap*)(ptrDeviceMap));
 			return map[strName].get();
+		}
+		
+		void Init()
+		{
+			if (!m_bInit)
+			{
+				std::cout << "DDRDeviceImpl::Init() +++\n";
+				m_bInit = true;
+
+				static std::string strLogName = "DDRDevice_" + GetTimeNowstring() + ".log";
+				DDRFramework::Log::getInstance()->setFile(strLogName);
+
+				// 大于INFO的会被输出
+				DDRFramework::Log::getInstance()->setLevel(DDRFramework::Log::Level::INFO);
+
+				// 设定输出的地方
+				DDRFramework::Log::getInstance()->setTarget(DDRFramework::Log::Target::STDOUT |
+					DDRFramework::Log::Target::LOG_FILE);
+			}
 		}
 
 	private:
 
 		std::map<EnDeviceType, std::shared_ptr<DeviceTypeMap>> m_mapDevice;
+		bool m_bInit = false;
 	};
 
 	DDRDeviceInterface* _stdcall _createDDRDeviceModule() {
