@@ -117,7 +117,7 @@
       <PreprocessorDefinitions>WIN32;_WINDOWS;SYSTEM_WINDOWS;_SCL_SECURE_NO_WARNINGS;HAVE_CONFIG_H;BUILDING_LIBCURL;CURL_HIDDEN_SYMBOLS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_USRDLL;_CRT_SECURE_NO_WARNINGS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;_DEBUG;_CONSOLE;USE_MODULE_PROTO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)../../../../Shared/;$(ProjectDir)../../../../Shared/Thirdparty/curl/include;$(ProjectDir)../../../../Shared/Thirdparty/curl/;$(ProjectDir)../../../../Shared/Thirdparty/curl-asio/include;$(ProjectDir)../../../../Shared/Thirdparty/curl/lib;$(ProjectDir)../../../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../../../Shared/Thirdparty/asio/include;$(ProjectDir)../../../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir)../../../../Shared/Thirdparty/cppfs/include;$(ProjectDir)../../../../Shared/Thirdparty/python/PC;$(ProjectDir)../../../../Shared/Thirdparty/python/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../DDRDeviceInterface/DDRDeviceInterface/include;$(ProjectDir);$(ProjectDir)../../../../Shared/;$(ProjectDir)../../../../Shared/Thirdparty/curl/include;$(ProjectDir)../../../../Shared/Thirdparty/curl/;$(ProjectDir)../../../../Shared/Thirdparty/curl-asio/include;$(ProjectDir)../../../../Shared/Thirdparty/curl/lib;$(ProjectDir)../../../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../../../Shared/Thirdparty/asio/include;$(ProjectDir)../../../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir)../../../../Shared/Thirdparty/cppfs/include;$(ProjectDir)../../../../Shared/Thirdparty/python/PC;$(ProjectDir)../../../../Shared/Thirdparty/python/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>
       </LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -127,6 +127,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)../../DDRDeviceInterface/DDRDeviceInterface/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -166,7 +167,7 @@
       <PreprocessorDefinitions>WIN32;_WINDOWS;SYSTEM_WINDOWS;_SCL_SECURE_NO_WARNINGS;HAVE_CONFIG_H;BUILDING_LIBCURL;CURL_HIDDEN_SYMBOLS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_USRDLL;_CRT_SECURE_NO_WARNINGS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;NDEBUG;_CONSOLE;USE_MODULE_PROTO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)../;$(ProjectDir)../../../../Shared/;$(ProjectDir)../../../../Shared/Thirdparty/curl/include;$(ProjectDir)../../../../Shared/Thirdparty/curl/;$(ProjectDir)../../../../Shared/Thirdparty/curl-asio/include;$(ProjectDir)../../../../Shared/Thirdparty/curl/lib;$(ProjectDir)../../../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../../../Shared/Thirdparty/asio/include;$(ProjectDir)../../../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir)../../../../Shared/Thirdparty/cppfs/include;$(ProjectDir)../../../../Shared/Thirdparty/python/PC;$(ProjectDir)../../../../Shared/Thirdparty/python/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../DDRDeviceInterface/DDRDeviceInterface/include;$(ProjectDir)../;$(ProjectDir)../../../../Shared/;$(ProjectDir)../../../../Shared/Thirdparty/curl/include;$(ProjectDir)../../../../Shared/Thirdparty/curl/;$(ProjectDir)../../../../Shared/Thirdparty/curl-asio/include;$(ProjectDir)../../../../Shared/Thirdparty/curl/lib;$(ProjectDir)../../../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../../../Shared/Thirdparty/asio/include;$(ProjectDir)../../../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir)../../../../Shared/Thirdparty/cppfs/include;$(ProjectDir)../../../../Shared/Thirdparty/python/PC;$(ProjectDir)../../../../Shared/Thirdparty/python/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <MinimalRebuild>true</MinimalRebuild>
       <LanguageStandard>
@@ -178,7 +179,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)../../Shared/lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)../../DDRDeviceInterface/DDRDeviceInterface/lib;$(ProjectDir)../../Shared/lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y $(SolutionDir)DDRModuleService\*.db   $(SolutionDir)x64\Release\

@@ -2,6 +2,10 @@
 #define RobotLogic_h__
 #include "src/Utility/Singleton.h"
 #include "src/FSM/FSM.h"
+
+#include "DDRDeviceInterface.h"
+#include "DDRDeviceFactory.h"
+
 #include <memory>
 
 namespace DDRFramework
@@ -62,11 +66,15 @@ namespace DDRFramework
 
 		virtual bool Init() override;
 	protected:
+		bool InitDeviceManager();
 		void ThreadEntry();
 
 
 		int m_FrameRate;
 		int m_FrameTimeLenMs;
+
+		std::shared_ptr<DDRDevice::DDRDeviceInterface> m_ptrDeviceManager;
+
 	};
 
 

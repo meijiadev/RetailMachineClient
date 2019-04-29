@@ -59,7 +59,35 @@ namespace DDRFramework
 		std::thread t(std::bind(&RobotEntity::ThreadEntry, this));
 		t.detach();
 
+		m_ptrDeviceManager = DDRDevice::CreateDDRDeviceModule();
+
 		return true;
+	}
+
+	bool RobotEntity::InitDeviceManager()
+	{
+		if (!m_ptrDeviceManager.get())
+		{
+			return false;
+		}
+
+		std::cout << "Device Version:" << m_ptrDeviceManager->GetDeviceVersion().c_str() << " Date:" << m_ptrDeviceManager->GetDeviceDate().c_str() << std::endl;
+
+		std::string strLidarName("LidarYoung");
+		m_ptrDeviceManager->AddDevice(DDRDevice::en_DeviceLidar, strLidarName);
+
+		auto lidar = m_ptrDeviceManager->GetPtr(DDRDevice::en_DeviceLidar, strLidarName);
+
+		DDRDevice::LidarBase* pData = (DDRDevice::LidarBase*)(lidar);
+		DDRDevice::LidarInfo info;
+		info.m_strIp = "192.168.0.82";
+		info.m_strName = strLidarName;
+
+		if (pData->Init(info))
+		{
+			std::cout << "Lidar init success \n";
+		}
+		return false;
 	}
 
 
