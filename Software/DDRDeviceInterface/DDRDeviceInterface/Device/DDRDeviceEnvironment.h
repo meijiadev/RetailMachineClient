@@ -13,7 +13,7 @@ namespace DDRDevice
 		bool DeInit();
 		std::shared_ptr<EnvironmentData> GetData();
 		EnvironmentInfo GetDeviceInfo();
-		bool SendData(EnvironmentInfo data);
+		bool SendData(EnvironmentData data);
 		std::string GetName();
 	private:
 		EnvironmentInfo m_info;

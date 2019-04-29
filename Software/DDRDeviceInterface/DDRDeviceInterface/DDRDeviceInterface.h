@@ -26,6 +26,10 @@
 #include "Device/DDRDeviceIMU.h"
 #include "Device/DDRDeviceMotor.h"
 #include "Device/DDRDeviceControlMoveNormal.h"
+#include "Device/DDRDeviceEmbStatus.h"
+#include "Device/DDRDeviceGnss.h"
+#include "Device/DDRDeviceEnvironment.h"
+#include "Device/DDRDeviceChargingRelated.h"
 #include <memory>
 
 #define DDR_OUT // Output parameter

@@ -1,10 +1,13 @@
 #include "DDRDeviceEmbStatus.h"
 #include "DeviceManager.h"
 
+#include <iostream>
+
 namespace DDRDevice
 {
 	bool EmbStatusBase::Init(EmbStatusInfo info)
 	{
+		std::cout << "EmbStatusBase::Init() +++\n";
 		return true;
 	}
 
@@ -29,10 +32,10 @@ namespace DDRDevice
 	EmbStatusInfo EmbStatusBase::GetDeviceInfo()
 	{
 		EmbStatusInfo info;
-		return info;
+		return m_info;
 	}
 
-	bool EmbStatusBase::SendData(EmbStatusInfo data)
+	bool EmbStatusBase::SendData(EmbStatusData data)
 	{
 		return true;
 	}

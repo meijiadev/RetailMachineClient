@@ -203,6 +203,41 @@ void EmbTest(void *)
 			}
 		}
 	}
+
+	// en_DeviceControlMoveNormal test
+	std::string strEmbStatus("StatusName");
+	if (ptr->AddDevice(DDRDevice::en_DeviceEmbStatus, strEmbStatus))
+	{
+		auto pEmbStatusPtr = ptr->GetPtr(DDRDevice::en_DeviceEmbStatus, strEmbStatus);
+		DDRDevice::EmbStatusBase* pEmbStatus = (DDRDevice::EmbStatusBase*)(pEmbStatusPtr);
+		if (pEmbStatus)
+		{
+			DDRDevice::EmbStatusInfo infoEmbStatus;
+			pEmbStatus->Init(infoEmbStatus);
+		}
+
+
+		while (1)
+		{
+			auto pData = pEmbStatus->GetData();
+			if (pData.get())
+			{
+				std::cout << "Batt:" << pData->m_sBattStat << " BattPercentageBy100:" << pData->m_sBattPercentageBy100 << std::endl;
+			}
+
+			//DDRDevice::ControlMoveNormalData sendData;
+			//sendData.m_Ang.x_av = 0;
+			//sendData.m_Lin.x_lv = 0.5;
+			//pDeviceConrtol->SendData(sendData);
+
+			//if (GetGotoMain())
+			//{
+			//	pDeviceConrtol->DeInit();
+			//	break;
+			//}
+		}
+	}
+
 }
 
 
@@ -249,6 +284,17 @@ bool Test()
 int main()
 {
 	std::cout << "Main() +++\n";
+
+	//// 大于INFO的会被输出
+	//DDRFramework::Log::getInstance()->setLevel(DDRFramework::Log::Level::INFO);
+
+	//// 设定输出的地方
+	//DDRFramework::Log::getInstance()->setTarget(DDRFramework::Log::Target::STDOUT);
+
+	//// 输出Log
+	//LevelLog(DDRFramework::Log::Level::INFO, "Debug level %s", "ssssssss");
+
+
 	Test();
 	system("pause");
 	return 0;

@@ -81,7 +81,7 @@ namespace DDRDrivers {
 		std::cout << "Start continuous data transmission ..." << std::endl;
 
 		m_Lidar.ScanContinous(1);
-		return 1;
+		return ret;
 #endif
 	}
 

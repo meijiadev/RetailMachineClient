@@ -29,9 +29,9 @@ namespace DDRDevice
 		return info;
 	}
 
-	bool ChargingRelatedBase::SendData(ChargingRelatedInfo data)
+	bool ChargingRelatedBase::SendData(ChargingRelatedData data)
 	{
-		DDRDevicedManager::GetInstance()->SwitchRechargingStatus(data.m_bEnterCharging);
+		//DDRDevicedManager::GetInstance()->SwitchRechargingStatus(data.m_bEnterCharging);
 		return true;
 	}
 

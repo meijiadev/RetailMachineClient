@@ -30,7 +30,7 @@ namespace DDRDevice
 		return info;
 	}
 
-	bool EnvironmentBase::SendData(EnvironmentInfo data)
+	bool EnvironmentBase::SendData(EnvironmentData data)
 	{
 		return true;
 	}

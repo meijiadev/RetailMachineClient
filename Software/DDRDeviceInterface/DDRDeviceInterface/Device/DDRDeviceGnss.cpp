@@ -29,7 +29,7 @@ namespace DDRDevice
 		return info;
 	}
 
-	bool GnssBase::SendData(GnssInfo data)
+	bool GnssBase::SendData(GnssData data)
 	{
 		return true;
 	}

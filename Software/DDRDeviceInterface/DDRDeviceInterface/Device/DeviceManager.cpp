@@ -1,5 +1,5 @@
 #include "DeviceManager.h"
-#include "CommPublicFun.h"
+#include "CommPublicFun/CommPublicFun.h"
 namespace DDRDevice
 {
 	DDRDevicedManager * DDRDevicedManager::GetInstance()
@@ -17,6 +17,14 @@ namespace DDRDevice
 		m_EmbUser(),
 		m_bQuit(false)
 	{
+		// 大于INFO的会被输出
+		DDRFramework::Log::getInstance()->setLevel(DDRFramework::Log::Level::INFO);
+
+		// 设定输出的地方
+		DDRFramework::Log::getInstance()->setTarget(DDRFramework::Log::Target::STDOUT);
+
+		// 输出Log
+		//LevelLog(DDRFramework::Log::Level::INFO, "Debug level %s", "ssssssss");
 		std::thread t2(&DDRDevicedManager::ParseEmbSubThread, this);
 		t2.detach();
 	}

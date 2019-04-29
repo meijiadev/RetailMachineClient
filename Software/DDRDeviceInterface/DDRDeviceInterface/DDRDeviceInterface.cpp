@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "DDRDeviceInterface.h"
 #include "DeleteUnwrapper.h"
-#include "Device/CommPublicFun.h"
+#include "CommPublicFun/CommPublicFun.h"
 #include <map>
 #include <iostream>
 
@@ -30,13 +30,14 @@ namespace DDRDevice {
 		bool AddDevice(EnDeviceType type, std::string strName)
 		{
 			bool bret = false;
+			LevelLog(DDRFramework::Log::Level::INFO, "AddDevice Device Type:%d, Name:%s", type, strName.c_str());
 			std::cout << "AddDevice Device Type:" << type << " Name:" << strName.c_str() << std::endl;
 			if (en_DeviceLidar == type)
 			{
-				//std::shared_ptr<LidarBase> plidar = std::make_shared<LidarBase>();
-				//std::shared_ptr<DeviceTypeMap> deviceMap = std::make_shared<DeviceTypeMap>();
-				//deviceMap->insert(std::pair<std::string, std::shared_ptr<DevicePtrContainer>>(strName, plidar));
-				//m_mapDevice.insert(std::pair<EnDeviceType, std::shared_ptr<DeviceTypeMap>>(en_DeviceLidar, deviceMap));
+				std::shared_ptr<LidarBase> plidar = std::make_shared<LidarBase>();
+				std::shared_ptr<DeviceTypeMap> deviceMap = std::make_shared<DeviceTypeMap>();
+				deviceMap->insert(std::pair<std::string, std::shared_ptr<DevicePtrContainer>>(strName, plidar));
+				m_mapDevice.insert(std::pair<EnDeviceType, std::shared_ptr<DeviceTypeMap>>(en_DeviceLidar, deviceMap));
 				bret = true;
 			}
 			else if (en_DeviceIMU == type)
@@ -61,6 +62,39 @@ namespace DDRDevice {
 				std::shared_ptr<DeviceTypeMap> deviceMap = std::make_shared<DeviceTypeMap>();
 				deviceMap->insert(std::pair<std::string, std::shared_ptr<DevicePtrContainer>>(strName, pDevice));
 				m_mapDevice.insert(std::pair<EnDeviceType, std::shared_ptr<DeviceTypeMap>>(en_DeviceControlMoveNormal, deviceMap));
+				bret = true;
+			}
+			else if (en_DeviceEmbStatus == type)
+			{
+				std::shared_ptr<EmbStatusBase> pDevice = std::make_shared<EmbStatusBase>();
+				std::shared_ptr<DeviceTypeMap> deviceMap = std::make_shared<DeviceTypeMap>();
+				deviceMap->insert(std::pair<std::string, std::shared_ptr<DevicePtrContainer>>(strName, pDevice));
+				m_mapDevice.insert(std::pair<EnDeviceType, std::shared_ptr<DeviceTypeMap>>(en_DeviceEmbStatus, deviceMap));
+				bret = true;
+			}
+			else if (en_DeviceEnvironment == type)
+			{
+				std::shared_ptr<EnvironmentBase> pDevice = std::make_shared<EnvironmentBase>();
+				std::shared_ptr<DeviceTypeMap> deviceMap = std::make_shared<DeviceTypeMap>();
+				deviceMap->insert(std::pair<std::string, std::shared_ptr<DevicePtrContainer>>(strName, pDevice));
+				m_mapDevice.insert(std::pair<EnDeviceType, std::shared_ptr<DeviceTypeMap>>(en_DeviceEnvironment, deviceMap));
+				bret = true;
+			}
+			else if (en_DeviceChargingRelated == type)
+			{
+				// DDRDeviceChargingRelated
+				std::shared_ptr<ChargingRelatedBase> pDevice = std::make_shared<ChargingRelatedBase>();
+				std::shared_ptr<DeviceTypeMap> deviceMap = std::make_shared<DeviceTypeMap>();
+				deviceMap->insert(std::pair<std::string, std::shared_ptr<DevicePtrContainer>>(strName, pDevice));
+				m_mapDevice.insert(std::pair<EnDeviceType, std::shared_ptr<DeviceTypeMap>>(en_DeviceChargingRelated, deviceMap));
+				bret = true;
+			}
+			else if (en_DeviceGNSS == type)
+			{
+				std::shared_ptr<GnssBase> pDevice = std::make_shared<GnssBase>();
+				std::shared_ptr<DeviceTypeMap> deviceMap = std::make_shared<DeviceTypeMap>();
+				deviceMap->insert(std::pair<std::string, std::shared_ptr<DevicePtrContainer>>(strName, pDevice));
+				m_mapDevice.insert(std::pair<EnDeviceType, std::shared_ptr<DeviceTypeMap>>(en_DeviceGNSS, deviceMap));
 				bret = true;
 			}
 
@@ -110,6 +144,10 @@ namespace DDRDevice {
 
 		DevicePtrContainer* GetPtr(EnDeviceType type, std::string strName)
 		{
+
+			
+
+
 			auto ptrDeviceMap = GetPtrMap(type);
 			DeviceTypeMap map = *((DeviceTypeMap*)(ptrDeviceMap));
 			return map[strName].get();

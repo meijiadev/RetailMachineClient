@@ -13,8 +13,16 @@ namespace DDRDevice
 		bool DeInit();
 		std::shared_ptr<EmbStatusData> GetData();
 		EmbStatusInfo GetDeviceInfo();
-		bool SendData(EmbStatusInfo data);
+		bool SendData(EmbStatusData data);
 		std::string GetName();
+
+		//bool Init(ControlMoveNormalInfo info);
+		//bool DeInit();
+		//std::shared_ptr<ControlMoveNormalData> GetData();
+		//ControlMoveNormalInfo GetDeviceInfo();
+		//bool SendData(ControlMoveNormalData data);
+		//std::string GetName();
+
 	private:
 		EmbStatusInfo m_info;
 	};

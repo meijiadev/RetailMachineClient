@@ -1,6 +1,6 @@
 #include "DDRDeviceLidar.h"
 #include "DeviceManager.h"
-#include "CommPublicFun.h"
+#include "CommPublicFun/CommPublicFun.h"
 
 #include <iostream>
 namespace DDRDevice

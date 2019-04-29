@@ -36,6 +36,24 @@
     <Filter Include="LidarSDK\SickSDK">
       <UniqueIdentifier>{020a415d-3f40-4fff-9b13-f7c05690e2a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CommPublicFun">
+      <UniqueIdentifier>{4eed0cf8-2584-4f3b-be28-e3fa50791adf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared">
+      <UniqueIdentifier>{424c9587-be15-428b-b2ee-f7e431398bb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty">
+      <UniqueIdentifier>{eb65633f-8de7-4b03-8682-78941093aba8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\utility">
+      <UniqueIdentifier>{7f0cbef4-c9af-4cfb-99ef-8a9269655218}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\cppfs">
+      <UniqueIdentifier>{4eb38edc-932d-460d-bfa1-d17fcfb0bc90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\cppfs\windows">
+      <UniqueIdentifier>{3b244993-0997-41bd-a7bc-2dc04ed3613d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -185,9 +203,6 @@
     <ClInclude Include="Device\DeviceManager.h">
       <Filter>Device</Filter>
     </ClInclude>
-    <ClInclude Include="Device\CommPublicFun.h">
-      <Filter>Device</Filter>
-    </ClInclude>
     <ClInclude Include="LidarSDK\SickSDK\SickLidar.h">
       <Filter>LidarSDK\SickSDK</Filter>
     </ClInclude>
@@ -214,6 +229,15 @@
     </ClInclude>
     <ClInclude Include="Device\IMUWheelConverter.h">
       <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="CommPublicFun\CommPublicFun.h">
+      <Filter>CommPublicFun</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Shared\src\Utility\CommonFunc.h">
+      <Filter>Shared\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Shared\src\Utility\Logger.h">
+      <Filter>Shared\utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -322,9 +346,6 @@
     <ClCompile Include="Device\DeviceManager.cpp">
       <Filter>Device</Filter>
     </ClCompile>
-    <ClCompile Include="Device\CommPublicFun.cpp">
-      <Filter>Device</Filter>
-    </ClCompile>
     <ClCompile Include="LidarSDK\SickSDK\SickLidar.cpp">
       <Filter>LidarSDK\SickSDK</Filter>
     </ClCompile>
@@ -348,6 +369,75 @@
     </ClCompile>
     <ClCompile Include="Device\IMUWheelConverter.cpp">
       <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="CommPublicFun\CommPublicFun.cpp">
+      <Filter>CommPublicFun</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\AbstractFileHandleBackend.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\AbstractFileIteratorBackend.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\AbstractFileSystem.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\Change.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\cppfsUrl.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\Diff.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\FileHandle.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\FileIterator.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\FilePath.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\FileVisitor.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\fs.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\FunctionalFileVisitor.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\InputStream.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\LoginCredentials.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\OutputStream.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\system.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\Tree.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\windows\LocalFileHandle.cpp">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\windows\LocalFileIterator.cpp">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\thirdparty\cppfs\source\windows\LocalFileSystem.cpp">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\src\Utility\CommonFunc.cpp">
+      <Filter>Shared\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Shared\src\Utility\Logger.cpp">
+      <Filter>Shared\utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

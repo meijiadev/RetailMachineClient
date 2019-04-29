@@ -13,7 +13,7 @@ namespace DDRDevice
 		bool DeInit();
 		std::shared_ptr<ChargingRelatedData> GetData();
 		ChargingRelatedInfo GetDeviceInfo();
-		bool SendData(ChargingRelatedInfo data);
+		bool SendData(ChargingRelatedData data);
 		std::string GetName();
 	private:
 
