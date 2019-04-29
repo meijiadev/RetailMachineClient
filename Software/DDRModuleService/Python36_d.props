@@ -10,8 +10,8 @@
       <AdditionalIncludeDirectories>$(PYTHON_DIR)\include;$(PYTHON_DIR)\PC;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(ProjectDir)../../Shared/lib/x64/python;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>D:\DevelopProj\Dadao\DDRFramework\DDRLocalServer\DDR_LocalClient\../../Shared/lib/x64/python/python36_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)../../../../Shared/lib/x64/python;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>python36_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
