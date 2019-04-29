@@ -1,4 +1,4 @@
-#include "DDRDeviceGnss.h"
+#include "include/DDRDeviceGnss.h"
 #include "DeviceManager.h"
 
 namespace DDRDevice

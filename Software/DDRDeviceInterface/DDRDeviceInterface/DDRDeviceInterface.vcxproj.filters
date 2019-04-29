@@ -143,12 +143,6 @@
     <ClInclude Include="CommLib\FrameSliceGenerator.h">
       <Filter>CommLib</Filter>
     </ClInclude>
-    <ClInclude Include="DDRDeviceFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DDRDeviceInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DeleteUnwrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -185,21 +179,6 @@
     <ClInclude Include="LidarSDK\CheveningSrc\RingBuf.h">
       <Filter>LidarSDK\CheveningSrc</Filter>
     </ClInclude>
-    <ClInclude Include="Device\DDRDeviceTypeBase.h">
-      <Filter>Device</Filter>
-    </ClInclude>
-    <ClInclude Include="Device\DDRDeviceLidar.h">
-      <Filter>Device</Filter>
-    </ClInclude>
-    <ClInclude Include="Device\DDRDeviceCommData.h">
-      <Filter>Device</Filter>
-    </ClInclude>
-    <ClInclude Include="Device\DDRDeviceIMU.h">
-      <Filter>Device</Filter>
-    </ClInclude>
-    <ClInclude Include="Device\DDRDeviceMotor.h">
-      <Filter>Device</Filter>
-    </ClInclude>
     <ClInclude Include="Device\DeviceManager.h">
       <Filter>Device</Filter>
     </ClInclude>
@@ -209,22 +188,7 @@
     <ClInclude Include="Device\DataFormat.h">
       <Filter>Device</Filter>
     </ClInclude>
-    <ClInclude Include="Device\DDRDeviceEmbStatus.h">
-      <Filter>Device</Filter>
-    </ClInclude>
-    <ClInclude Include="Device\DDRDeviceGnss.h">
-      <Filter>Device</Filter>
-    </ClInclude>
-    <ClInclude Include="Device\DDRDeviceChargingRelated.h">
-      <Filter>Device</Filter>
-    </ClInclude>
-    <ClInclude Include="Device\DDRDeviceEnvironment.h">
-      <Filter>Device</Filter>
-    </ClInclude>
     <ClInclude Include="Device\OffsetCorrector.h">
-      <Filter>Device</Filter>
-    </ClInclude>
-    <ClInclude Include="Device\DDRDeviceControlMoveNormal.h">
       <Filter>Device</Filter>
     </ClInclude>
     <ClInclude Include="Device\IMUWheelConverter.h">
@@ -238,6 +202,45 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Shared\src\Utility\Logger.h">
       <Filter>Shared\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DDRDeviceFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DDRDeviceInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DataFormat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DDRDeviceChargingRelated.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DDRDeviceCommData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DDRDeviceControlMoveNormal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DDRDeviceEmbStatus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DDRDeviceEnvironment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DDRDeviceGnss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DDRDeviceIMU.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DDRDeviceLidar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DDRDeviceMotor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DDRDeviceTypeBase.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

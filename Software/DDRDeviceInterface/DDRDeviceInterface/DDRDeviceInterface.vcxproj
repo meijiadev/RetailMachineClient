@@ -73,20 +73,20 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)/include;$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)/include;$(ProjectDir);$(IncludePath)</IncludePath>
     <TargetName>DDRDevice_x64d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)/include;$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)/include;$(ProjectDir);$(IncludePath)</IncludePath>
     <TargetName>DDRDevice_x64r</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -172,19 +172,7 @@
     <ClInclude Include="CommonDef\sys_configurations.h" />
     <ClInclude Include="CommonDef\Types.h" />
     <ClInclude Include="CommPublicFun\CommPublicFun.h" />
-    <ClInclude Include="DDRDeviceFactory.h" />
-    <ClInclude Include="DDRDeviceInterface.h" />
     <ClInclude Include="DeleteUnwrapper.h" />
-    <ClInclude Include="Device\DDRDeviceChargingRelated.h" />
-    <ClInclude Include="Device\DDRDeviceCommData.h" />
-    <ClInclude Include="Device\DDRDeviceControlMoveNormal.h" />
-    <ClInclude Include="Device\DDRDeviceEmbStatus.h" />
-    <ClInclude Include="Device\DDRDeviceEnvironment.h" />
-    <ClInclude Include="Device\DDRDeviceGnss.h" />
-    <ClInclude Include="Device\DDRDeviceIMU.h" />
-    <ClInclude Include="Device\DDRDeviceLidar.h" />
-    <ClInclude Include="Device\DDRDeviceMotor.h" />
-    <ClInclude Include="Device\DDRDeviceTypeBase.h" />
     <ClInclude Include="Device\DeviceManager.h" />
     <ClInclude Include="Device\DataFormat.h" />
     <ClInclude Include="Device\IMUWheelConverter.h" />
@@ -195,6 +183,19 @@
     <ClInclude Include="Embedded\EmbUserBase.h" />
     <ClInclude Include="Embedded\GNSSAnalyzer.h" />
     <ClInclude Include="Embedded\SerialPortIOHandler.h" />
+    <ClInclude Include="include\DataFormat.h" />
+    <ClInclude Include="include\DDRDeviceChargingRelated.h" />
+    <ClInclude Include="include\DDRDeviceCommData.h" />
+    <ClInclude Include="include\DDRDeviceControlMoveNormal.h" />
+    <ClInclude Include="include\DDRDeviceEmbStatus.h" />
+    <ClInclude Include="include\DDRDeviceEnvironment.h" />
+    <ClInclude Include="include\DDRDeviceFactory.h" />
+    <ClInclude Include="include\DDRDeviceGnss.h" />
+    <ClInclude Include="include\DDRDeviceIMU.h" />
+    <ClInclude Include="include\DDRDeviceInterface.h" />
+    <ClInclude Include="include\DDRDeviceLidar.h" />
+    <ClInclude Include="include\DDRDeviceMotor.h" />
+    <ClInclude Include="include\DDRDeviceTypeBase.h" />
     <ClInclude Include="LidarSDK\AkuLidar.h" />
     <ClInclude Include="LidarSDK\CheveningSrc\BlockRingBuf.h" />
     <ClInclude Include="LidarSDK\CheveningSrc\common.h" />

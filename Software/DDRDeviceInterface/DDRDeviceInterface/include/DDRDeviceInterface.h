@@ -20,16 +20,16 @@
 //#endif
 #endif
 
-#include "Device/DDRDeviceCommData.h"
-#include "Device/DDRDeviceTypeBase.h"
-#include "Device/DDRDeviceLidar.h"
-#include "Device/DDRDeviceIMU.h"
-#include "Device/DDRDeviceMotor.h"
-#include "Device/DDRDeviceControlMoveNormal.h"
-#include "Device/DDRDeviceEmbStatus.h"
-#include "Device/DDRDeviceGnss.h"
-#include "Device/DDRDeviceEnvironment.h"
-#include "Device/DDRDeviceChargingRelated.h"
+#include "DDRDeviceCommData.h"
+#include "DDRDeviceTypeBase.h"
+#include "DDRDeviceLidar.h"
+#include "DDRDeviceIMU.h"
+#include "DDRDeviceMotor.h"
+#include "DDRDeviceControlMoveNormal.h"
+#include "DDRDeviceEmbStatus.h"
+#include "DDRDeviceGnss.h"
+#include "DDRDeviceEnvironment.h"
+#include "DDRDeviceChargingRelated.h"
 #include <memory>
 
 #define DDR_OUT // Output parameter

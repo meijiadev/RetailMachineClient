@@ -3,7 +3,7 @@
 
 #include "Embedded/EmbServer.h"
 #include "Embedded/EmbUser.h"
-#include "Device/DDRDeviceCommData.h"
+#include "include/DDRDeviceCommData.h"
 #include "LidarSDK/AkuLidar.h"
 #include "IMUWheelConverter.h"
 #include "OffsetCorrector.h"

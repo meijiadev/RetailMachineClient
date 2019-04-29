@@ -3,8 +3,8 @@
 #include <mutex>
 #include <thread>
 
-#include "../DDRDeviceInterface/DDRDeviceInterface.h"
-#include "../DDRDeviceInterface/DDRDeviceFactory.h"
+#include "DDRDeviceInterface.h"
+#include "DDRDeviceFactory.h"
 
 #include "opencv2/opencv.hpp"
 

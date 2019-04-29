@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "DDRDeviceInterface.h"
+#include "include/DDRDeviceInterface.h"
 #include "DeleteUnwrapper.h"
 #include "CommPublicFun/CommPublicFun.h"
 #include <map>

@@ -1,4 +1,4 @@
-#include "DDRDeviceControlMoveNormal.h"
+#include "include/DDRDeviceControlMoveNormal.h"
 #include "DeviceManager.h"
 
 namespace DDRDevice

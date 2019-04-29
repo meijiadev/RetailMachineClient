@@ -1,4 +1,4 @@
-#include "DDRDeviceLidar.h"
+#include "include/DDRDeviceLidar.h"
 #include "DeviceManager.h"
 #include "CommPublicFun/CommPublicFun.h"
 

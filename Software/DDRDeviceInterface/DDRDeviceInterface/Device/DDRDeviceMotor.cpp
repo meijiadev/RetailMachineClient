@@ -1,4 +1,4 @@
-#include "DDRDeviceMotor.h"
+#include "include/DDRDeviceMotor.h"
 #include "DeviceManager.h"
 
 namespace DDRDevice
