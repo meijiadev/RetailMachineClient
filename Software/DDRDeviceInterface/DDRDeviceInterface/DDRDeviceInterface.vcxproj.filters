@@ -206,6 +206,15 @@
     <ClInclude Include="Device\DDRDeviceEnvironment.h">
       <Filter>Device</Filter>
     </ClInclude>
+    <ClInclude Include="Device\OffsetCorrector.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DDRDeviceControlMoveNormal.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\IMUWheelConverter.h">
+      <Filter>Device</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -329,6 +338,15 @@
       <Filter>Device</Filter>
     </ClCompile>
     <ClCompile Include="Device\DDRDeviceEnvironment.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\OffsetCorrector.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DDRDeviceControlMoveNormal.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\IMUWheelConverter.cpp">
       <Filter>Device</Filter>
     </ClCompile>
   </ItemGroup>

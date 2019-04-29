@@ -37,6 +37,11 @@ namespace DDRDevice
 		return true;
 	}
 
+	std::string EmbStatusBase::GetName()
+	{
+		return m_info.m_strName;
+	}
+
 }
 
 

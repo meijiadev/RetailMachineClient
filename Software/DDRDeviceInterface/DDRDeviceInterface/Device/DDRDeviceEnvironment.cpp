@@ -35,6 +35,11 @@ namespace DDRDevice
 		return true;
 	}
 
+	std::string EnvironmentBase::GetName()
+	{
+		return m_info.m_strName;
+	}
+
 }
 
 

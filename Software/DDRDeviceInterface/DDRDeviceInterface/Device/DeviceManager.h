@@ -5,8 +5,15 @@
 #include "Embedded/EmbUser.h"
 #include "Device/DDRDeviceCommData.h"
 #include "LidarSDK/AkuLidar.h"
+#include "IMUWheelConverter.h"
+#include "OffsetCorrector.h"
 #include <map>
 #include <mutex>
+
+#define DDR_EMBEDDED 1
+#define HITACHI_SYSTEM 2
+#define GXX_SYSTEM 3
+#define CURR_SYSTEM DDR_EMBEDDED
 
 namespace DDRDevice
 {
@@ -35,14 +42,21 @@ namespace DDRDevice
 		bool GetEnvironmentData(EnvironmentData &data);
 		bool GetEmbStatusData(EmbStatusData &data);
 		bool GetChargingRelatedData(ChargingRelatedData &data);
+		bool GetControlMoveNormalData(ControlMoveNormalData &data);
 
+		bool InitMotor(MotorInfo& info);
 		bool SetIMUTargetTemp(float fTemp);
 		bool SwitchRechargingStatus(bool bData);// true - enter recharging. false - quit recharging
+		bool SendControlMoveNormalData(ControlMoveNormalData &data);
+
 		// Stereo
 
 		static void  ParseEmbSubThread(void *param);
 		void ParseEmbData();
 		void ParseGNSSData();
+
+		bool MotorConverterSpeed(float &fSpeeedL, float &sSpeedA);
+
 	protected:
 		DDRDrivers::DDREmbeddedServer m_EmbServer;
 		DDRDrivers::EmbUser m_EmbUser;
@@ -61,6 +75,10 @@ namespace DDRDevice
 		bool m_bIMUNewData;
 
 		// motor
+		float m_GZOffset;
+		IMUWheelConverter m_IMUWheelConverter;
+		OffsetCorrector m_OffsetCorrector;
+		MotorInfo m_MotorInfo;
 		short m_sLeftMotorSpeed;
 		short m_sRightMotorSpeed;
 		bool m_bMotorNewData;

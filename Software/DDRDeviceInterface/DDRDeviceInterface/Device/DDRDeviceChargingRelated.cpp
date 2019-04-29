@@ -35,6 +35,11 @@ namespace DDRDevice
 		return true;
 	}
 
+
+	std::string ChargingRelatedBase::GetName()
+	{
+		return m_info.m_strName;
+	}
 }
 
 

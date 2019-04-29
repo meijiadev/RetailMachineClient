@@ -173,6 +173,7 @@
     <ClInclude Include="Device\CommPublicFun.h" />
     <ClInclude Include="Device\DDRDeviceChargingRelated.h" />
     <ClInclude Include="Device\DDRDeviceCommData.h" />
+    <ClInclude Include="Device\DDRDeviceControlMoveNormal.h" />
     <ClInclude Include="Device\DDRDeviceEmbStatus.h" />
     <ClInclude Include="Device\DDRDeviceEnvironment.h" />
     <ClInclude Include="Device\DDRDeviceGnss.h" />
@@ -182,6 +183,8 @@
     <ClInclude Include="Device\DDRDeviceTypeBase.h" />
     <ClInclude Include="Device\DeviceManager.h" />
     <ClInclude Include="Device\DataFormat.h" />
+    <ClInclude Include="Device\IMUWheelConverter.h" />
+    <ClInclude Include="Device\OffsetCorrector.h" />
     <ClInclude Include="Embedded\DDREmbConfig.h" />
     <ClInclude Include="Embedded\EmbServer.h" />
     <ClInclude Include="Embedded\EmbUser.h" />
@@ -223,6 +226,7 @@
     <ClCompile Include="DDRDeviceInterface.cpp" />
     <ClCompile Include="Device\CommPublicFun.cpp" />
     <ClCompile Include="Device\DDRDeviceChargingRelated.cpp" />
+    <ClCompile Include="Device\DDRDeviceControlMoveNormal.cpp" />
     <ClCompile Include="Device\DDRDeviceEmbStatus.cpp" />
     <ClCompile Include="Device\DDRDeviceEnvironment.cpp" />
     <ClCompile Include="Device\DDRDeviceGnss.cpp" />
@@ -230,6 +234,8 @@
     <ClCompile Include="Device\DDRDeviceLidar.cpp" />
     <ClCompile Include="Device\DDRDeviceMotor.cpp" />
     <ClCompile Include="Device\DeviceManager.cpp" />
+    <ClCompile Include="Device\IMUWheelConverter.cpp" />
+    <ClCompile Include="Device\OffsetCorrector.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Embedded\EmbServer.cpp" />
     <ClCompile Include="Embedded\EmbUser.cpp" />

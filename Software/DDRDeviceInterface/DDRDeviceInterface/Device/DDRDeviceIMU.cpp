@@ -5,6 +5,9 @@ namespace DDRDevice
 {
 	bool IMUBase::Init(IMUInfo info)
 	{
+		m_info.m_enType = info.m_enType;
+		m_info.m_fIMUTemp = info.m_fIMUTemp;
+		m_info.m_strName = info.m_strName;
 		return true;
 	}
 
@@ -26,14 +29,19 @@ namespace DDRDevice
 
 	IMUInfo IMUBase::GetDeviceInfo()
 	{
-		IMUInfo info;
-		return info;
+		//IMUInfo m_info;
+		return m_info;
 	}
 
 	bool IMUBase::SendData(IMUData data)
 	{
-		DDRDevicedManager::GetInstance()->SetIMUTargetTemp((float)data.m_sIMUTempBy100 / 100.0f);
+		DDRDevicedManager::GetInstance()->SetIMUTargetTemp(data.m_fIMUTemp);
 		return true;
+	}
+
+	std::string IMUBase::GetName()
+	{
+		return m_info.m_strName;
 	}
 }
 

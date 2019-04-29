@@ -61,6 +61,11 @@ namespace DDRDevice
 			{
 				case DDRDrivers::MB_FRAMETYPE_IMUMOTOR:
 				{
+					if (m_EmbUser.IsOkay4Calibration()) 
+					{
+						m_OffsetCorrector.AddMeasurement(m_EmbUser.GetGZ(), m_EmbUser.GetTimeStamp());
+					}
+
 					m_bStickConStatus = (m_EmbUser.GetStickConStatus() == 1);
 					m_bEmergencyStopStatus = (m_EmbUser.GetEmergencyStopStatus() == 1);
 					m_bIRStopStatus = (m_EmbUser.GetIRStopStatus() == 1);
@@ -148,6 +153,12 @@ namespace DDRDevice
 		if(!m_bIMUNewData)
 			return false;
 		data.m_sAccX = m_sAccX;
+		data.m_sAccY = m_sAccY;
+		data.m_sAccZ = m_sAccZ;
+		data.m_sGX = m_sGX;
+		data.m_sGY = m_sGY;
+		data.m_sGZ = m_sGZ;
+		data.m_fIMUTemp = (float)m_sIMUTempBy100 / 100.0f;
 		m_bIMUNewData = false;
 		return true;
 	}
@@ -160,7 +171,7 @@ namespace DDRDevice
 		data.m_sLeftMotorSpeed = m_sLeftMotorSpeed;
 		data.m_sRightMotorSpeed = m_sRightMotorSpeed;
 		m_bMotorNewData = false;
-		return false;
+		return true;
 	}
 
 	bool DDRDevicedManager::GetGnssData(GnssData &data)
@@ -222,6 +233,42 @@ namespace DDRDevice
 		return true;
 	}
 
+	// 获取机器人线速度角速度
+	bool DDRDevicedManager::GetControlMoveNormalData(ControlMoveNormalData &data)
+	{
+		std::lock_guard<std::mutex> lock(m_mtxDealEmbData);
+		if (!m_bIMUNewData)
+			return false;
+#if CURR_SYSTEM == DDR_EMBEDDED
+		float line = 0, ang = 0;
+		MotorConverterSpeed(line, ang);
+		data.m_Lin.x_lv = (double)line;
+		data.m_Ang.x_av = (double)ang;
+#else
+
+#endif
+		return true;
+	}
+
+	// 下发线速度角速度
+	bool DDRDevicedManager::SendControlMoveNormalData(ControlMoveNormalData &data)
+	{
+		bool bret = false;
+#if CURR_SYSTEM == DDR_EMBEDDED
+		float line = data.m_Lin.x_lv, ang = data.m_Ang.x_av;
+		
+		short leftCommand = 0;
+		short rightCommand = 0;
+
+		m_IMUWheelConverter.ComputeControlSignal(line, ang, leftCommand, rightCommand);
+		m_EmbUser.SendSpeedInstruction(leftCommand, rightCommand);
+		bret = true;
+#else
+
+#endif
+		return bret;
+	}
+
 	bool DDRDevicedManager::SetIMUTargetTemp(float fTemp)
 	{
 		m_EmbUser.SetIMUTargetTemp(fTemp);
@@ -277,4 +324,33 @@ namespace DDRDevice
 		return bret;
 	}
 
+	bool DDRDevicedManager::InitMotor(MotorInfo& info)
+	{
+		m_MotorInfo.m_dLeftRadius = info.m_dLeftRadius;
+		m_MotorInfo.m_dRightRadius = info.m_dRightRadius;
+		m_MotorInfo.m_dReading2AR_gyro = info.m_dReading2AR_gyro;
+		m_MotorInfo.m_dReading2AR_wheel = info.m_dReading2AR_wheel;
+		m_MotorInfo.m_dWheelBase = info.m_dWheelBase;
+		m_MotorInfo.m_enType = info.m_enType;
+		m_MotorInfo.m_strName = info.m_strName;
+
+		m_IMUWheelConverter.Init(m_MotorInfo.m_dLeftRadius, m_MotorInfo.m_dRightRadius
+			, m_MotorInfo.m_dWheelBase, m_MotorInfo.m_dReading2AR_wheel
+			, m_MotorInfo.m_dReading2AR_gyro);
+
+		return true;
+	}
+	
+	/*
+		将左右轮转速和IMU的Gz转换成线速度 角速度
+	*/
+	bool DDRDevicedManager::MotorConverterSpeed(float &fSpeeedL, float &sSpeedA)
+	{
+		fSpeeedL = m_IMUWheelConverter.GetLinVel(m_sLeftMotorSpeed, m_sRightMotorSpeed);
+
+		// m_GZOffset 需要机器人静止一段时间算出来。还没想好自标定这个要怎么搞
+		sSpeedA = m_IMUWheelConverter.GetAngVel_IMU((float)m_sGZ,(double)m_GZOffset);
+
+		return true;
+	}
 }

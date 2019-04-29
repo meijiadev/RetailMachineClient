@@ -23,6 +23,9 @@
 #include "Device/DDRDeviceCommData.h"
 #include "Device/DDRDeviceTypeBase.h"
 #include "Device/DDRDeviceLidar.h"
+#include "Device/DDRDeviceIMU.h"
+#include "Device/DDRDeviceMotor.h"
+#include "Device/DDRDeviceControlMoveNormal.h"
 #include <memory>
 
 #define DDR_OUT // Output parameter

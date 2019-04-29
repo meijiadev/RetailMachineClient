@@ -6,7 +6,7 @@
 #endif
 
 #include <iostream>
-#define SHOW_LIDAR_DATA
+//#define SHOW_LIDAR_DATA
 #ifdef SHOW_LIDAR_DATA
 #include "opencv2/opencv.hpp"
 void showData(std::vector<DDRGeometry::Points_2d> ret_Point_2d)
@@ -125,10 +125,11 @@ namespace DDRDrivers {
 
 	void Lidar_AkuSense::End()
 	{
+		std::cout << "Lidar_AkuSense::End() close lidar ...\n";
 #if LIDAR_DEVICE_CHOICE == AKUSENSE_LIDAR
 		close_lidar();
 #elif LIDAR_DEVICE_CHOICE == SICK_LIDAR
-
+		m_Lidar.Disconnect();
 #endif
 		m_bIsOpen = false;
 	}

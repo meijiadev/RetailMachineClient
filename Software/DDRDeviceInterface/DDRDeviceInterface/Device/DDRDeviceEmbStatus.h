@@ -14,7 +14,9 @@ namespace DDRDevice
 		std::shared_ptr<EmbStatusData> GetData();
 		EmbStatusInfo GetDeviceInfo();
 		bool SendData(EmbStatusInfo data);
+		std::string GetName();
 	private:
+		EmbStatusInfo m_info;
 	};
 }
 

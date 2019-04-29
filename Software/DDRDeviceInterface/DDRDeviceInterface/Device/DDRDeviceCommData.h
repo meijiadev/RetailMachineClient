@@ -16,7 +16,7 @@ namespace DDRDevice
 		// 2.IMU数据
 		en_DeviceIMU = 2,
 
-		// 3.轮机数据
+		// 3.轮机
 		en_DeviceMotor = 3,
 
 		// 4.GPS数据
@@ -36,6 +36,18 @@ namespace DDRDevice
 
 		// 9.双目
 		en_DeviceStereo = 9,
+
+		/*
+			控制移动.主要是指控制底盘的方式。针对不同的驱动方式应该会有不同的设备。差动是一种，前转后驱又是一种。
+			这里是最普通的控制方式，Logic下发角速度线速度的。（E巡和高新兴的就是这样）
+			针对E巡：这里还需要初始化设备，比如将左右轮半径，轴距。最开始还需要设定IMU温度。
+		*/
+		en_DeviceControlMoveNormal = 20,
+
+		/*
+		en_DeviceControlMoveForwardDrive = 21, // 前转后驱。增加一个设备。控制方式也变了
+		*/
+
 
 		// 10.雷达
 		en_DeviceLidar = 60,
@@ -83,12 +95,17 @@ namespace DDRDevice
 	class IMUInfo :public DeviceInfoBase
 	{
 	public:
+		IMUInfo():m_fIMUTemp(0)
+		{
+			m_enType = en_DeviceIMU;
+		}
+		float m_fIMUTemp;
 	};
 
 	class IMUData 
 	{
 	public:
-		IMUData():m_sAccX(0), m_sAccY(0), m_sAccZ(0), m_sGX(0), m_sGY(0), m_sGZ(0), m_sIMUTempBy100(0), 
+		IMUData():m_sAccX(0), m_sAccY(0), m_sAccZ(0), m_sGX(0), m_sGY(0), m_sGZ(0), m_fIMUTemp(0),
 			m_nTimeStamp(0), m_enType(en_DeviceIMU){}
 	
 		short m_sAccX;
@@ -97,7 +114,7 @@ namespace DDRDevice
 		short m_sGX;
 		short m_sGY;
 		short m_sGZ;
-		short m_sIMUTempBy100;
+		float m_fIMUTemp;
 		EnDeviceType m_enType;
 		unsigned int m_nTimeStamp;
 	};
@@ -105,6 +122,14 @@ namespace DDRDevice
 	class MotorInfo :public DeviceInfoBase
 	{
 	public:
+		MotorInfo() :m_dLeftRadius(0), m_dRightRadius(0), m_dWheelBase(0),
+			m_dReading2AR_wheel(0), m_dReading2AR_gyro(0) {}
+
+		double m_dLeftRadius;
+		double m_dRightRadius;
+		double m_dWheelBase;
+		double m_dReading2AR_wheel;
+		double m_dReading2AR_gyro;
 	};
 
 	class MotorData
@@ -211,6 +236,21 @@ namespace DDRDevice
 		double m_dstLat;
 		unsigned short m_chCog;
 		float m_fAltitude;
+		EnDeviceType m_enType;
+		unsigned int m_nTimeStamp;
+	};
+
+	class ControlMoveNormalInfo :public DeviceInfoBase
+	{
+	public:
+	};
+
+	class ControlMoveNormalData
+	{
+	public:
+		ControlMoveNormalData():m_enType(en_DeviceControlMoveNormal), m_nTimeStamp(0){}
+		AngularVelocity m_Ang;
+		LinearVelocity m_Lin;
 		EnDeviceType m_enType;
 		unsigned int m_nTimeStamp;
 	};

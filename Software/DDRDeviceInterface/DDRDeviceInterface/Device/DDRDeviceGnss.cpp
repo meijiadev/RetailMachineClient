@@ -34,6 +34,11 @@ namespace DDRDevice
 		return true;
 	}
 
+	std::string GnssBase::GetName()
+	{
+		return m_info.m_strName;
+	}
+
 }
 
 

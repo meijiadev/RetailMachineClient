@@ -29,15 +29,42 @@ namespace DDRDevice {
 
 		bool AddDevice(EnDeviceType type, std::string strName)
 		{
+			bool bret = false;
 			std::cout << "AddDevice Device Type:" << type << " Name:" << strName.c_str() << std::endl;
 			if (en_DeviceLidar == type)
 			{
-				std::shared_ptr<LidarBase> plidar = std::make_shared<LidarBase>();
-				std::shared_ptr<DeviceTypeMap> deviceMap = std::make_shared<DeviceTypeMap>();
-				deviceMap->insert(std::pair<std::string, std::shared_ptr<DevicePtrContainer>>(strName, plidar));
-				m_mapDevice.insert(std::pair<EnDeviceType, std::shared_ptr<DeviceTypeMap>>(en_DeviceLidar, deviceMap));
+				//std::shared_ptr<LidarBase> plidar = std::make_shared<LidarBase>();
+				//std::shared_ptr<DeviceTypeMap> deviceMap = std::make_shared<DeviceTypeMap>();
+				//deviceMap->insert(std::pair<std::string, std::shared_ptr<DevicePtrContainer>>(strName, plidar));
+				//m_mapDevice.insert(std::pair<EnDeviceType, std::shared_ptr<DeviceTypeMap>>(en_DeviceLidar, deviceMap));
+				bret = true;
 			}
-			return true;
+			else if (en_DeviceIMU == type)
+			{
+				std::shared_ptr<IMUBase> pDevice = std::make_shared<IMUBase>();
+				std::shared_ptr<DeviceTypeMap> deviceMap = std::make_shared<DeviceTypeMap>();
+				deviceMap->insert(std::pair<std::string, std::shared_ptr<DevicePtrContainer>>(strName, pDevice));
+				m_mapDevice.insert(std::pair<EnDeviceType, std::shared_ptr<DeviceTypeMap>>(en_DeviceIMU, deviceMap));
+				bret = true;
+			}
+			else if (en_DeviceMotor == type)
+			{
+				std::shared_ptr<MotorBase> pDevice = std::make_shared<MotorBase>();
+				std::shared_ptr<DeviceTypeMap> deviceMap = std::make_shared<DeviceTypeMap>();
+				deviceMap->insert(std::pair<std::string, std::shared_ptr<DevicePtrContainer>>(strName, pDevice));
+				m_mapDevice.insert(std::pair<EnDeviceType, std::shared_ptr<DeviceTypeMap>>(en_DeviceMotor, deviceMap));
+				bret = true;
+			}
+			else if (en_DeviceControlMoveNormal == type)
+			{
+				std::shared_ptr<ControlMoveNormalBase> pDevice = std::make_shared<ControlMoveNormalBase>();
+				std::shared_ptr<DeviceTypeMap> deviceMap = std::make_shared<DeviceTypeMap>();
+				deviceMap->insert(std::pair<std::string, std::shared_ptr<DevicePtrContainer>>(strName, pDevice));
+				m_mapDevice.insert(std::pair<EnDeviceType, std::shared_ptr<DeviceTypeMap>>(en_DeviceControlMoveNormal, deviceMap));
+				bret = true;
+			}
+
+			return bret;
 		}
 
 		bool RemoveDevice(EnDeviceType type, std::string strName)

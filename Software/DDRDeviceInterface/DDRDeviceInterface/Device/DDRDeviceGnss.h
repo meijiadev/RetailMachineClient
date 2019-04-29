@@ -14,7 +14,9 @@ namespace DDRDevice
 		std::shared_ptr<GnssData> GetData();
 		GnssInfo GetDeviceInfo();
 		bool SendData(GnssInfo data);
+		std::string GetName();
 	private:
+		GnssInfo m_info;
 	};
 }
 
