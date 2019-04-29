@@ -5,19 +5,11 @@
 #define __API__DDRDEVICE__ __declspec(dllexport)   
 #else
 #define __API__DDRDEVICE__ __declspec(dllimport)
-//#ifdef _DEBUG
-//#ifndef _WIN64
-//#pragma comment (lib, "DDRDevice/DDRDevice_d.lib")
-//#else
-//#pragma comment (lib, "DDRDevice/DDRDevice_x64d.lib")
-//#endif
-//#else
-//#ifndef _WIN64
-//#pragma comment (lib, "DDRDevice/DDRDevice_r.lib")
-//#else
-//#pragma comment (lib, "DDRDevice/DDRDevice_x64r.lib")
-//#endif
-//#endif
+#ifdef _DEBUG
+#pragma comment (lib, "DDRDevice_x64d.lib")
+#else
+#pragma comment (lib, "DDRDevice_x64r.lib")
+#endif
 #endif
 
 #include "DDRDeviceCommData.h"
