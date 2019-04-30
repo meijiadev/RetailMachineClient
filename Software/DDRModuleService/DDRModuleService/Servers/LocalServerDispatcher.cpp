@@ -15,7 +15,7 @@
 #include "src/Utility/DDRMacro.h"
 
 using namespace DDRCommProto;
-using namespace DDRModuleCmd;
+using namespace DDRModuleProto;
 using namespace DDRFramework;
 
 LocalServerDispatcher::LocalServerDispatcher()
