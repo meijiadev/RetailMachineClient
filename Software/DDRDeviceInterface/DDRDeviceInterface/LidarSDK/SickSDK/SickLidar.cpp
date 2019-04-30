@@ -353,7 +353,7 @@ namespace DDRDrivers
 
 		do {
 			FD_ZERO(&rfds);
-			FD_SET(sockDesc, &rfds);
+   			FD_SET(sockDesc, &rfds);
 
 			tv.tv_sec = 0;
 			tv.tv_usec = 50000;

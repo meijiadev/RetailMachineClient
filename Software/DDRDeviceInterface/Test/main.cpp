@@ -8,11 +8,6 @@
 
 #include "opencv2/opencv.hpp"
 
-#ifdef _DEBUG
-#pragma comment (lib, "../x64/Debug/DDRDevice_x64d.lib")
-#else
-#pragma comment (lib, "../x64/Release/DDRDevice_x64r.lib")
-#endif
 
 bool g_bGotoMain = false;
 std::mutex g_mutex;
