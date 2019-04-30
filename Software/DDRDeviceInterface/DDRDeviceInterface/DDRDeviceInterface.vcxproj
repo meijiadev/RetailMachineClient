@@ -113,7 +113,7 @@
       <PreprocessorDefinitions>_DEBUG;DDRDEVICEINTERFACE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);DDR_LOCALNETWORKNODE_LIB;DDR_DEVICE_LIB;WIN32;COMMON_ASIO_TOGETHER</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>D:\workspace\DDRSystem\Shared\thirdparty\websocketpp\websocketpp\common;D:\workspace\DDRSystem\Shared;D:\workspace\DDRSystem\Shared\thirdparty\cppfs\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../../../Shared;$(ProjectDir)../../../../Shared/thirdparty/websocketpp/websocketpp/common;$(ProjectDir)../../../../Shared/thirdparty/cppfs/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

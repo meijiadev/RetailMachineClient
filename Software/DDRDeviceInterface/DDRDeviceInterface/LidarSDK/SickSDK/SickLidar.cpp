@@ -358,9 +358,13 @@ namespace DDRDrivers
 			tv.tv_sec = 0;
 			tv.tv_usec = 50000;
 			retval = select(sockDesc + 1, &rfds, NULL, NULL, &tv);
-			if (retval) {
+			if (retval > 0) {
 				len += recv(sockDesc, buf + len, 20000 - len, 0);
 				if (len > len_fix){
+					if (len > (1000 * 10))
+					{
+						return;
+					}
 					for (size_t i = 0; i < len; i++){
 						if (buf[i] == 0x02){
 							if ((i + len_fix) < len){
@@ -383,6 +387,10 @@ namespace DDRDrivers
 				else{
 					continue; //length is not match
 				}
+			}
+			else if(retval < 0)
+			{
+				continue;
 			}
 		} while ((buf[0] != 0x02) || (buf[len - 1] != 0x03));
 		buf[len - 1] = 0;

@@ -259,22 +259,27 @@ namespace DDRDrivers {
 
 				if (bQuit)
 				{
+					std::cout << "Quit lidar sub thread\n";
 					break;
 				}
 
 				if (!m_Lidar.IsConnected())
 				{
+					std::cout << "Quit lidar sub thread. lidar is not connect\n";
 					break;
 				}
 
 				std::vector<DDRGeometry::Points_2d> ret_Point_2d;
 				uint64_t times;
 
+				//std::cout << "m_Lidar.GetOneScan() +++\n";
 				// 这里依然存在死循环
 				if (!m_Lidar.GetOneScan(ret_Point_2d, times))
 				{
+					//std::cout << "m_Lidar.GetOneScan() 11 ---\n";
 					continue;
 				}
+				//std::cout << "m_Lidar.GetOneScan() 22 ---\n";
 
 				std::lock_guard<std::mutex> lock(m_Lidar_MUTEX);
 				m_lidarData.resize(0);
@@ -290,7 +295,7 @@ namespace DDRDrivers {
 				m_bNewData = true;
 
 			}
-			std::cout << "Sick lidar sub thread end ...\n";
+			std::cout << "Sick lidar sub thread end ... m_bQuitSubThread:" << m_bQuitSubThread << std::endl;
 		}
 		catch (const std::exception& e)
 		{

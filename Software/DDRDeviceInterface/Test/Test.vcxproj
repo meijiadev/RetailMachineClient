@@ -79,8 +79,8 @@
     <IncludePath>$(ProjectDir)../DDRDeviceInterface/include;D:\workspace\DDRSystem\DD-VLN\Software\DDRDeviceInterface\DDRDeviceInterface\include22;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>D:\workspace\DDRSystem\DD-VLN\Software\DDRDeviceInterface\DDRDeviceInterface\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)../DDRDeviceInterface/include;D:\workspace\DDRSystem\DD-VLN\Software\DDRDeviceInterface\DDRDeviceInterface\include22;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)../DDRDeviceInterface/lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)../DDRDeviceInterface/include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LibraryPath>$(LibraryPath)</LibraryPath>
