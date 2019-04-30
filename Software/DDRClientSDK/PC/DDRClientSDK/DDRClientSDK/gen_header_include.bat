@@ -6,6 +6,7 @@ cd %CurrentPath%
 
 
 xcopy /Y %CurrentPath%\include\*.h %CurrentPath%\..\DDRSDK\include\ /s /i
+xcopy /Y %CurrentPath%..\..\..\..\..\..\\Shared\proto\DDRModuleCmd.pb.h %CurrentPath%\..\DDRSDK\include\Shared\proto /s /i
 
 
 

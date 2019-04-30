@@ -78,7 +78,7 @@ class DemoRobotVersionInfoListener : public DDRSDK::DDRBaseListener
 {
 	virtual void OnMsgArrival(std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) override
 	{
-		auto spRsp = std::dynamic_pointer_cast<DDRModuleCmd::rspRobotVersionInfo>(spMsg);
+		auto spRsp = std::dynamic_pointer_cast<DDRModuleProto::rspRobotVersionInfo>(spMsg);
 		if (spRsp)
 		{
 			printf("\nDemo RobotVersionInfo Listener RobotID:%s", spRsp->robotid().c_str());
@@ -91,7 +91,7 @@ class DemoSetParameterListener : public DDRSDK::DDRBaseListener
 {
 	virtual void OnMsgArrival(std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) override
 	{
-		auto spRsp = std::dynamic_pointer_cast<DDRModuleCmd::rspSetParameter>(spMsg);
+		auto spRsp = std::dynamic_pointer_cast<DDRModuleProto::rspSetParameter>(spMsg);
 		if (spRsp)
 		{
 			printf("\nDemo SetParameter Listener:%i", spRsp->ret());
@@ -115,13 +115,13 @@ void Disconnect()
 //发送指令。这里以reqRobotVersionInfo为例。指令详见proto文件
 void RobotVersionInfo()
 {
-	auto spReq = std::make_shared<DDRModuleCmd::reqRobotVersionInfo>();
+	auto spReq = std::make_shared<DDRModuleProto::reqRobotVersionInfo>();
 	DDRSDK::Send(gDDRHandle, spReq);
 }
 
 void SetParameter()
 {
-	auto spReq = std::make_shared<DDRModuleCmd::reqSetParameter>();
+	auto spReq = std::make_shared<DDRModuleProto::reqSetParameter>();
 	spReq->set_posangulauspeed(12);
 	spReq->set_poslinespeed(99);
 	DDRSDK::Send(gDDRHandle, spReq);
@@ -135,8 +135,8 @@ int main()
 	gDDRHandle = DDRSDK::CreateDDR(std::make_shared<DemoStatusListener>());
 
 	//
-	DDRSDK::RegisterListener(gDDRHandle, std::make_shared<DDRModuleCmd::rspRobotVersionInfo>(), std::make_shared<DemoRobotVersionInfoListener>());
-	DDRSDK::RegisterListener(gDDRHandle, std::make_shared<DDRModuleCmd::rspSetParameter>(), std::make_shared<DemoSetParameterListener>());
+	DDRSDK::RegisterListener(gDDRHandle, std::make_shared<DDRModuleProto::rspRobotVersionInfo>(), std::make_shared<DemoRobotVersionInfoListener>());
+	DDRSDK::RegisterListener(gDDRHandle, std::make_shared<DDRModuleProto::rspSetParameter>(), std::make_shared<DemoSetParameterListener>());
 
 
 	//创建广播接收器
