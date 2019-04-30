@@ -6,7 +6,7 @@ Author: Michael
 
 Date:2019-04-24
 
-Description:Provide  DDRCleint SDK functions  
+Description:Provide  DDRClient SDK functions  
 
 **************************************************************************/
 

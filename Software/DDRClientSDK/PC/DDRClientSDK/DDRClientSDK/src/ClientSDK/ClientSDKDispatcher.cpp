@@ -3,7 +3,7 @@
 
 #include "../Processors/ClientSDKProcessor.h"
 using namespace DDRCommProto;
-using namespace DDRModuleCmd;
+using namespace DDRModuleProto;
 using namespace DDRFramework;
 
 

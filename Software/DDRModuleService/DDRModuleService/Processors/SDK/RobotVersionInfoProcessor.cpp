@@ -7,7 +7,7 @@
 #include "../../../Shared/src/Utility/Logger.h"
 
 using namespace DDRFramework;
-using namespace DDRModuleCmd;
+using namespace DDRModuleProto;
 
 RobotVersionInfoProcessor::RobotVersionInfoProcessor(BaseMessageDispatcher& dispatcher) :BaseProcessor(dispatcher)
 {
