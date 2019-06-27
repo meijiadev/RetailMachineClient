@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@mipmap/collect_one" android:duration="200"/>
+    <item android:drawable="@mipmap/collect_two" android:duration="200"></item>
+    <item android:drawable="@mipmap/collect_three" android:duration="200"></item>
+    <item android:drawable="@mipmap/collect_four" android:duration="200"></item>
+    <item android:drawable="@mipmap/collect_five" android:duration="200"></item>
+    <item android:drawable="@mipmap/collect_six" android:duration="200"></item>
+    <item android:drawable="@mipmap/collect_seven" android:duration="200"></item>
+    <item android:drawable="@mipmap/collect_eight" android:duration="200"></item>
+
+</animation-list>

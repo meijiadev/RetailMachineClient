@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.NavigationActivity"
+   >
+
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:background="@color/a_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/pull_extend"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="13dp"
+            android:layout_marginLeft="12dp"
+            android:text="@string/title_name"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:id="@+id/account_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/account_switch_white"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="13.5dp"
+            />
+
+    </RelativeLayout>
+
+    <com.example.dadao.dadaorobot.util.widget.PullToRefrshLinearLayout
+        android:id="@+id/pull_extend"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/relative_layout"
+        app:layout_constraintBottom_toTopOf="@id/layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_weight="0.8"
+        android:background="#0E0F1A"
+        android:animateLayoutChanges="true"
+        >
+        <ListView
+            android:id="@+id/list_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="16dp"
+            android:divider="@null"
+            android:scrollbars="none"
+            android:dividerHeight="10dp"
+            android:layoutAnimation="@anim/anim_listview"
+            android:visibility="visible"
+           >
+        </ListView>
+        <RelativeLayout
+            android:id="@+id/relative_log"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#0E0F1A"
+            android:visibility="visible"
+            >
+
+        </RelativeLayout>
+
+    </com.example.dadao.dadaorobot.util.widget.PullToRefrshLinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout_voice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/relative_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        android:visibility="gone"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        >
+        <include layout="@layout/transparence_window"/>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/a_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pull_extend"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintVertical_weight="0.075">
+        <ImageView
+            android:id="@+id/video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="51dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/video_selector"
+            android:clickable="true"
+            />
+        <ImageView
+            android:id="@+id/voice"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:src="@drawable/circle"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/voice_white"/>
+        <ImageView
+            android:id="@+id/log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/log_selector"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50.5dp"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

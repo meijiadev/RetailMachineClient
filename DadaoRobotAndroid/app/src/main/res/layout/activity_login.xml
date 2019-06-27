@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0E0F1A"
+    tools:context=".Login.view.LoginActivity">
+
+    <ImageView
+        android:id="@+id/login_log"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="43dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/logo"
+        />
+
+    <LinearLayout
+        android:id="@+id/layout_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="133dp"
+        >
+        <Button
+            android:id="@+id/toggle_left"
+            android:layout_width="wrap_content"
+            android:layout_height="27.5dp"
+            android:background="@drawable/toggle_button_left_blue"
+            android:text="局域网"
+            android:textColor="@color/white" />
+        <Button
+            android:id="@+id/toggle_right"
+            android:layout_width="98dp"
+            android:layout_height="27.5dp"
+            android:background="@drawable/toggle_button_right_gray"
+            android:textColor="@color/white"
+            android:text="广域网"
+            />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_sever"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="133dp"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="服务连接成功"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        />
+    <LinearLayout
+        android:id="@+id/layout_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="204dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/layout_robot"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/iv_robot"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="43dp"
+                android:src="@mipmap/robot_id" />
+
+            <TextView
+                android:id="@+id/robot_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="79dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="11dp"
+                android:inputType="none"
+                android:text="机器人ID"
+                android:textColor="@color/fontColor"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="12dp"
+                android:src="@mipmap/down_icon" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="42dp"
+                android:layout_marginRight="42dp"
+                android:background="@color/line" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_account"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="52dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            >
+            <ImageView
+                android:id="@+id/iv_account"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="43dp"
+                android:src="@mipmap/account" />
+
+            <EditText
+                android:id="@+id/account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="79dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="20dp"
+                android:background="@null"
+                android:hint="账号"
+                android:inputType="none"
+                android:textColor="@color/fontColor"
+                android:textColorHint="@color/fontColor"
+                android:textSize="13sp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="42dp"
+                android:layout_marginRight="42dp"
+                android:background="@color/line" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="52dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            >
+            <ImageView
+                android:id="@+id/iv_password"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="43dp"
+                android:src="@mipmap/password" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="79dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="20dp"
+                android:background="@null"
+                android:hint="密码"
+                android:inputType="none"
+                android:textColor="@color/fontColor"
+                android:textColorHint="@color/fontColor"
+                android:textSize="13sp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="42dp"
+                android:layout_marginRight="42dp"
+                android:background="@color/line" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/login_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="登陆"
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_log"
+        android:layout_marginTop="407.5dp"
+        android:background="@drawable/button_bg_selector"
+        />
+    <TextView
+        android:id="@+id/cancel_login"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_log"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="470dp"
+        android:textColor="#919191"
+        android:text="取消"
+        android:gravity="center"
+        android:visibility="gone"
+        />
+    <RelativeLayout
+        android:id="@+id/layout_robot_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:visibility="gone"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            >
+            <TextView
+                android:id="@+id/tv_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="23dp"
+                android:text="机器人ID"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:text="取消"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:textColor="@color/button_bg_blue"
+                android:textStyle="bold"
+                />
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/list_line_gray"
+                android:layout_marginTop="12dp"
+                android:paddingBottom="200dp"
+                android:layout_below="@id/tv_rb"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_robotId"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:layout_below="@id/view">
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
