@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--areaBackground 设置区域背景
+       rockerBackground 设置摇杆的样式
+       rockerScale 设置摇杆的相对于背景的比例
+       rockerSpeedLevel 摇杆当前位置相对于中心点点距离的比例
+       rockerCallBackMode 有变化就回调，或者是方向改变就回调
+   -->
+    <declare-styleable name="RockerView">
+        <attr name="areaBackground" format="color|reference"/>
+        <attr name="rockerBackground" format="color|reference"/>
+        <attr name="topBackground" format="color|reference"/>
+        <attr name="bottomBackground" format="color|reference"/>
+        <attr name="leftBackground" format="color|reference"/>
+        <attr name="rightBackground" format="color|reference"/>
+        <attr name="rockerScale" format="float"/>
+        <attr name="rockerSpeedLevel" format="integer"/>
+        <attr name="rockerCallBackMode">
+            <flag name="CALL_BACK_MODE_MOVE" value="0"/>
+            <flag name="CALL_BACK_MODE_STATE_CHANGE" value="1"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="CustomImageView">
+        <attr name="imageBackground" format="color|reference"/>
+    </declare-styleable>
+</resources>
