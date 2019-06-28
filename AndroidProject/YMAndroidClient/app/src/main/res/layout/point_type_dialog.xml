@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="340dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/collect_dialog_shape"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:focusable="true" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请选择该点的类型（默认普通）:"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+    <TextView
+        android:id="@+id/type1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="普通"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/type2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="投影"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/type3"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="过闸"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/type4"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="电梯"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/edit_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/collect_dialog_edit_shape"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textSize="12sp"
+        android:textColorHint="#b1b1b1"
+        android:hint="选填"
+        android:paddingStart="15dp"
+        />
+
+    <Button
+        android:id="@+id/delete_point"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/button_shape_blue"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:text="删除该点"
+        />
+
+</LinearLayout>

@@ -1,0 +1,406 @@
+syntax = "proto3";
+package DDRModuleProto;
+
+
+enum eRspType {
+	eSuccess = 0;
+	eNotConnected = 1;
+	eInternalError = 2;
+	eDenied = 3;
+}
+
+enum eMODE {
+	eERR_MODE = 0; // 错误
+	eIDLING = 1; // 待命模式
+	eCOLLECTION = 2; // 采集建图模式
+	eAUTO = 3; // 自动行走模式
+}
+
+enum eSUBMODE {
+	eERR_SUBMODE = 0; // 错误
+	eIDLING_EXCEPTION = 1; // 待命模式异常
+	eCOLLECTION_EXCEPTION = 2; // 采集模式异常
+	eAUTO_EXCEPTION = 3; // 自动模式异常
+	eIDLING_STILL = 4; // 空闲模式-静止
+	eIDLING_MOVING = 5; // 空闲模式-运动
+	eCOLLECTION_COLLECTING = 6; // 采集模式-采集中
+	eCOLLECTION_GENERATING = 7; // 采集模式-地图生成中
+	eCOLLECTION_FINISHED = 8; // 采集模式-建图完成
+	eAUTO_RELOC = 9; // 自动模式-重定位中
+	eAUTO_MOVING = 10; // 自动模式-运动中
+	eAUTO_STOPPED = 11; // 自动模式-停止(由调用者或避障模块要求停止)
+	eAUTO_ENDPOINT_UNREACHABLE = 12; // 自动模式-路径终点无法到达
+	eAUTO_FINISHED = 13; // 自动模式-成功到达终点
+}
+
+enum eException {
+	eNO_EXCEPTION = 0;
+	eINTERNAL_MEM_ERROR = 1; // 内存错误
+	eCOLLECTION_EXISTINGROUTE = 2; // 试图采集的地图名已存在
+	eCOLLECTION_FILEIOERROR = 3; // 采集模式下文件IO错误
+	eAUTO_NONEXISTINGROUTE = 4; // 自动模式选择的地图不存在
+	eAUTO_RELOCFAILED = 5; // 自动模式重定位失败
+	eAUTO_FILEIOERROR = 6; // 自动模式下文件IO错误
+	eAUTO_PP_EXCEPTION = 7; // 自动模式下路径规划模块异常
+	eAUTO_OA_EXCEPTION = 8; // 自动模式下避障模块异常
+}
+
+
+
+
+
+//请求机器人本体信息
+message reqRobotVersionInfo
+{
+	
+}
+//返回机器人本体信息
+message rspRobotVersionInfo
+{
+	string robotID = 1;                	//机器人ID
+	string softwareVersion = 2;			//软件版本
+	string hardwareVersion = 3;			//硬件版本
+	string lidarIP = 4;					//雷达IP
+	string cameraIP = 5;				//相机IP
+	string controllerIP = 6;			//主控机IP
+}
+
+
+//请求紧急停止
+message reqBrakeStop
+{
+	
+}
+//返回紧急停止结果
+message rspBrakeStop
+{
+	eRspType ret = 1;
+}
+
+
+//请求暂停
+message reqMotionPause
+{
+	
+}
+//返回暂停结果
+message rspMotionPause
+{
+	eRspType ret = 1;
+}
+
+// 工作模式
+enum eWorkingMode {
+	eIdling = 0; // 待命
+	eCollecting = 1; // 采集建图
+	eAuto = 2; // 自动行走
+}
+
+// 请求进入待命模式(并清除所有异常)
+message reqEnterIdleMode
+{
+
+}
+// 返回进入待命模式结果
+message rspEnterIdleMode
+{
+	eRspType ret = 1;
+}
+// 请求进入采集模式
+message reqEnterCollectionMode
+{
+	string mapName = 1;
+}
+// 返回进入采集模式结果
+message rspEnterCollectionMode
+{
+	eRspType ret = 1;
+}
+// 请求完成采集
+message reqFinishCollection
+{
+
+}
+// 返回完成采集结果
+message rspFinishCollection
+{
+	eRspType ret = 1;
+}
+// 请求进入自动模式
+message reqEnterAutoMode
+{
+	string mapName = 1; // 地图名 ("OneRoute123")
+	string pathFileName = 2; // 路径文件名 ("OneRoute_123/Path_auto.txt")
+}
+// 返回进入自动模式结果
+message rspEnterAutoMode
+{
+	eRspType ret = 1;
+}
+
+
+
+//请求位置校正(2D)
+message reqPoseCorrection
+{
+	float posx = 1;
+	float posy = 2;
+	float posdirection = 3;
+}
+//返回当前状态结果
+message rspPoseCorrection
+{
+	eRspType ret = 1;
+}
+
+//请求实体按钮启用/禁用
+message reqEnablePhysicalSwitch
+{
+	bool enable = 1;
+}
+//返回实体按钮启用/禁用结果
+message rspEnablePhysicalSwitch
+{
+	eRspType ret = 1;
+	bool enable = 2;
+}
+
+
+//直接控制机器人运动
+message reqControlRobot
+{
+	float linspeed = 1;					//线速度(单位 米/秒)
+	float angspeed = 2;					//角速度(单位 度/秒)
+}
+//返回参数设置结果
+message rspControlRobot
+{
+	eRspType ret = 1;
+}
+
+//请求障碍物信息
+message reqObstacleInfo
+{
+}
+//返回障碍物信息结果
+message rspObstacleInfo
+{
+	message ObstacleInfo
+	{
+		float startAngle = 1;  
+		float endAngle = 2;
+		float dist = 3;
+	}
+	
+	repeated ObstacleInfo infos = 1;
+}
+
+
+
+
+//请求导航到指定点
+message reqNavigateToPosition
+{
+	float posX = 1;					//到达X坐标
+	float posY = 2;					//到达Y坐标
+	float ang = 3;					//到达后角度 
+}
+//返回导航结果
+message rspNavigateToPosition
+{
+	eRspType ret = 1;
+}
+
+//请求取消导航
+message reqCancelNavigate
+{
+}
+//返回取消导航结果
+message rspCancelNavigate
+{
+	eRspType ret = 1;
+}
+//请求重启主机
+message reqRebootController
+{
+}
+//返回重启主机结果
+message rspRebootController
+{
+	eRspType ret = 1;
+}
+
+//请求设置禁区虚拟墙
+message reqVirtualWall
+{
+    message VirtualWallPoint
+    {
+        float x = 1;
+        float y = 2;
+        int32 type = 3;
+    }
+    repeated VirtualWallPoint points = 1;              //虚拟墙点
+}
+//返回设置禁区虚拟墙结果
+message rspVirtualWall
+{
+	eRspType ret = 1;
+}
+
+
+// 获取当前工作模式
+message reqGetMode
+{
+}
+
+message rspGetMode
+{
+	eRspType ret = 1;
+	eMODE mode = 2;
+}
+
+// 获取当前次级模式
+message reqGetSubMode
+{
+}
+
+message rspGetSubMode
+{
+	eRspType ret = 1;
+	eSUBMODE subMode = 2;
+}
+
+// 获取当前异常状态
+message reqGetException
+{
+}
+
+message rspGetException
+{
+	eRspType ret = 1;
+	eException exception = 2;
+}
+
+// 获取当前位姿
+message reqGetPose
+{
+}
+
+message rspGetPose
+{
+	eRspType ret = 1;
+	float x = 2; // X坐标, 正方向 前, 单位 米
+	float y = 3; // Y坐标, 正方向 左, 单位 米
+	float th = 4; // 航向, 单位 度
+}
+
+// 获取当前运行地图. 待命模式下无内容; 采集模式下mapName有效; 自动模式下mapName和pathName都有效
+message reqGetCurMap
+{
+}
+
+message rspGetCurMap
+{
+	eRspType ret = 1;
+	string mapName = 2; // 地图名 ("OneRoute...")
+	string pathName = 3; // 路径名 ("OneRoute_123/Path_auto.txt...")
+}
+
+
+
+// 获取地图名称列表
+message reqGetMapNameList
+{
+}
+
+message rspGetMapNameList
+{
+	eRspType ret = 1;
+	repeated string mapNameList = 2; // 地图名 ("OneRoute...")
+}
+
+// 获取背景地图和坐标转换信息
+message reqGetMapInfo
+{
+	string mapName = 1;
+}
+
+message rspGetMapInfo
+{
+	eRspType ret = 1;
+	string picFileAddr = 2; // 背景地图文件的http地址
+	repeated float conv = 3; // 转换矩阵, 6个浮点数
+}
+
+// 更新路径文件列表
+message reqGetPathList
+{
+	string mapName = 1;
+}
+
+message rspGetPathList
+{
+	message PathInfo
+	{
+		string pathFileName = 1; // 路径文件名 ("OneRoute_123/Path_auto.txt")
+		int32 nPoints = 2; // 路径点数量
+		repeated float X = 3; // X坐标 (nPoints个)
+		repeated float Y = 4; // Y坐标 (nPoints个)
+		repeated float Vel = 5; // 速度 (nPoints个)
+		repeated int32 Type = 6; // 类型 (nPoints个)
+		repeated bytes Desc = 7; // 描述 (nPoints个)
+	}
+	
+	eRspType ret = 1;
+	repeated PathInfo pathList = 2;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+//警告异常类型
+enum eAlarmType
+{
+	eBesieged = 0;   				//被围困
+	eUltrasonicError = 1;			//超声传感器异常
+	eMotorError = 2;				//电机异常
+	eMemeotyInsufficient = 3;		//内存不足
+	eStorageInsufficient = 4;		//磁盘存储不足
+}
+//通知警告
+message notifyAlarm
+{
+	int64 timestamp = 1;			//时间戳(纪元起至今的毫秒数)
+	eAlarmType type = 2;
+	string message = 3;
+}
+
+message notifyStatus
+{
+	float posx = 1;
+	float posy = 2;
+	float posdirection = 3;
+	float poslinespeed = 4;
+	float posangulauspeed = 5;
+}
+
+message notifyStatusChange
+{
+	int32 premode = 1;
+	int32 tomode = 2;
+	int32 presubmode =3;
+	int32 tosubmode = 4;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
