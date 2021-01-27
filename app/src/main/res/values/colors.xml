@@ -3,4 +3,11 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="textSelectColor">#6200EE</color>
+    <color name="textDefaultColor">#B0B0B0</color>
+    <color name="itemTextRed">#EE2C2C</color>
+    <color name="itemTextGray">#B0B0B0</color>
+    <color name="itemTextBlack">#292929</color>
+    <color name="itemTextWhite">#FFFFFF</color>
+    <color name="lineColor">#EAEAEA</color>
 </resources>

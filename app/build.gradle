@@ -1,12 +1,15 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.google.protobuf'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
-
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
     defaultConfig {
         applicationId "com.example.retailmachineclient"
-        minSdkVersion 16
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -17,6 +20,8 @@ android {
                 cppFlags ""
             }
         }
+
+
     }
 
     buildTypes {
@@ -31,6 +36,18 @@ android {
             buildConfigField("boolean", "LOG_DEBUG", "true")
         }
     }
+    defaultConfig{
+        multiDexEnabled true
+        buildConfigField "String", "BUILD_TIME", "\"" + getDate() + "\""
+        javaCompileOptions {
+            annotationProcessorOptions {
+                // EventBus Apt 索引类生成位置
+                arguments = [eventBusIndex: applicationId + '.MyEventBusIndex']
+            }
+        }
+
+    }
+
     externalNativeBuild {
         cmake {
             path "src/main/cpp/CMakeLists.txt"
@@ -39,12 +56,75 @@ android {
     }
 }
 
+String getDate() {
+    Date date = new Date()
+    return date.format("yyyy-MM-dd HH:mm:ss", TimeZone.getTimeZone("GMT+8"))
+}
+
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
+    plugins {
+        javalite {
+            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+        }
+    }
+    generateProtoTasks {
+
+
+        all().each { task ->
+            task.builtins {
+                remove java
+            }
+            task.plugins {
+                javalite {}
+            }
+        }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //谷歌的数据格式框架protobuf
+    implementation 'com.google.protobuf:protobuf-java:3.4.0'
+    implementation 'com.google.protobuf:protoc:3.4.0'
+    // ButterKnife 注解库：https://github.com/JakeWharton/butterknife
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    //图片下载
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    //oksocket的tcp连接库
+    api 'com.tonystark.android:socket:latest.release'
+
+    // 吐司工具类：https://github.com/getActivity/ToastUtils
+    implementation 'com.hjq:toast:8.2'
+    implementation 'com.hjq:xtoast:5.5'
+
+    // 状态栏沉浸：https://github.com/gyf-dev/ImmersionBar
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+
+    // 权限请求框架：https://github.com/getActivity/XXPermissions
+    implementation 'com.hjq:xxpermissions:6.0'
+
+    // EventBus 事件总线：https://github.com/greenrobot/EventBus
+    implementation "org.greenrobot:eventbus:3.1.1"
+    annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.1.1'
+
+    // 本地异常捕捉框架：https://github.com/Ereza/CustomActivityOnCrash
+    implementation 'cat.ereza:customactivityoncrash:2.2.0'
+
+    //万能适配器
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
 
 }

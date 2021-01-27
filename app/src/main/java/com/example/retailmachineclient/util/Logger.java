@@ -1,6 +1,8 @@
-package com.example.retailmachineclient;
+package com.example.retailmachineclient.util;
 
 import android.util.Log;
+
+import com.example.retailmachineclient.BuildConfig;
 
 /**
  * 日志工具

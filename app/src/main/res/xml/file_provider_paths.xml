@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!--外部存储路径-->
+    <external-path name="file_name" path="/" />
+    <external-files-path
+        name="name"
+        path="/"/>
+    <external-cache-path
+        name="name"
+        path="/"/>
+    <!--内部存储路径-->
+    <files-path name="name" path="/"/>
+</paths>

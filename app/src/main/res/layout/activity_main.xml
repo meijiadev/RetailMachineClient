@@ -4,16 +4,149 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
+
 
     <TextView
-        android:id="@+id/sample_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/btEnglish"
+        android:layout_width="93dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="English"
+        android:textColor="@color/textDefaultColor"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/btChinese"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/btFrench"
+        android:layout_width="93dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="French"
+        android:textColor="@color/textDefaultColor"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/btEnglish"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTelephone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="10dp"
+        android:text="紧急电话：13621461541"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/btChinese"
+        android:layout_width="93dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@mipmap/bt_bg"
+        android:gravity="center"
+        android:text="中文"
+        android:textColor="@color/textSelectColor"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="696dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="69dp"
+        android:background="@color/lineColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCommodity"
+        android:layout_width="696dp"
+        android:layout_height="465dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="37dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line1" />
+
+    <RelativeLayout
+        android:layout_width="264dp"
+        android:layout_height="match_parent"
+        android:background="@mipmap/shopping_cart_bg"
+        app:layout_constraintStart_toEndOf="@id/recyclerCommodity"
+        tools:layout_editor_absoluteY="33dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:drawableLeft="@mipmap/shopping_icon"
+            android:paddingStart="80dp"
+            android:text="购物车"
+            android:gravity="center_vertical"
+            android:drawablePadding="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/itemTextWhite"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerShopping"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@id/tvTitle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            />
+        <View
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/recyclerShopping"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/lineColor"/>
+        
+        <TextView
+            android:id="@+id/textOne"
+            android:layout_width="80dp"
+            android:layout_height="16dp"
+            android:text="商品总数："
+            android:layout_below="@id/line2"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="20dp"
+            android:textSize="14sp"
+            android:textColor="@color/itemTextBlack"
+
+            />
+        <TextView
+            android:id="@+id/tvCommodityName"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:text="3"
+            android:layout_marginRight="30dp"
+            android:layout_below="@id/line2"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/itemTextBlack"
+            android:gravity="center_vertical|right"
+            android:textSize="12sp"
+            />
+     
+        
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

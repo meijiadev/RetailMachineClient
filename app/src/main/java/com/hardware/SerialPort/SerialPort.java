@@ -1,9 +1,8 @@
 package com.hardware.SerialPort;
 
 import android.os.ParcelFileDescriptor;
-import android.util.Log;
 
-import com.example.retailmachineclient.Logger;
+import com.example.retailmachineclient.util.Logger;
 import com.example.retailmachineclient.base.BaseThread;
 
 import java.io.IOException;
@@ -135,7 +134,6 @@ public class SerialPort {
                     //Log.d(TAG, "calling read >>" + this);
                     mCacheBuffer.clear();
                     ret = read(mCacheBuffer);
-
                     if (ret > 0) {
                         byte[] buf = new byte[ret];
                         mCacheBuffer.get(buf, 0, ret);
@@ -151,14 +149,13 @@ public class SerialPort {
                 } catch (Exception e) {
                     Logger.e( "read Exception..."+e);
                     try {
+
                         Thread.sleep(100L);
                     } catch (Exception e1) {
                         Logger.e("read Exception,Thread sleep excetion! ..." + e1);
                     }
                 } finally {
                 }
-
-
             }
             super.run();
         }
