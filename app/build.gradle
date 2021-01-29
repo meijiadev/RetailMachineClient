@@ -127,4 +127,7 @@ dependencies {
     //万能适配器
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
 
+    //今日头条适配方案框架
+    implementation 'me.jessyan:autosize:0.9.5'
+
 }

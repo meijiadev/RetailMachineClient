@@ -20,7 +20,8 @@ public class SerialPort {
     public SerialPort(String name){
         this.mcuName=name;
     }
-
+    private ReadThread mReadThread = null;
+    IDataProc mSerialPortDataReceiver = null;
     /**
      * 打开串口
      * @param devFile
@@ -45,6 +46,26 @@ public class SerialPort {
         native_close();
     }
 
+
+    public boolean startReceived() {
+        if (mReadThread == null) {
+            mReadThread = new ReadThread();
+            mReadThread.start();
+        }
+        return true;
+    }
+
+    public boolean stopReceived() {
+        // /if (mCallbacks.size() == 0){
+        mReadThread.setReadStop(true);
+        mReadThread = null;
+        // }
+        return true;
+    }
+
+    public void setDataReceiver(IDataProc spdr) {
+        mSerialPortDataReceiver = spdr;
+    }
     /**
      * 返回串口是否已经打开
      * @return
@@ -142,9 +163,9 @@ public class SerialPort {
                         //byte buf[] = mCacheBuffer.array();
                         Logger.e( "<< recei:" + Utils.byteBufferToHexString(buf));
 
-                      /*  if (mSerialPortDataReceiver!=null){
+                        if (mSerialPortDataReceiver!=null){
                             mSerialPortDataReceiver.onDataReceived(buf);
-                        }*/
+                        }
                     }
                 } catch (Exception e) {
                     Logger.e( "read Exception..."+e);
