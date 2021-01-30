@@ -44,30 +44,34 @@ public class CRC {
             }
         }
         String data=convertToHexString(revert(res));
-        return hexStringToByte(data);
+        System.out.println(data);
+        return convertHexStringToBytes(data);
     }
 
-     /*
-      * 把16进制字符串转换成字节数组
-      * @param hex
-      * @return
+     /**
+      * 功能： 十六进制字符串转字节数组
+      * @param hexString 十六进制字符串
+      * @return 字节数组
       */
-     public static byte[] hexStringToByte(String hex) {
-         int len = (hex.length() / 2);
-         byte[] result = new byte[len];
-         char[] achar = hex.toCharArray();
-         System.out.println(achar.length);
-         for (int i = 0; i < achar.length; i++) {
-             int pos = i * 2;
-             System.out.println(achar[i]);
-//             result[i] = (byte)(achar[pos]+achar[pos+1]);
+     public static byte[] convertHexStringToBytes(String hexString){
+         //判空
+         if(hexString == null || hexString.length() == 0) {
+             return null;
          }
-         return result;
-     }
 
-     private static byte toByte(char c) {
-         byte b = (byte) "0123456789ABCDEF".indexOf(c);
-         return b;
+         //合法性校验
+         if(!hexString.matches("[a-fA-F0-9]*") || hexString.length() % 2 != 0) {
+             return null;
+         }
+
+         //计算
+         int mid = hexString.length() / 2;
+         byte[]bytes = new byte[mid];
+         for (int i = 0; i < mid; i++) {
+             bytes[i] = Integer.valueOf(hexString.substring(i * 2, i * 2 + 2), 16).byteValue();
+         }
+
+         return bytes;
      }
 
 
@@ -88,7 +92,7 @@ public class CRC {
     }
 
     public static void main(String[] args) {
-        byte[] data = new byte[]{0x11,0x15,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+        byte[] data = new byte[]{17,0x15,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
         byte[] result=CRC.crc16(data);
         for (int i=0;i<result.length;i++){
             System.out.println(result[i]);
