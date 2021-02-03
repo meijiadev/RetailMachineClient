@@ -9,7 +9,7 @@ android {
     }
     defaultConfig {
         applicationId "com.example.retailmachineclient"
-        minSdkVersion 26
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -48,12 +48,6 @@ android {
 
     }
 
-    externalNativeBuild {
-        cmake {
-            path "src/main/cpp/CMakeLists.txt"
-            version "3.10.2"
-        }
-    }
 }
 
 String getDate() {
@@ -129,5 +123,8 @@ dependencies {
 
     //今日头条适配方案框架
     implementation 'me.jessyan:autosize:0.9.5'
+
+
+    implementation 'com.github.kongqw:AndroidSerialPort:1.0.1'
 
 }

@@ -67,11 +67,13 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
     }
 
 
@@ -79,7 +81,7 @@ public class MainActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btEnglish:
-
+                startActivityFinish(TestActivity.class);
                 break;
             case R.id.btFrench:
 

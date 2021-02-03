@@ -1,4 +1,4 @@
-package com.hardware.SerialPort;
+package com.example.retailmachineclient.util;
 
 public class Utils {
 	public static byte[] getBytes(byte[] buffer, int offset, int length) {

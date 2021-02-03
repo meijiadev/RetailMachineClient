@@ -53,7 +53,7 @@ public class CRC {
       * @param hexString 十六进制字符串
       * @return 字节数组
       */
-     public static byte[] convertHexStringToBytes(String hexString){
+     private static byte[] convertHexStringToBytes(String hexString){
          //判空
          if(hexString == null || hexString.length() == 0) {
              return null;
@@ -68,7 +68,8 @@ public class CRC {
          int mid = hexString.length() / 2;
          byte[]bytes = new byte[mid];
          for (int i = 0; i < mid; i++) {
-             bytes[i] = Integer.valueOf(hexString.substring(i * 2, i * 2 + 2), 16).byteValue();
+             System.out.println("---------:"+hexString.substring(i * 2, i * 2 + 2));
+             bytes[i] = (byte)Integer.valueOf(hexString.substring(i * 2, i * 2 + 2), 16).intValue();
          }
 
          return bytes;
@@ -92,12 +93,12 @@ public class CRC {
     }
 
     public static void main(String[] args) {
-        byte[] data = new byte[]{17,0x15,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+        byte[] data = new byte[]{0x11,0x14,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
         byte[] result=CRC.crc16(data);
         for (int i=0;i<result.length;i++){
             System.out.println(result[i]);
         }
-
+        System.out.println(Utils.byteBufferToHexString(result));
         int b = 0x0201;
 
         // 将16位的高8位转换为低8位
@@ -112,6 +113,8 @@ public class CRC {
         int c = lowByte | highByte;
         System.out.println(c);
 
+        boolean is=(byte)0x49==(byte) 73;
+        System.out.println(is);
     }
 }
 

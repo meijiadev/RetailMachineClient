@@ -5,8 +5,10 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 
 
+import com.example.retailmachineclient.BuildConfig;
 import com.example.retailmachineclient.R;
 import com.example.retailmachineclient.base.BaseActivity;
+import com.example.retailmachineclient.util.LogcatHelper;
 import com.example.retailmachineclient.util.Logger;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
@@ -40,7 +42,7 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
 
     @Override
     protected void initData() {
-
+        Logger.e("版本时间："+ BuildConfig.BUILD_TIME);
     }
 
 
@@ -63,6 +65,7 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
     @Override
     public void hasPermission(List<String> granted, boolean isAll) {
         Logger.d("权限请求成功");
+        LogcatHelper.getInstance(context).start();
         startActivityFinish(MainActivity.class);
     }
 
