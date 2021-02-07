@@ -36,6 +36,8 @@ public class CRC {
      * @return 编码结果
      */
     public static byte[] crc16(byte[] bytes) {
+        //Logger.e("-----编码内容:"+Utils.byteBufferToHexString(bytes));
+        System.out.println(Utils.byteBufferToHexString(bytes));
         int res = INITIAL_VALUE;
         for (int data : bytes) {
             res = res ^ data;
@@ -43,9 +45,12 @@ public class CRC {
                 res = (res & 0x0001) == 1 ? (res >> 1) ^ POLYNOMIAL : res >> 1;
             }
         }
-        String data=convertToHexString(revert(res));
-        System.out.println(data);
-        return convertHexStringToBytes(data);
+        int data=revert(res);
+        byte[] buf=new byte[2];
+        buf[0]=(byte)(data >>8&0xff);
+        buf[1]=(byte)(data&0xff);
+        System.out.println(Utils.byteBufferToHexString(buf));
+        return buf;
     }
 
      /**
@@ -86,6 +91,7 @@ public class CRC {
         int lowByte = (src & 0xFF00) >> 8;
         int highByte = (src & 0x00FF) << 8;
         return lowByte | highByte;
+
     }
 
     private static String convertToHexString(int src) {
@@ -98,7 +104,10 @@ public class CRC {
         for (int i=0;i<result.length;i++){
             System.out.println(result[i]);
         }
-        System.out.println(Utils.byteBufferToHexString(result));
+        byte[] rsp=new byte[20];
+        Utils.putBytes(rsp,0,data,data.length);
+        Utils.putBytes(rsp,18,result,2);
+        System.out.println(Utils.byteBufferToHexString(rsp));
         int b = 0x0201;
 
         // 将16位的高8位转换为低8位

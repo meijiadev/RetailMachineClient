@@ -20,6 +20,7 @@ public class DataProtocol {
 		public byte directiveId;         //指令
 		public byte[] data;             //数据     16个字节
 		public byte[] check;            //校验代码 两个字节
+
 		@Override
 		public String toString() {
 			String ret="";
@@ -65,56 +66,46 @@ public class DataProtocol {
 		return true;
 	}
 
-
 	/**
-	 * 根据指定的参数打包一个要发送的数据包
-
+	 * 组包
+	 * @param portMCU 发给哪个mcu
+	 * @param directiveId 指令
+	 * @param data        发送的数据
 	 * @return
 	 */
-	public static byte[] packSendData( Mcu.PortMCU portMCU, byte directiveId, byte[] data){
-		byte[] packData=new byte[20];
-		packData[0]=(byte) portMCU.getFlag();
-		packData[1]=directiveId;
-		if (data.length<16) {
-			byte[] nData=new byte[16];
-			Utils.putBytes(nData,0,data,data.length);
-			int len=0;
-			len=data.length;
-			for (int i=len;i<nData.length;i++){
-				nData[i]=0x00;
-			}
-			Utils.putBytes(packData,2,nData,nData.length);
-		}else{
-			Utils.putBytes(packData,2,data,data.length);
-		}
-		byte[] checks= CRC.crc16(packData);
-		if (checks.length==2){
-			Utils.putBytes(packData,18,checks,2);
-		}else{
-			Logger.e("check result is error！");
-		}
-		return packData;
-	}
-	/**
-	 * 根据指定的参数打包一个要发送的数据包
-	 * @return
-	 */
-	public static byte[] packSendData( Mcu.PortMCU portMCU, byte directiveId, byte data){
-		byte[] packData=new byte[20];
-		packData[0]=(byte) portMCU.getFlag();
-		packData[1]=directiveId;
+	public static byte[] packSendData(MCU.PortMCU portMCU, byte directiveId, byte data){
+		byte[] sData=new byte[18];
+		sData[0]=(byte) portMCU.getFlag();
+		sData[1]=directiveId;
 		byte[] nData=new byte[16];
 		nData[0]=data;
 		for (int i=1;i<nData.length;i++){
 			nData[i]=0x00;
 		}
-		Utils.putBytes(packData,2,nData,nData.length);
-		byte[] checks= CRC.crc16(packData);
-		//byte[] checks=new byte[]{(byte)0xaa,(byte)0x49};
+		Utils.putBytes(sData,2,nData,nData.length);
+		byte[] checks= CRC.crc16(sData);
+		byte[] packData=new byte[20];
 		if (checks.length==2){
+			Utils.putBytes(packData,0,sData,18);
 			Utils.putBytes(packData,18,checks,2);
 		}else{
 			Logger.e("check result is error！");
+		}
+		Logger.e("-------组包的数据："+Utils.byteBufferToHexString(packData));
+		return packData;
+	}
+
+	/**
+	 * 只用补充校验码
+	 * @param data(18字节)
+	 * @return
+	 */
+	public static byte[] packSendData(byte[] data){
+		byte[] packData=new byte[20];
+		if (data.length==18){
+			byte[] checkData=CRC.crc16(data);
+			Utils.putBytes(packData,0,data,18);
+			Utils.putBytes(packData,18,checkData,2);
 		}
 		return packData;
 	}

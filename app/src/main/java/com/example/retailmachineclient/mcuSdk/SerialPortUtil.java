@@ -9,38 +9,27 @@ import com.kongqw.serialportlibrary.listener.OnSerialPortDataListener;
 
 import java.io.File;
 
-public class SerialPortUtil {
+public class SerialPortUtil implements OnOpenSerialPortListener,OnSerialPortDataListener {
     private SerialPortManager mSerialPortManager;
-    private String sendData;
-    private String receiveData;;
+    private static SerialPortUtil serialPortUtil;
+    private IDataProcessor mDataProcessor;
+
+
+    public static SerialPortUtil getInstance() {
+        if (serialPortUtil==null){
+            serialPortUtil=new SerialPortUtil();
+        }
+        return serialPortUtil;
+    }
 
     public SerialPortUtil() {
         mSerialPortManager=new SerialPortManager();
-
-        mSerialPortManager.setOnOpenSerialPortListener(new OnOpenSerialPortListener() {
-            @Override
-            public void onSuccess(File file) {
-                Logger.e("串口打开成功！"+file.getPath());
-            }
-
-            @Override
-            public void onFail(File file, Status status) {
-                Logger.e("串口打开失败！"+file.getPath());
-            }
-        });
-
-        mSerialPortManager.setOnSerialPortDataListener(new OnSerialPortDataListener() {
-            @Override
-            public void onDataReceived(byte[] bytes) {
-                Logger.e("接受串口数据："+ Utils.byteBufferToHexString(bytes));
-            }
-
-            @Override
-            public void onDataSent(byte[] bytes) {
-                Logger.e("发送串口数据："+ Utils.byteBufferToHexString(bytes));
-            }
-        });
+        mSerialPortManager.setOnOpenSerialPortListener(this);
+        mSerialPortManager.setOnSerialPortDataListener(this);
+        mDataProcessor=new McuDataProcessor();
     }
+
+
     
 
     public boolean open(String devicePath,int portSpeed){
@@ -60,4 +49,24 @@ public class SerialPortUtil {
     }
 
 
+    @Override
+    public void onSuccess(File file) {
+        Logger.e("串口打开成功！"+file.getPath());
+    }
+
+    @Override
+    public void onFail(File file, Status status) {
+        Logger.e("串口打开失败！"+file.getPath());
+    }
+
+    @Override
+    public void onDataReceived(byte[] bytes) {
+        Logger.e("接受串口数据："+ Utils.byteBufferToHexString(bytes));
+        mDataProcessor.onDataReceive(bytes);
+    }
+
+    @Override
+    public void onDataSent(byte[] bytes) {
+        Logger.e("发送串口数据："+ Utils.byteBufferToHexString(bytes));
+    }
 }

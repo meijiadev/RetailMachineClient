@@ -84,7 +84,6 @@ public class Utils {
 	}
 
 	public static int byteToInt(byte b) {
-		//Java ؜ˇё byte ձضԐػԦmûϒćࠉӔͨڽݫǤۍ 0xFF ޸ѐ׾޸׆ԫփս̼քϞػֵ
 		return b & 0xFF;
 	}
 

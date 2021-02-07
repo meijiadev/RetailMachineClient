@@ -11,63 +11,51 @@ import java.util.ArrayDeque;
  * desc:处理从MCU接收过来的数据
  * time:2021/1/29
  */
-public class McuDataProcessor  {
-	private Context mContext;
+public class McuDataProcessor implements IDataProcessor  {
 
-	private Object mLock = new Object();
-	private boolean mCmdAckRst = false;
-	public McuDataProcessor(Context context) {
-		mContext = context;
-	}
-	private DataProtocol.RecDataCls recData;
-	/**
-	 * 锁定当前线种,等待结果
-	 */
-	public void waitResult() {
-		synchronized (mLock) {
-			try {
-				mLock.wait(800);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+	public McuDataProcessor( ) {
+
 	}
 
 
-	/**
-	 * 取消锁定,通知被锁的线程
-	 */
-	public void notifyResult() {
-		synchronized (mLock) {
-			mLock.notify();
-		}
-	}
-
-	public DataProtocol.RecDataCls getResult(){
-		Logger.e("---------:"+recData.toString());
-		return recData;
-	}
-
-
-
-	public boolean getCmdResult() {
-		return mCmdAckRst;
-	}
-
-	public boolean findCmdAndProc(byte[] buf) {
+	@Override
+	public void onDataReceive(byte[] buf) {
 		if (buf==null){
-			return false;
+			return ;
 		}
 		int bufLen=buf.length;
 		if (bufLen<DataProtocol.MIN_CMD_LEN){
-			return false;
+			return ;
 		}
 		//检查校验码是否正确
 		if (DataProtocol.isCheckRight(buf)){
-			recData=DataProtocol.createRecDataCls(buf);
+			DataProtocol.RecDataCls recData=DataProtocol.createRecDataCls(buf);
 			Logger.e("-------ReceiveData:"+recData.toString());
-			notifyResult();
+			doCmdResult(recData);
 		}
-		return true;
+
+	}
+
+	/**
+	 * 处理分发命令
+	 * @param recDataCls
+	 */
+	private void doCmdResult(DataProtocol.RecDataCls recDataCls){
+		switch(recDataCls.directiveId){
+			case 0x12:   //升降机回复指令
+
+				break;
+			case 0x13:   //查询升降机执行状态
+
+				break;
+			case 0x14:   //控制舱门执行结果
+
+				break;
+			case 0x15:    //查询推杆指令执行状态
+
+				break;
+
+
+		}
 	}
 }
