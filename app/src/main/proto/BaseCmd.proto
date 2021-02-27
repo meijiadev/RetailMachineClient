@@ -1,0 +1,1504 @@
+syntax = "proto3";
+package DDRCommProto;
+
+//message head instruction
+//req： Client request , Message to Server
+//rsp:  Server response , Message to Client , response a request
+//chk:  Server check Client , expect a answer
+//ans:  Client answer a check , to Server
+//notify: Server notify Client , donot need any answer or response
+//HeartBeat: heartbeat , send every n sector
+//bc: broadcast by server through udp
+
+// Abbreviation: LS - local server; C - client (local); LSM - local service module
+//				 RS - remote server; M - monitor (remote); RR - remote robot (connect to RS)
+
+// ------------------- Common message header ------------------- //
+
+message CommonHeader
+{
+	// type of message body, e.g., "reqLogin"
+	string bodyType = 1;
+	
+	message PassNode //any service or client that has received 
+	{
+		eCltType nodeType = 1;
+		int64 receiveSessionID = 2;//session shared_ptr value ,the session is which received the message
+		repeated int64 IntptrData = 3;//store a pointer that to some data structure
+		string fromIP = 4;//src IP Address
+	}
+	
+	eCltType fromCltType = 2;
+	eCltType toCltType = 3;
+	repeated PassNode passNodeArray = 4;// repeated here is to record the route
+	
+	// flow direction of the immediate transfer
+	enum eFlowDir {
+		Forward = 0;    //req is forward ,maybe from client to any service,through center server
+		Backward = 1;   //rsp is backward, maybe from service to client,through center server
+		RecordInQueue = 2;//some sequence msgs need to be use a header to record its route,like  reqFileAddr chkFileStatus ,mannually record passnode in processor
+		ReturnPopQueue = 3;//some sequence msgs to back to the origin use recorded header,like ansFileStatus,rspFileAddr ,mannually use passnode in processor
+	}
+	repeated eFlowDir flowDirection = 5;// repeated here is to indicate its validity (one and only one flowDirection)
+	string guid = 6;//add guid ,make msg unique
+	
+}
+
+// +++++++++++++++++++ Common message header +++++++++++++++++++ //
+
+// ------------------- Common message bodies ------------------- //
+message HeartBeat
+{
+	string whatever = 1;
+}
+
+
+
+message bcLSAddr
+{
+	enum eServiceType {
+		LocalServer = 0;      //Local Server
+		RemoteServer = 1;		//Remote Server
+		RTSPStreamServer = 2; //RTSP Stream Server
+		TalkBackServer = 3;		//Talk Back Server
+		AIServer = 4;
+	}
+	
+	message ServerInfo {
+		string name = 1;
+		eServiceType stype = 2;
+		repeated string ips = 3;
+		int32 port = 4; 
+		string robotid = 5;
+		int32 audioport = 6;
+	}
+	repeated ServerInfo LSInfos = 1;
+}
+
+//bit mask: 0x01 0x02 0x04 0x08 0x10 0x20 0x40 0x80...
+enum eCltType {
+	eNull = 0x0;
+	eLocalPCClient = 0x01;
+	eLocalAndroidClient = 0x02;	
+	eRemotePCClient = 0x04;
+	eRemoteAndroidClient = 0x08;
+	eAllClient = 0xff;
+	eLSMStreamRelay = 0x100;
+	eLSMSlamNavigation = 0x200;
+	eLSMFaceRecognition = 0x400;
+	eLSMThermalImaging =0x800;
+	eLSMVirtual = 0x1000;
+	eAllLSM = 0xff00;
+	eModuleServer = 0x10000;
+	eRemoteServer = 0x20000;
+	eAIServer = 0x30000;
+	eLocalAIClient = 0x30001;
+	eAllServer = 0xff0000;
+	eSellV2AndroidClient = 0x60000;
+	eAdClient = 0x70000;
+}
+// flowDirection = UNKNOWN2RS or UNKNOWN2LS
+// eSrcCondition = NoCond; forwardType = NoForwarding; eSrcRecType = NoRec;
+message reqLogin
+{
+
+	eCltType type = 1;
+	string username = 2; // nickname for clients/monitors, module name for LSM, ignored for RR
+	string userpwd = 3;
+}
+
+// flowDirection = RS2M or RS2RR or LS2C or LS2LSM
+// eSrcCondition = NoCond; forwardType = NoForwarding; eSrcRecType = NoRec;
+message rspLogin
+{
+	enum eLoginRetCode {
+		success = 0;
+		server_busy = 1;
+		server_limit_reached = 2;
+		incorrect_password = 3;
+	}
+	eLoginRetCode retcode = 1;
+	eCltType yourRole = 2;
+	int32 priority = 3;
+}
+
+
+
+//-----------------------------------ClientCmd[[[[[
+enum eCmdRspType{
+	eSuccess = 0;				// Cmd success
+	eCmdFailed = 1;				// Cmd failed
+	eNoAuthority = 2;			// user no authority
+	eRobotNoLogin = 3;			// robot no online
+	eLSMNoLogin = 4;			// lsm no online
+}
+// Cmd move 
+message reqCmdMove
+{ 
+	float line_speed = 1;		// Cmd Robot forward or back off
+	float angulau_speed =2;		// Cmd Robot turn left or right
+}
+message rspCmdMove
+{
+	eCmdRspType type =1;
+}
+// Cmd change speed
+message reqCmdChangeSpeed
+{
+	int32 add_speed = 1;		// Cmd change robot speed of autorun | 0x01 = speed up | 0xff = speed down
+}
+message rspCmdChangeSpeed
+{
+	eCmdRspType type = 1;
+}
+// Cmd pause or resume
+message reqCmdPauseResume 
+{
+	string error = 1; 			// Cmd robot Pause or Resume of autorun
+}
+message rspCmdPauseResume
+{
+	eCmdRspType type = 1;
+}
+// Cmd IPC Shutdown or ReStart or Volume
+enum eCmdIPCMode{
+	eShutDown = 0;		//	close IPC
+	eReStart = 1;		//	restart IPC
+	eVolume = 2;		//	change IPC volume
+	eExitModuleService = 3; // exit moduleService
+} 
+message reqCmdIPC
+{
+	eCmdIPCMode mode = 1;	// Cmd IPC to Shutdown or ReStart or Volume
+	int32 values = 2;		//	volume change values
+}
+message rspCmdIPC
+{
+	eCmdIPCMode mode = 1;	// IPC implement Shutdown or ReStart or Volume
+	eCmdRspType type = 2;
+	int32 values = 3;		// Current volume
+}
+// Cmd Robot start or stop play audio
+message reqCmdAudio{
+	enum eAudioMode{
+		eTTS = 0;				// TTS : "helloword"
+		eFile = 1;				// File : "c:\aaa\bbb\ccc.wav" | "aaa.wav"
+	}
+	enum eAudioOperational{
+		eStart = 0;
+		eStop = 1;
+	}
+	eAudioOperational audiop = 1;		// Cmd start or stop
+	eAudioMode type = 2;		// audio play mode
+	bytes Audiostr = 3;		// TTS or File content 
+	int32 level = 4;			// play audio level
+}
+message rspCmdAudio{
+	eCmdRspType type = 1;
+}
+// Cmd update config
+message reqCmdUpdateConfig{
+	string data = 1;			// config.dat change cmd
+	string dataname = 2;		// change dataname
+}
+message rspCmdUpdateConfig{
+	eCmdRspType type = 1;
+	string dataname = 2;		// change dataname
+}
+// Cmd get configdata
+message reqCmdGetConfigdata{
+	string error = 1;
+}
+message rspCmdGetConfigdata{
+	eCmdRspType type = 1;
+	repeated int32 configdata = 2;	// config.dat
+}
+// Cmd set work path
+message reqCmdSetWorkPath{
+	bytes route_name = 1;		// route_name : OneRoute_XXXXXX
+	string path_name = 2;		// path_name : path_auto.txt
+	float speed = 3;			// speed : 0~0.7
+	string walk_style = 4;		// walk style. Time to walk, infinite loop
+}
+message rspCmdSetWorkPath {
+	eCmdRspType type = 1;
+}
+
+// Cmd set autochat type
+message reqCmdAutoChat{
+	enum eAutoChatType{
+		eStartOnline = 0;			
+		eStartOffline = 1;
+		eStop = 2;
+	}
+	eAutoChatType type = 1;
+	int32 comnum = 2;			// MIC number
+}
+message rspCmdAutoChat{
+	eCmdRspType type = 1;
+}
+// Cmd create or query ot
+message reqCmdGeneralOctree{
+	enum eOctreeType{
+		eCreate = 0;
+		eQuery = 1;
+	}
+	bytes route_name = 1;			// route_name : OneRoute_XXXXXX
+	eOctreeType type = 2;			// create or query ot
+}
+message rspCmdGeneralOctree {
+	enum eRspOctreeType{
+		eFileNotExists = 0;
+		eFileExists = 1;
+		eInCreate = 2;
+	}
+	eCmdRspType type = 1;
+	eRspOctreeType otype = 2;
+}
+// Cmd change robot runmode
+enum eCmdActionMode{
+	eAutoDynamic = 0;
+	eAutoStatic = 1;
+	eBlindWaldDynamic = 2;
+	eBlindWaldStatic = 3;
+	eRec = 4;
+	eReCharging = 5;
+	eUWBAuto = 6;
+	eReloc = 7; // 只是重定位
+}
+// Cmd start to autorun or rec
+message reqCmdStartActionMode{
+	eCmdActionMode mode = 1;
+	bytes route_name = 2;
+	float rec_speed = 3;
+}
+
+message rspCmdStartActionMode{
+	eCmdActionMode mode = 1;
+	eCmdRspType type = 2;
+}
+// Cmd stop autorun or out rec
+message reqCmdEndActionMode{
+	string error = 1;
+	bool cancel_rec = 2; // 为true时表示采集模式中放弃当前的地图，不生成地图
+	bool bEndTaskRun = 3;// true - 终止全局任务运行。否则这个proto仅仅是退出当前模式用的。
+}
+
+message rspCmdEndActionMode{
+	eCmdActionMode actionmode = 1;
+	eCmdRspType type = 2;
+	bytes route_name = 3;
+}
+
+// 20191230 add from reloc +++
+enum eCmdRelocType{
+	eCmdRelocTypeNormal = 0;
+	eCmdRelocTypeRect = 1;
+	eCmdRelocTypePos = 2;
+}
+
+
+message reqCmdReloc{
+	bytes route_name = 1; // 可以为空，上位机自己去读取runControl设置的地图名
+	eCmdRelocType type = 2;
+	
+	// 以下是给画框重定位用的  单位都是米
+	float rectTop = 3;
+	float rectLeft = 4;
+	float rectBottom = 5;
+	float rectRight = 6;
+	
+	// 以下是根据位置重定位 单位是米 米 弧度
+	float PosX0 = 7;
+	float PosY0 = 8;
+	float PosTh0 = 9;
+}
+
+message rspCmdReloc{
+	eCmdRspType type = 1;
+}
+
+// 20191230 add from reloc ---
+
+// 运行特定任务，由SDK或者AIService触发，这时一般是要处于终止全局任务状态
+message reqRunSpecificTask{
+	bytes route_name = 1;
+	bytes task_name = 2;
+}
+
+message rspRunSpecificTask{
+	eCmdRspType type = 1;
+}
+
+// Cmd Delete curr route data
+message reqCmdDeleteCurrRouteOrPath{
+	bytes route_name = 1;
+	bytes path_name = 2; // if path_name is null. delete curr route floder.
+}
+message rspCmdDeleteCurrRouteOrPath{
+	eCmdRspType type = 1;
+}
+
+// Get curr route or data list
+message reqCmdGetCurrRouteAndPath
+{
+	string error = 1;
+}
+
+message RouteData{
+	bytes route_name = 1;
+	repeated bytes path_name = 2;
+}
+
+message rspCmdGetCurrRouteAndPath{
+	eCmdRspType type = 1;
+	repeated RouteData route_data = 2;
+}
+
+message SignPoint{
+	float startX = 1;
+	float startY = 2;
+	float endX = 3;
+	float endY = 4;
+	int32 type = 5;
+}
+
+message reqCmdSignPoint{
+	repeated SignPoint spoint = 1;
+	string route_name = 2;
+}
+
+message rspCmdSignPoint{
+	eCmdRspType type = 1;
+}
+
+
+enum ePathPointType{
+	ePointTypeCommon = 0;
+	ePointTypeProjection = 1;
+	ePointTypeGate = 2;
+	ePointTypeElevator = 3;
+}
+
+message PathPoint{
+	float pointX = 1;
+	float pointY = 2;
+	float speed = 3;
+	ePathPointType type = 4;
+	bytes pointInfo = 5;
+	float theta = 6;
+}
+
+message reqCmdSetPathPoint{
+	repeated PathPoint sPath = 1;
+	float endAng = 2;
+	bytes route_name = 3;
+	bytes path_name = 4;
+}
+
+message rspCmdSetPathPoint{
+	eCmdRspType type = 1;
+}
+
+message reqAddPathPointWhileCollecting
+{
+	PathPoint point = 1;
+}
+message rspAddPathPointWhileCollecting
+{
+	eCmdRspType type = 1;
+}
+message notifyPathPointArrayCollectionFinish
+{
+	repeated PathPoint sPath = 1;	
+	float endAng = 2;
+	bytes route_name = 3;
+	bytes path_name = 4;
+	bytes poimark_name = 5;
+}
+
+message reqCmdSwitchOAMode{
+	int32 mode = 1; // 1 - 动态，否则为静态
+}
+
+message rspCmdSwitchOAMode{
+	eCmdRspType type = 1;
+}
+
+/*
+	请求临时AB点模式
+*/
+message reqSetTempOAMode{
+	float tarX = 1; // 目标位置
+	float tarY = 2;
+	float tarSp = 3; // 目标速度
+	float tarAng = 4; // 目标角度（弧度）。[-3.1415, 3.1415]  不在此区间表示不需要转特定角度
+	bool bStaticOA = 5;
+}
+
+/*
+	retCode:   0 - 成功进入/更新AB段模式;
+			   1 - 异步计算中, 结果通过回调函数给出;
+			   2 - 异步计算忙, 本次设置失败;
+			  -1 - 目标不可达(同步模式下保证可达);
+			  -2 - AB段过短;
+			  -3 - 普通巡逻已结束, 无法设置AB段模式;
+			 -55 - 内部对象错误, 或输入参数有误(如tarSp超出限制)
+*/
+message rspSetTempOAMode{
+	eCmdRspType type = 1;
+	int32 retCode = 2;
+}
+
+/*
+	回到普通巡逻
+	bBack2TaskPt: 
+		false:则直接从当前位置开始 继续普通巡逻;
+		true:先返回进入临时任务时的位置，再开始巡逻任务
+		
+	speed:返回离开位置时的速度
+	bStatic：反回离开位置时的动静态模式	
+*/
+message reqQuitTempTask{
+	bool bBack2TaskPt = 1; 
+	float speed = 2;
+	bool bStatic = 3;
+}
+
+message rspQuitTempTask{
+	eCmdRspType type = 1;
+}
+
+
+
+//-----------------------------------ClientCmd]]]]]
+//-----------------------------------ClientStatus[[[[[
+// BaseStatus
+message notifyBaseStatus{
+	int32 mode = 1;
+	int32 sonmode =2;
+	float batt = 3;
+	float temp = 4;
+	float hum = 5;
+	float pm25 = 6;
+	int32 stopstat = 7;
+	int64 funcstat = 8;
+	int32 voiceloop = 9;
+	bytes currroute = 10;
+	string currpath = 11;
+	float currspeed = 12;
+	string currwalkstyle = 13;
+	float posx = 14;
+	float posy = 15;
+	float posdirection = 16;
+	float poslinespeed = 17;
+	float posangulauspeed = 18;
+	double longitude = 19;
+	double latitude = 20;
+	int64 timestamp = 21;
+	int32 thermalmaxx = 22;
+	int32 thermalmaxy = 23;
+	float thermalmaxvalue = 24;
+}
+
+enum  eNavRobotMode 
+{
+	eNavRobotModeReverse = 0;
+	IDLING = 1; // 待命模式
+	COLLECTION = 2; // 标定-采集模式
+	AUTO = 3; // 自动行走模式
+}
+
+// 次级工作模式
+enum  eNavRobotSubMode 
+{
+	eRobotSubModeReverse = 0; // 保留
+	IDLING_EXCEPTION = 1; // 待命模式异常
+	COLLECTION_EXCEPTION = 2; // 采集模式异常
+	AUTO_EXCEPTION = 3; // 自动模式异常
+
+	IDLING_STILL = 4; // 空闲模式-静止
+	IDLING_MOVING = 5; // 空闲模式-运动
+
+	COLLECTION_COLLECTING = 6; // 采集模式-采集中
+	COLLECTION_GENERATING = 7; // 采集模式-地图生成中
+	COLLECTION_FINISHED = 8; // 采集模式-建图完成
+	COLCALIB_PT0 = 9; // 标定采集-0点原地标定
+	COLCALIB_01 = 10; // 标定采集-0-1点采集
+	COLCALIB_PT1 = 11; // 标定采集-1点原地标定
+	COLCALIB_12 = 12;// 标定采集-1-2点采集
+	COLCALIB_PT2 = 13; // 标定采集-2点原地标定
+	COLCALIB_23 = 14; // 标定采集-2-3点采集
+
+	AUTO_RELOC = 15; // 自动模式-重定位中
+	AUTO_MOVING = 16; // 自动模式-运动中
+	AUTO_STOPPED = 17; // 自动模式-停止(由调用者或避障模块要求停止)
+	AUTO_ENDPOINT_UNREACHABLE = 18; // 自动模式-路径终点无法到达
+	AUTO_FINISHED = 19; // 自动模式-成功到达终点
+}
+
+// 自动模式细节
+enum  eAUTOMOVINGSTATUS 
+{
+	RELOCATING = 0; // 正在初始定位
+	STATIC_NORMAL = 1; // 静态避障-正常行走
+	STATIC_SLOWDOWN = 2; // 静态避障-减速避障
+	STATIC_STOPPED = 3; // 静态避障-停止
+	DYNAMIC_NORMAL = 4; // 动态避障-正常行走
+	DYNAMIC_DETOUR = 5; // 动态避障-绕行
+	DYNAMIC_NOWAYOUT = 6; // 动态避障-Χ'
+	DYNAMIC_VIRTUAL_COLLISION = 7; // 动态避障-遭遇虚拟障碍
+	PP_TURNING = 8; // 原地旋转
+	PP_TEMP_SEGMENT = 9; // 执行临时路径(此过程静态避障)
+	PP_SIEGE = 10; // 被围困
+
+	QR_ArrivalElevatorAlignment = 50; // 到达电梯基础点
+	QR_ArrivalElevatorEnter = 51; // 完成基础点的对准
+	QR_ArrivalElevatorIn_A = 52; // 到了电梯A的里面
+	QR_ArrivalElevatorOut_A = 53; // 到了电梯B的外面
+	QR_ArrivalElevatorIn_B = 54; // 到了电梯B的里面
+	QR_ArrivalElevatorOut_B = 55; // 到了电梯A的外面
+	QR_ArrivalProjectionStart = 56; // 到达投影点起始点
+	QR_ArrivalProjectionEnd = 57; // 到达投影结束点1
+
+	RotAct_Working = 70;
+	RotAct_WorkOver = 71;
+
+	PPOAC_Running = 255;
+	PPOAC_Pause = 256;
+}
+
+enum eException {
+	eNO_EXCEPTION = 0;
+	eINTERNAL_MEM_ERROR = 1; // 内存错误
+	eCOLLECTION_EXISTINGROUTE = 2; // 试图采集的地图名已存在
+	eCOLLECTION_FILEIOERROR = 3; // 采集模式下文件IO错误
+	eAUTO_NONEXISTINGROUTE = 4; // 自动模式选择的地图不存在
+	eAUTO_RELOCFAILED = 5; // 自动模式重定位失败
+	eAUTO_FILEIOERROR = 6; // 自动模式下文件IO错误
+	eAUTO_PP_EXCEPTION = 7; // 自动模式下路径规划模块异常
+	eAUTO_OA_EXCEPTION = 8; // 自动模式下避障模块异常
+}
+
+
+enum eDynamicOAStatus
+{
+	eDynamicOA = 0; // 动态
+	eStaticOA = 1; // 静态
+}
+
+enum eSelfCalibStatus
+{
+	eInSelfCalib = 0; // 正在自标定
+	eNoSelfCalib = 1; // 没在自标定
+}
+
+/*
+大状态有两种：
+	全局任务运行：这里包含临时任务和定时任务两种模式，主要是根据地图中配置的时间次数决定的。 客户端发送startActionMode进入
+	全局任务终止：相当于不跑临时任务和定时任务。只能跑AB点模式，或者SDK，AIServiece指定要跑的task。  客户端发送EndActionMode进入
+*/
+enum eTaskWorkMode
+{
+	eTaskWorkError = 0;
+	
+	// 工作中
+	eTaskWorkRunningTemporary = 1; // 临时任务
+	eTaskWorkRunningTimeList = 2; // 定时任务
+	
+	// 休息中
+	eTaskWorkRunEnd = 3; // 处于休息中
+	
+	// 任务中
+	eTaskWorkRunInTask = 4; // 处于任务中的执行中
+	eTaskWorkRunResumeTask = 5; // 处于任务中的恢复中
+}
+
+enum eChargingType
+{
+	eChargingTypeError = 0;
+	eChargingTypeAuto = 1; // 自动充电
+	eChargingTypeManual = 2; // 手动充电
+}
+
+message notifyBaseStatusEx{
+	eNavRobotMode mode = 1;
+	eNavRobotSubMode sonmode =2;
+	eDynamicOAStatus dynamicoa = 3;
+	eSelfCalibStatus selfcalibstatus = 4;
+	int32 stopstat = 5;
+	bytes currroute = 6;
+	bytes currpath = 7;
+	float posx = 8;
+	float posy = 9;
+	float posdirection = 10;
+	float poslinespeed = 11;
+	float posangulauspeed = 12;
+	bytes robotid = 13;
+	bool chargingStatus = 14; // true - 充电中
+	int32 chargingSubStatus = 15; // 充电子状态。0-空闲，1-正在寻找充电桩，2-正在充电，3-正在返回起始位置，[0-3表示自动充电时的各个状态]
+	eAUTOMOVINGSTATUS automovingstatus = 16; // 自动模式细节
+	int32 taskCount = 17; // 任务次数
+	int32 taskDuration = 18; // 任务时长，单位秒
+	bool bLocated = 19; // 当前是否有定位
+	int32 currOAMode = 20; // 获取当前路段动态/静态避障模式  0 - 静态; 1 - 动态; -1 - 未处于运行状态
+	eTaskWorkMode taskmode = 21; 
+	eException robotexception = 22; // 异常状态
+	eChargingType chargingType = 23; // 充电类型
+	int32 temporaryTaskCount = 24; // 记录临时任务总次数
+	int64 timestamp = 25;
+	bool bShutdown = 26; // true - 通知客户端需要关机。 来源主要有两个：1）客户端请求关机  2）嵌入式上报的关机
+}
+
+// Environmental sensor info
+message notifyEnvInfo{
+	float batt = 1;
+	float temp = 2;
+	float hum = 3;
+	float pm25 = 4;
+	float co2 = 5;
+	float ch2o = 6;
+	int32 tray = 7; // 低8位表示上面那一对，8-15位表示下面一对传感器。 0-被遮挡。 1-没被遮挡
+	float nuclear = 8; // 核辐射
+	float dangerousgas = 9; // 危险气体
+	bool antiCollision1 = 10; // 防碰撞1
+	bool antiCollision2 = 11; // 防碰撞2
+	bool antiCollision3 = 12; // 防碰撞3
+	bool antiCollision4 = 13; // 防碰撞4
+	bool fallProtection = 14; // 防跌落
+	bool resetState = 15; // 复位状态 0-复位  1-未复位
+	int64 CurrOdometer = 16; // 当前里程计 单位CM
+	int64 TotalOdometer = 17; // 总里程计 单位CM
+}
+
+// 通知重定位状态。收到这个表示重定位结束了。
+message notifyRelocStatus
+{
+	int32 status = 1; // 0-重定位失败  1-重定位成功  2-进入  3-用户取消重定位
+}
+
+//ObsStatus
+message OAInfo{
+	float startangle = 1;
+	float endangle = 2;
+	float dist = 3;
+}
+message notifyObsData{
+	int32 greedred = 1;
+	float maxdist = 2;
+	repeated OAInfo oastat = 3;
+}
+//-----------------------------------ClientStatus]]]]]
+
+//-----------------------------------ClientAlarm[[[[[
+// Alarm Thermal or ObsStatus
+message notifyAlarmInfo{
+	enum eAlarmType{
+		eThermalAlarm = 0;
+		eObsStatusAlarm = 1;
+	}
+	eAlarmType type = 1;
+	string alarmcontent= 2;
+}
+// Alarm face
+message notifyAlarmNewFace{
+	ePersonType type = 1;
+	string name = 2;
+	float socre = 3;
+	int64 prevtime = 4;
+	repeated int32 facedecode = 5;
+}
+// Alarm Fire
+message AlarmFirePos{
+	int32 posx = 1;
+	int32 posy = 2;
+	int32 poswidth = 3;
+	int32 posheight = 4;
+	int32 maxtem = 5;
+	int32 avgtem = 6;
+	int32 alarmpointcount = 7;
+}
+message notifyAlarmFire {
+	repeated AlarmFirePos pos = 1;
+}
+
+//-----------------------------------ClientAlarm]]]]]
+
+
+
+
+
+// flowDirection = LSM2LS or LS2C or RR2RS or RS2M
+// eSrcCondition = NoCond; forwardType = CltMonAll; eSrcRecType = NoRec;
+message reqStatus
+{
+	string statusMsg = 1;
+}
+
+// flowDirection = LSM2LS or LS2C or RR2RS or RS2M
+// eSrcCondition = NoCond; forwardType = CltMonAll; eSrcRecType = NoRec;
+message reqFaceAlarm
+{
+	string error = 1;
+}
+
+message reqHotAlarm
+{
+	string error = 1;
+}
+message reqObsAlarm
+{
+	
+	string error = 1;
+}
+
+// flowDirection = C2LS or LS2C or RR2RS or M2RS or RS2M
+// eSrcCondition = NoCond; forwardType = CltMonAll; eSrcRecType = NoRec;
+message reqTextChat
+{
+	string chatText = 1;
+}
+
+enum ChannelNetworkType
+{
+		Local = 0;
+		Remote = 1;
+}
+enum ChannelStreamType//bit mask
+{
+	Video = 0;
+	Audio = 1;
+	VideoAudio = 2;
+}
+
+
+//----------------------------------------------------------------------------------------------------------PC Android Client[[[[[[
+message AVStreamSrcChannel
+{
+	string srcAddr = 1;
+	repeated int32 srcPort = 2;//size = 0 means donot use it 
+	ChannelStreamType streamType = 3;
+	ChannelNetworkType networkType = 4;
+	int32 rate = 5;
+	bytes srcname = 6;
+}
+
+//local client to local server   or    remote client to remote server
+message reqStreamAddr
+{
+	ChannelNetworkType networkType = 1;
+}
+message rspStreamAddr
+{	
+	repeated AVStreamSrcChannel channels = 1;
+	string error = 3;
+}
+
+
+message reqAudioTalk
+{
+	enum eOpMode {
+		eStart = 0;
+		eStop = 1;
+	}
+	enum eNetType
+	{
+		eLocal = 0;
+		eRemote = 1;
+	}
+	eOpMode opType = 1;
+	eNetType netType = 2;
+}
+enum eTalkStatus
+{
+	ETS_START_OK = 0;    //成功对讲（服务端可接收）
+	ETS_USE_BY_OTHER = 1;//被其它客户端占用
+	ETS_STOP_OK = 2;//成功停止
+	ETS_NO_USER_CONNECTED_WITH_IP = 3;//流服务没有被相应IP的客户端连接
+	ETS_UNKNOWN_ERROR = 4;//末知错误
+}
+message rspAudioTalk
+{
+	eTalkStatus status = 1;
+	string error = 2;
+}
+
+message notifyStreamAddr
+{	
+	repeated AVStreamSrcChannel channels = 1;
+	string error = 3;
+}
+
+message notifyAlarm
+{
+	eCltType from = 1;
+	string fromIP = 2;
+	string error = 3;
+	
+}
+
+//local client req file
+
+
+enum eFileTypes {
+	FileContents = 0;
+	FileHttpAddress = 1;
+}
+
+
+message reqFileAddress
+{
+	eCltType tarServiceType = 1;
+	eFileTypes fileType = 2;
+	repeated bytes fileNames = 3;  // allow wildcards (*,?, etc)
+}
+
+// flowDirection = RR2RS or RS2M or LS2C
+// eSrcCondition = NoCond; forwardType = NoForwarding; eSrcRecType = NoRec;
+message rspFileAddress
+{
+	eCltType tarServiceType = 1;
+	eFileTypes fileType = 2;
+	repeated bytes fileAddrList = 3; // ignored if fileType!=FileContents
+	string error = 4;
+}
+//----------------------------------------------------------------------------------------------------------PC Android Client]]]]]]
+
+//----------------------------------------------------------------------------------------------------------StreamRelayService[[[[[[
+message AVChannelConfig
+{
+	
+
+	string src = 1;
+	string dst = 2;
+	ChannelStreamType streamType = 3;
+	ChannelNetworkType networkType = 4;
+	int32 rate = 5;
+	bytes srcname = 6;
+}
+
+message reqStreamServiceInfo
+{
+	string name = 1;
+	
+}
+message rspStreamServiceInfo
+{
+	int32 tcpPort = 1;
+	repeated AVChannelConfig channels = 2;
+	
+}
+message notifyStreamServiceInfoChanged
+{
+	int32 tcpPort = 1;
+	repeated AVChannelConfig channels = 2;
+}
+message reqStreamRelayAlarm
+{
+	string error = 1;
+	repeated eCltType to = 2;
+}
+
+//----------------------------------------------------------------------------------------------------------StreamRelayService]]]]]]
+
+//----------------------------------------------------------------------------------------------------------ThermalService[[[[[[
+
+message ThermalServerConfig
+{
+	float alarm_temp = 1;
+}
+
+// Get Thermal server params
+message reqCmdGetThermalParams
+{
+	string error = 1;		
+}
+
+message rspCmdGetThermalParams
+{
+	ThermalServerConfig thermal_config = 1;
+}
+
+// Set Thermal server params
+message reqCmdSetThermalParams
+{
+	ThermalServerConfig thermal_config = 1;	
+}
+
+message rspCmdSetThermalParams
+{
+	eCmdRspType type = 1;
+}
+
+//----------------------------------------------------------------------------------------------------------ThermalService]]]]]]
+
+
+//----------------------------------------------------------------------------------------------------------FaceService[[[[[[
+
+// Cmd add face
+enum ePersonType{
+	eWhiteList = 0;
+	eBlackList =1;
+	eRedList = 2;
+}
+
+message reqCmdAddFace {
+	bytes name = 1;			
+	ePersonType type = 2;		
+	repeated int32 picdata = 3;	// face picture data
+}
+message rspCmdAddFace{
+	eCmdRspType type = 1;
+}
+
+// Cmd operation face database
+message reqCmdFaceDataBaseOrder{
+	string Order = 1;				// Order ： "SELECT COUNT(*) FROM DDRPersonLib;" | "SELECT * FROM DDRPersonLib WHERE PersonIndex = 3;"
+}
+message FaceDataBaseData{
+	int32 id = 1;				
+	bytes name = 2;
+	ePersonType type = 3;
+	string label = 4;
+}
+message rspCmdFaceDataBaseOrder {
+	enum eRspDataBaseType{
+		eError = 0;
+		eQueryCount = 1;
+		eDeleteSuccess = 2;
+		eDetailedData = 3;
+	}
+	eCmdRspType type = 1;
+	repeated FaceDataBaseData data = 2;
+}
+
+// Cmd Get alarm params
+
+message FaceServerConfig
+{
+	float Confidence = 1; // Confidence (0 - 100)
+	float Face_quality = 2; // Face quality (0 - 1)
+}
+
+// Get Face params
+message reqCmdGetFaceParams{
+	string error = 1;		
+}
+
+message rspCmdGetFaceParams{
+	FaceServerConfig Face_config = 1;
+}
+
+// Set Face params
+message reqCmdSetFaceParams{
+	FaceServerConfig Face_config = 1;	
+}
+
+message rspCmdSetFaceParams{
+	eCmdRspType type = 1;
+}
+//----------------------------------------------------------------------------------------------------------FaceService]]]]]]
+
+//Service to Client External Cmd
+message notifySendExternalCmd
+{
+	string cmdName = 1; //string cmd name
+	repeated string parameter = 2;//cmd parameter
+}
+
+//Client to Service External Cmd
+message reqReceiveExternalCmd
+{
+	string cmdName = 1; //string cmd name
+	repeated string parameter = 2;//cmd parameter
+}
+message rspReceiveExternalCmd
+{
+	string error = 1;//if sucess ,error is empty
+}
+
+enum eDebugInfoType {
+	eClearDebugInfo = 0;
+	eUploadCurRoute = 1;
+	eLidarDebugInfo = 2;
+	eVisualDebugInfo = 3;
+}
+
+message reqCoreDebug {	
+	eDebugInfoType actionType = 1; // type
+	repeated string parameter = 2;// (optional) parameter
+}
+
+message rspCoreDebug {
+	eCmdRspType type = 1;
+	eDebugInfoType actionType = 2; // type
+}
+
+// delete map
+message reqDeleteMap{
+	bytes map_name = 1;	
+}
+
+message rspDeleteMap{
+	eCmdRspType type = 1;
+}
+
+// Rename map
+message reqRenameMap{
+	bytes old_name = 1;	
+	bytes new_name = 2;	
+}
+
+message rspRenameMap{
+	eCmdRspType type = 1;
+}
+
+// 20200210 以下为配置文件相关  ++++++++++
+enum eConfigItemType
+{
+	eConfigTypeError = 0; // 让有效值从1开始，便于保存
+	eConfigTypeCore = 1;
+	eConfigTypeLogic = 2; 
+}
+
+enum eConfigItemOptType
+{
+	eConfigOptTypeError = 0; // 让有效值从1开始，便于保存
+	eConfigOptTypeGetData = 1; // 获取数据
+	eConfigOptTypeResumeData = 2;  // 恢复默认值
+	eConfigOptTypeSetData = 3; // 设置数据
+}
+
+// 配置文件
+message configItem{
+	bytes key = 1;
+	bytes value = 2;
+	bytes defaule_value = 3;
+	bytes writable = 4;
+	bytes alias = 5;
+}
+
+// 单个配置项
+message configData{
+	eConfigItemType type = 1;
+	configItem data = 2;
+}
+
+message reqConfigOperational{
+	eConfigItemOptType type = 1; // 为eConfigTypeError时，表示将两种类型的配置文件都发送
+	repeated configData data = 2;
+}
+
+message rspConfigOperational{
+	eCmdRspType type = 1;
+	repeated configData data = 2;
+}
+
+// 以下为针对传感器配置的
+enum eSensorConfigItemOptType
+{
+	eSensorConfigOptTypeError = 0; // 让有效值从1开始，便于保存
+	eSensorConfigOptTypeGetData = 1; // 获取数据
+	eSensorConfigOptTypeResumeData = 2;  // 恢复默认值
+	eSensorConfigOptTypeSetData = 3; // 设置数据
+	eSensorConfigOptTypeDisableAll = 4; // 失能
+	eSensorConfigOptTypeEnableAll = 5; // 使能
+}
+
+message sensorConfigItem{
+	bytes key = 1;
+	bytes dynamicOATriggerDist = 2; // 动态触发距离
+	bytes staticOATriggerDist = 3; // 静态触发距离
+}
+
+message reqSensorConfigOperational{
+	eSensorConfigItemOptType type = 1;
+	repeated sensorConfigItem data = 2;
+}
+
+message rspSensorConfigOperational{
+	eCmdRspType type = 1;
+	repeated sensorConfigItem data = 2;
+}
+
+/*
+// 客户端获取所有的配置文件
+message reqGetAllConfig{
+	eConfigItemType type = 1; // 为eConfigTypeError时，表示将两种类型的配置文件都发送
+}
+
+message rspGetAllConfig{
+	repeated configData data = 1;
+}
+
+// 客户端发送配置文件，也就是修改配置文件。
+message reqSetConfig{
+	repeated configData data = 1;
+}
+
+message rspSetConfig{
+	eCmdRspType type = 1;
+}
+*/
+// 20200210 以上为配置文件相关  -----------
+
+// 20200210 以下为请求回环检测相关  ++++++++++
+// 请求回环检测
+message reqDetectLoop{
+	bytes resver = 1;
+}
+
+// 通知回环的结果
+// 0 - 回环已存在;
+// 1 - 新采集基准构成回环; 2 - 距离太近不需要检测回环;
+// -1 - 没有检测到回环; -2 - 检测错误;
+message rspDetectLoop{
+	eCmdRspType type = 1;
+	int32 loopStat = 2;
+	
+}
+// 20200210 以上为请求回环检测相关  ----------
+
+// 20200210 以下为生成地图进度相关  ++++++++++
+message notifyMapGenStat{
+	float progCB = 1; // [0.0 - 1.0]
+}
+// 20200210 以上为生成地图进度相关  ----------
+
+// 20200210 以下为请求硬件自检相关  ++++++++++
+message reqHardwareCheck{
+	bytes param = 1;
+}
+
+message rspHardwareCheck{
+	eCmdRspType type = 1;
+}
+
+message notifyHardwareStat{
+	
+	// 各硬件类型
+	enum HardwareType{
+		en_HardwareTypeError = 0;
+		en_HardwareTypeEmb = 1;  // 嵌入式
+		en_HardwareType2DLidar = 2; // 2D雷达模块
+		en_HardwareTypeCamera = 3; // 相机
+	}
+	
+	// 硬件状态码  0表示正常，后续可能会新增不同的状态码
+	enum HardwareStat{
+		en_HardwareStatError = 0;  // 保留用的
+		en_HardwareStatOk = 1;  // 正常
+		en_HardwareStatInitError = 2; // 异常
+	}
+	
+	message HardwareStatItem
+	{
+		bytes date = 1; // 时间 eg: 2019-09-28 14:30:20
+		HardwareType type = 2; // 类型
+		HardwareStat stat = 3; // 状态
+	}
+	repeated HardwareStatItem data = 1;
+}
+// 20200210 以上为请求硬件自检相关  -----------
+
+
+// 获取地图数据
+message reqClientGetMapInfo{
+	bytes param = 1;
+}
+
+message rspClientGetMapInfo{
+	message MapInfoItem
+	{
+		message TaskItem
+		{
+			bytes name = 1; 
+			int32 startHour = 2; // 开始时间，时
+			int32 startMin = 3; // 开始时间，分
+			int32 endHour = 4; // 结束时间，时
+			int32 endMin = 5; // 结束时间，分
+			int32 runCount = 6; // 运行次数
+		}
+		
+		bytes name = 1; // 地图名
+		int64 timeStamp = 2; // 时间戳
+		bytes bkPicAddr = 3; // 地图http地址
+		float width = 4; // 宽度
+		float hitght  = 5; // 高度
+		bytes author = 6;  // 采集人
+		repeated TaskItem taskSet = 7;
+	}
+	repeated MapInfoItem mapData = 1;
+}
+
+// 获取上位机版本信息
+message reqGetSysVersion{
+	bytes param = 1;
+}
+
+message rspGetSysVersion{
+	// 各组件类型
+	enum ComponentType{
+		en_ComponentTypeHostComputer = 0;  // 上位机
+		en_ComponentTypeHost2DLidar = 1; // 2D雷达模块
+		en_ComponentTypeHostVision = 2; // 视觉模块
+		en_ComponentTypeHostPPOAC = 3; // 路径规划与避障模块
+		en_ComponentTypeHostDeviceManager = 4; // 设备管理模块
+		en_ComponentTypeHostEmbedded = 5; // 嵌入式
+	}
+	
+	message ComponentVerItem
+	{
+		bytes version = 1; // 版本号 eg: 1.1.1_Beta  1.1.1_Release 200001
+		bytes date = 2; // 时间 eg: 2019-09-28 14:30:20
+		ComponentType type = 3; // 类型
+	}
+	
+	repeated ComponentVerItem sysInfo = 1;
+	int32 chassisType = 2; // 底盘类型
+}
+
+// 请求雷达重定位。需要指定左上角和右下角的坐标 都是世界坐标
+message reqUse2DLiderReset{
+	float TopLeftX = 1;
+	float TopLeftY = 2;
+	float BottomRightX = 3;
+	float BottomRightY = 4;
+}
+
+message rspUse2DLiderReset{
+	eCmdRspType type = 1;
+}
+
+// 上位机上报的点云数据
+message notifyLidarPts{
+	message Position
+	{
+		float pt_x = 1;
+		float pt_y = 2;
+		float pt_z = 3;
+	}
+	repeated Position ptsData = 1;
+	float posx = 2;  // 机器人位置x
+	float posy = 3;  // 机器人位置y
+	float posdirection = 4; // 机器人朝向
+	int64 timestamp = 5;
+}
+
+// 上位机上报的视觉点云数据
+message notifyVisionPts{
+	message Position
+	{
+		float pt_x = 1;
+		float pt_y = 2;
+		float pt_z = 3;
+	}
+	repeated Position ptsData = 1;
+	float posx = 2;  // 机器人位置x
+	float posy = 3;  // 机器人位置y
+	float posdirection = 4; // 机器人朝向
+	int64 timestamp = 5;
+}
+
+/*
+	客户端请求采集模式时的点云.
+	采集时上位机实时保存点云，如果客户端异常退出后再进，可以重新拉取点云数据。
+*/
+message reqGetCollectPts{
+	int32 resverse = 1;
+}
+
+message rspGetCollectPts{
+	repeated notifyLidarPts lidarData = 1;
+	repeated notifyVisionPts visionData = 2;
+}
+
+// 以下为获取2D雷达点云数据相关，
+enum en2DLidarPointData
+{
+	en2DLidarPointData_Reserve = 0;
+	en2DLidarPointData_2DLidar = 1;
+	en2DLidarPointData_RGBD = 2;
+}
+
+// 也可以获取RGBD的数据
+message reqGet2DLidarPointData{
+	en2DLidarPointData type = 1; // 要获取的类型，en2DLidarPointData_Reserve 表示两种数据都获取
+}
+
+message rspGet2DLidarPointData{
+	message LidarPoint_2D
+	{
+		float angle = 1;
+		float distance = 2;
+	}
+	message dataItem
+	{
+		en2DLidarPointData type = 1;
+		repeated LidarPoint_2D dataSet = 2;
+	}
+	eCmdRspType type = 1;
+	repeated dataItem dataSet = 2;
+}
+
+// 以下为原图去燥功能相关
+enum enLidarMapEditorType
+{
+	enLidarMapEditorType_Reserve = 0;
+	
+	// 擦除点，可以指定一堆连续的点。擦除时会按顺序连成多边形。也保留原来的指定左上 右下两个点的坐标。
+	enLidarMapEditorType_Erase = 1; 
+	
+	// back to the previous state.
+	enLidarMapEditorType_Back = 2;
+	
+	// Save the map after editing.
+	enLidarMapEditorType_Save = 3;
+	
+	// if bOriginal == false, the map will be reset to the initial state of this time.
+	// else, the map will be reset to the original state.
+	enLidarMapEditorType_Reset = 4;
+	
+	// 添加点，可以指定点多个点。就是 reqEditorLidarMap 中的 optPtSet。
+	enLidarMapEditorType_AddPt = 5;
+	
+	// 添加虚拟墙，由多个线段组成。就是 reqEditorLidarMap 中的 vlSet。
+	enLidarMapEditorType_AddVirtualLines = 6;
+	
+	// 移除虚拟墙，由多个线段组成。就是 reqEditorLidarMap 中的 vlSet。
+	enLidarMapEditorType_EraseVirtualLines = 7;
+}
+
+message reqEditorLidarMap{
+
+	message optPoint
+	{
+		float pt_x = 1;
+		float pt_y = 2;
+	}
+	
+	// 每一个虚拟墙会有多个点。理论上至少会有两个点。
+	message VirtualLineItem
+	{
+		repeated optPoint lineSet = 1;
+	}
+
+	message eraseRange
+	{
+		float top = 1;
+		float left = 2;
+		float bottom = 3;
+		float right = 4;
+	}
+	enLidarMapEditorType type = 1; // 要操作的类型
+	repeated eraseRange range = 2; // 只有当 type 为 enLidarMapEditorType_Erase 时才有意义
+	bool bOriginal = 3; // 只有当 type 为 enLidarMapEditorType_Reset 时才有意义
+	bytes oneroutename = 4;
+	
+	/*
+		type为下面两个时有意义：
+			enLidarMapEditorType_Erase：要擦除的点，optPtSet表示一个多边形
+			enLidarMapEditorType_AddPt：要添加的点，optPtSet表示点的集合
+	*/	
+	repeated optPoint optPtSet = 5;
+	
+	/*
+		type为下面两个时有意义：			
+			enLidarMapEditorType_AddVirtualLines：添加的虚拟墙，optPtSet表示多个点连起来的线段
+			enLidarMapEditorType_EraseVirtualLines：擦除的虚拟墙，optPtSet表示多个点连起来的线段
+	*/		
+	repeated VirtualLineItem vlSet = 6;
+}
+
+message rspEditorLidarMap{
+	eCmdRspType type = 1;
+	reqEditorLidarMap reqData = 2; // 收到的 reqEditorLidarMap 的值
+}
+
+// 获取上位机状态。具体数据不在 rspGetRobotStatusAndEnv 中体现。
+message reqGetRobotStatusAndEnv{
+	int32 nType = 1; // 0:Base 1:Env 2:OBS 3:LidarPt else Send all data.
+}
+
+message rspGetRobotStatusAndEnv{
+	int32 nType = 1;
+}
+
+/*
+	客户端调试用的。
+*/
+message reqClientDebutInfo{
+	int32 notifyLidarPtsWaittime = 1; // 发送雷达点云数据间隔时间，单位ms。一般在100-1000之间。
+	int32 notifyBaseStatusExWaittime = 2; // 发送基础数据间隔时间，单位ms。目前在500
+}
+
+message rspClientDebutInfo{
+	eCmdRspType type = 1;
+}
+
+// 最近活跃的雷达子概率栅格地图
+message notifyLidarCurSubMap
+{
+	message gridItem
+	{
+		int32 gridX = 1;
+		int32 gridY = 2;
+	}
+
+	bytes submap = 1;
+	int32 width = 2;
+	int32 height = 3;
+	gridItem gridIndex = 4;
+	int32 compressionType = 5; // 压缩方法。 0-表示不压缩。具体再定义。
+	float posx = 6;  // 机器人位置x
+	float posy = 7;  // 机器人位置y
+	float posdirection = 8; // 机器人朝向
+	int64 timestamp = 9;
+	float oa_lidar_range = 10; // 雷达量程
+}
+
+// 获取雷达子概率栅格地图。采集时会保存。
+message reqGetAllLidarCurSubMap{
+	int32 reserve = 1;
+}
+
+message rspGetAllLidarCurSubMap{
+	eCmdRspType type = 1;
+	repeated notifyLidarCurSubMap data = 2;
+}
+
+// 异常码
+enum enDDRNotifyExceptCode
+{
+	enExceptCode_Normal = 0; // 没有错
+	enExceptCode_NoLocated = 1; // 当前没有定位
+	enExceptCode_NoChargingPt = 2; // 当前地图没有充电点
+	enExceptCode_GeneralPathFailed = 3; // 生成路径失败
+}
+
+// 异常类型。 还可以设置通知一次，或者一定要有回复才不发。
+enum enDDRExceptType
+{
+	enDDRExceptType_Normal = 0;
+	enDDRExceptType_NoNeedRsp = 1;
+	enDDRExceptType_NeedRsp = 2;
+}
+
+message notifyExceptCode{
+	enDDRNotifyExceptCode code = 1;
+	enDDRExceptType type = 2;
+	bytes description = 3;
+}
+
+// 通知超声状态
+message notifySensorState{
+	message sensorStateItem
+	{
+		int32 sensorID = 1; // 传感器ID 
+		float dist = 2; // 距离，单位是厘米
+		int32 triggerStat = 3; // 触发状态  // 0-未触发，1-触发，-1无效
+	}
+	repeated sensorStateItem data = 1;
+}
+
+// +++++++++++++++++++ Common message bodies +++++++++++++++++++ //

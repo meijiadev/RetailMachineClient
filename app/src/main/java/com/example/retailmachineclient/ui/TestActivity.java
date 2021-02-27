@@ -38,6 +38,9 @@ public class TestActivity extends BaseActivity {
         return R.layout.activity_test;
     }
 
+
+
+
     @Override
     protected void initView() {
         setStatusBarEnabled(true);
@@ -72,7 +75,6 @@ public class TestActivity extends BaseActivity {
                         tvResult.setText(result);
                     }
                 });
-
             }
         });
 
